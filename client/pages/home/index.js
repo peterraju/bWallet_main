@@ -8,8 +8,8 @@ function Home() {
     <div className=''>
         <Navbar/>
         
-        <div className='min-h-screen flex items-center min-w-screen bg-[#232429] px-12 '>
-            <div className='w-3/5 '>
+        <div className='min-h-screen flex items-center min-w-screen bg-[#232429] lg:px-12 pt-24 flex-col-reverse lg:flex-row'>
+            <div className='lg:w-3/5 flex flex-col'>
                 <h1 style={{
                     lineHeight: 1.5
                 }} className='text-5xl font-light'>
@@ -30,7 +30,7 @@ function Home() {
                 </div>
                 </div>
             </div>
-            <div className='w-2/5 flex items-end justify-end grow'>
+            <div className='lg:w-2/5 flex items-end justify-end grow'>
 <Image src='/assets/images/hero.png' width={800} height={600} />
             </div>
 
