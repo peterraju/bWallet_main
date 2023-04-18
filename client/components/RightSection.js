@@ -2,7 +2,7 @@ import React from 'react'
 
 function RightSection() {
   return (
-    <div>RightSection</div>
+    <div className='w-1/4'>RightSection</div>
   )
 }
 
