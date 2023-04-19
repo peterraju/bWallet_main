@@ -1,4 +1,5 @@
 import React from 'react'
+import Transactions from './Transactions'
 
 function MidSection() {
   return (
@@ -22,6 +23,10 @@ function MidSection() {
             </div>
           </div>
         </div>
+        <h1 className='text-white text-2xl my-4'>
+          Recent Transaction
+        </h1>
+        <Transactions />
       </div>
     </div>
   )
