@@ -25,3 +25,17 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@font-face {
+  font-family: "ClearSans";
+  src: url("./fonts/ClearSans.woff2") format("woff2"),
+    url("./fonts//ClearSans.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.arrowIcon {
+  mask: url(../public/assets/icons/launchArrow.svg);
+  mask-size: cover;
+}
