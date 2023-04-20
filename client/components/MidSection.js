@@ -27,6 +27,7 @@ function MidSection() {
           Recent Transaction
         </h1>
         <Transactions />
+        <Transactions />
       </div>
     </div>
   )
