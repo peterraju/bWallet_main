@@ -25,3 +25,32 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+@font-face {
+  font-family: "ClearSans";
+  src: url("./fonts/ClearSans.woff2") format("woff2"),
+    url("./fonts//ClearSans.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.arrowIcon {
+  mask: url(../public/assets/icons/launchArrow.svg);
+  mask-size: cover;
+}
+
+.gradientBg {
+  background: radial-gradient(
+      circle 70vh at 70% 50%,
+      rgba(235, 189, 157, 0.21) 0%,
+      rgba(142, 178, 203, 0) 100%
+    )
+    no-repeat;
+  opacity: 0.5;
+  /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
+}
+
+.gradientTab {
+  background: linear-gradient(269.52deg, #f099a2 0.41%, #d9d9d9 99.69%);
+}
