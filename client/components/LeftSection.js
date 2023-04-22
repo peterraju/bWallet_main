@@ -3,7 +3,8 @@ import Image from 'next/image'
 
 function LeftSection() {
   return (
-    <div className='w-[180px] h-[80%] bg-gradient-to-b from-[#3A3D48] to-[#28292E] flex flex-col justify-start items-center rounded-[50px]'>
+    <div className='w-1/4 h-screen flex justify-center items-center'>
+      <div className='w-[180px] h-[80%] bg-gradient-to-b from-[#3A3D48] to-[#28292E] flex flex-col justify-start items-center rounded-[50px]'>
         <h1 className='text-5xl p-3 pt-[60px] text-white underline underline-offset-8 decoration-red-500'>Wallet</h1>
         <h1 className='text-[#808088] text-lg mt-10'>Manage</h1>
         <div className='w-[70px] h-[70px] rounded-full bg-[#ED1C24] mt-10 flex justify-center items-center hover:bg-[#da1c22b6] hover:cursor-pointer'>
@@ -41,6 +42,7 @@ function LeftSection() {
             height={20}
           />
         </div>
+      </div>
     </div>
   )
 }
