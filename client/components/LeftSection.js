@@ -13,7 +13,7 @@ function LeftSection() {
         <Logo width={100} />
         <h1 className="text-[#808088] text-lg mt-10">Manage</h1>
         <div
-          className="group w-[70px] h-[70px] rounded-full mt-10 flex justify-center items-center hover:cursor-pointer"
+          className="group w-[70px] h-[70px] rounded-full mt-10 flex justify-center items-center hover:cursor-pointer transition-colors duration-300"
           style={{
             backgroundColor: activeButton === "send" ? "#ED1C24" : "#393B47",
           }}
@@ -29,7 +29,7 @@ function LeftSection() {
           ></div>
         </div>
         <div
-          className="group w-[70px] h-[70px] mt-10 flex justify-center items-center rounded-full hover:cursor-pointer"
+          className="group w-[70px] h-[70px] mt-10 flex justify-center items-center rounded-full hover:cursor-pointer transition-colors duration-300"
           style={{
             backgroundColor: activeButton === "receive" ? "#ED1C24" : "#393B47",
           }}
@@ -45,7 +45,7 @@ function LeftSection() {
           ></div>
         </div>
         <div
-          className="group w-[70px] h-[70px] mt-10 flex justify-center items-center rounded-full bg-[#ED1C24] hover:cursor-pointer"
+          className="group w-[70px] h-[70px] mt-10 flex justify-center items-center rounded-full bg-[#ED1C24] hover:cursor-pointer transition-colors duration-300"
           style={{
             backgroundColor: activeButton === "swap" ? "#ED1C24" : "#393B47",
           }}
