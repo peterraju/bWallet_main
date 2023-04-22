@@ -2,8 +2,16 @@ import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
+import Modal from "@/components/Modal";
 
 function Home() {
+  const [visible, setVisible] = React.useState(false);
+  const handler = () => setVisible(true);
+  const closeHandler = () => {
+    setVisible(false);
+    console.log("closed");
+  };
+
   useEffect(() => {
     let ctx = gsap.context(() => {
       window.onmousemove = (e) => {
@@ -31,7 +39,7 @@ function Home() {
   return (
     <div className="bg-[#232429] ">
       <div className="absolute h-screen w-screen gradientBg"></div>
-      <Navbar />
+      <Navbar handler={handler}/>
       <div className="h-screen flex items-center min-w-screen lg:px-[5vw] pt-24 flex-col-reverse lg:flex-row z-10">
         <div className="lg:w-3/5 flex flex-col">
           <h1
@@ -63,7 +71,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="lg:w-2/5 flex items-center justify-end grow h-[100%]">
+        <div className="lg:w-2/5 flex items-center justify-end grow h-[100%] cursor-default">
           <div className="w-[100%] h-[100%] flex items-center mr-20">
             <Image
               src="./assets/images/threeCircles.svg"
@@ -111,6 +119,7 @@ function Home() {
           </div>
         </div>
       </div>
+      <Modal visible={visible} closeHandler={closeHandler} /> 
     </div>
   );
 }
