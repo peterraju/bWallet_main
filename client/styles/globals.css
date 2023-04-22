@@ -40,6 +40,21 @@ body {
   mask-size: cover;
 }
 
+.sendIcon {
+  mask: url(../public/assets/icons/sendIcon.svg);
+  mask-size: cover;
+}
+
+.receiveIcon {
+  mask: url(../public/assets/icons/receiveIcon.svg);
+  mask-size: cover;
+}
+
+.swapIcon {
+  mask: url(../public/assets/icons/swapIcon.svg);
+  mask-size: cover;
+}
+
 .gradientBg {
   background: radial-gradient(
       circle 70vh at 70% 50%,
