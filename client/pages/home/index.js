@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
@@ -36,6 +35,7 @@ function Home() {
     return () => ctx.revert();
   }, []);
 
+export default function Home() {
   return (
     <div className="bg-[#232429] ">
       <div className="absolute h-screen w-screen gradientBg"></div>
@@ -129,5 +129,3 @@ function Home() {
     </div>
   );
 }
-
-export default Home;
