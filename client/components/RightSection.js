@@ -20,7 +20,7 @@ function RightSection() {
         <TlBank/>
       </div>
     </div>
-  )
+  );
 }
 
-export default RightSection
+export default RightSection;
