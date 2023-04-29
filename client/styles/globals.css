@@ -85,3 +85,7 @@ body {
   -webkit-appearance: none; /* Safari and Chrome */
   appearance: none;
 }
+
+.gradientBalance {
+  background: linear-gradient(180deg, #3a3d48 0%, #3a3d480b 100%);
+}
