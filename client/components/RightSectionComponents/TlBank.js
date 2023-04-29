@@ -52,11 +52,11 @@ function TlBank() {
             <h4 className="text-white text-xs">6 Months @ 40k BANK</h4>
           </div>
         </div>
-        <div className="mt-4">
+        <div className="mt-4 flex flex-col h-[10%] w-[100] relative overflow-auto scrollFunc">
             <Transactions type="rightSection" />
             <Transactions type="rightSection" />
         </div>
-        <div className="bg-[#5FCE5D] text-3xl text-white font-bold p-4 rounded-2xl flex items-center justify-between ">
+        <div className="bg-[#5FCE5D] absolute w-[340px] bottom-28 text-3xl text-white font-bold p-4 rounded-2xl flex items-center justify-between ">
             Get tlBANK
             <div className="bg-[#ffffff] w-[14px] h-[14px] arrowIcon group-hover:bg-[#000000] transition-colors duration-300"></div>
         </div>
