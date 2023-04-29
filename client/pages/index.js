@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { gsap } from "gsap";
 
 function Home() {
+  
   useEffect(() => {
     let ctx = gsap.context(() => {
       window.onmousemove = (e) => {
@@ -31,7 +32,7 @@ function Home() {
   return (
     <div className="bg-[#232429] ">
       <div className="absolute h-screen w-screen gradientBg"></div>
-      <Navbar />
+      <Navbar handler={()=>window.location.replace('/app')}/>
       <div className="h-screen flex items-center min-w-screen lg:px-[5vw] pt-24 flex-col-reverse lg:flex-row z-10">
         <div className="lg:w-3/5 flex flex-col">
           <h1
