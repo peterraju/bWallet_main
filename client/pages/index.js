@@ -18,7 +18,6 @@ function Home() {
   const router = useRouter();
   const dialogHandler = useSelector((state) => state.counter.dialogHandler);
   const dispatch = useDispatch();
-
   const login = async () => {
     try {
       if (typeof window === "undefined") throw new Error("window is undefined");
@@ -93,7 +92,8 @@ function Home() {
       {
         name: "hardware Wallet",
         icon: "/wallet.png",
-        onClick: () => console.log("hardware Wallet"),
+        onClick: () =>
+          (window.location.href = "https://go.banklesswallet.xyz/hw"),
       },
     ];
     return (
