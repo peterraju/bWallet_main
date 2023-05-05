@@ -3,10 +3,19 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import { gsap } from "gsap";
 import { useDispatch, useSelector } from "react-redux";
-import { setDialogHandler } from "@/redux/counterSlice";
+import { useRouter } from "next/router";
+import {
+  setDialogHandler,
+  setWeb3AuthProvider,
+  setGaslessOnboarding,
+  setGaslessWallet,
+  setAddress,
+  setUserInfo,
+} from "@/redux/counterSlice";
 import { GaslessOnboarding } from "@gelatonetwork/gasless-onboarding";
 
 function Home() {
+  const router = useRouter();
   const dialogHandler = useSelector((state) => state.counter.dialogHandler);
   const dispatch = useDispatch();
 
@@ -14,14 +23,14 @@ function Home() {
     try {
       if (typeof window === "undefined") throw new Error("window is undefined");
       const gaslessWalletConfig = {
-        apiKey: "wND5A33KCGWNWWXFwnJBNyCkXyItniVfGcRyWvxWFes_",
+        apiKey: "YPSzgyWLyKrsrUWwbfXpxYluB9oRkVTxoSNOoSkQZio_",
       };
       const loginConfig = {
         domains: ["http://localhost:3000/", window.location.origin],
         chain: {
-          id: 5,
+          id: 80001,
           rpcUrl:
-            "https://eth-goerli.g.alchemy.com/v2/3IgRi-BWemVdwlXdm7sT6CDf-bS5ECAk",
+            "https://polygon-mumbai.g.alchemy.com/v2/RPFXITTSaBIEUgJ9xptrOwujTphQW-Yv",
         },
         openLogin: {
           redirectUrl: "http://localhost:3000/app",
@@ -34,9 +43,18 @@ function Home() {
 
       await gaslessOnboarding.init();
 
-      await gaslessOnboarding.login();
+      const web3AuthProvider = await gaslessOnboarding.login();
+      dispatch(setWeb3AuthProvider(web3AuthProvider));
+      dispatch(setGaslessOnboarding(gaslessOnboarding));
+      console.log(web3AuthProvider);
 
-      window.location.href = "/app";
+      const gaslessWallet = gaslessOnboarding.getGaslessWallet();
+      setGaslessWallet(gaslessWallet);
+
+      const userInfo = await gaslessOnboarding.getUserInfo();
+      dispatch(setUserInfo(userInfo));
+
+      router.push("/app");
     } catch (error) {
       console.log(error);
     }
