@@ -1,3 +1,4 @@
+import BCard from '@components/B-Card/B-Card'
 import { Hero } from '@components/Hero'
 import Image from 'next/image'
 
@@ -19,6 +20,10 @@ export default function Home() {
     }} className='w-screen h-screen flex items-center justify-center'>
         <Hero/>
     </div>
+    <div className="mt-12 flex items-center justify-center">
+
+<BCard/>
+</div>
    </div>
   )
 }

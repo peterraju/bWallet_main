@@ -1,3 +1,5 @@
+import BCard from "./B-Card/B-Card";
+
 export const Hero = () => {
   return (
     <div className="text-white">
@@ -15,6 +17,7 @@ export const Hero = () => {
         }} className="p-3 rounded-prm">Create Wallet</button>
         <button className="border border-1 p-3 rounded-prm">How it Works</button>
       </div>
+     
     </div>
   );
 };
