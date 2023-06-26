@@ -1,15 +1,17 @@
-import BCard from '@components/B-Card/B-Card'
+import BCard from '@components/Cards/B-Card/B-Card'
+import { PriceCard } from '@components/Cards/PriceCard'
+import { Waitlist } from '@components/Cards/SignInCard/Waitlist'
 import { Hero } from '@components/Hero'
 import Image from 'next/image'
 
 export default function Home() {
+  
+
   return (
    <div style={{
     backgroundImage:'url(/assets/Grid.png)',
     backgroundRepeat: 'no-repeat',
-    //100vw width
     backgroundSize: '100vw',
-    //padding from top for background image
   backgroundPositionY: '20vh',
    }} className='min-h-screen w-screen'>
     <div style={{
@@ -23,6 +25,24 @@ export default function Home() {
     <div className="mt-12 flex items-center justify-center">
 
 <BCard/>
+</div>
+<div className='flex mx-auto items-center justify-center my-12 '>
+  <marquee >
+<div className='flex items-center gap-12'>
+
+  <PriceCard/>
+  <PriceCard/>
+  <PriceCard/>
+
+</div>
+  </marquee>
+</div>
+<div className='my-24'>
+  <Waitlist/>
+</div>
+<div className=' w-screen bottom-0 bg-[#272727] text-center py-2 text-white font-prm text-xl'>
+
+Built with love for the web3 community, by BanklessDAO Community
 </div>
    </div>
   )

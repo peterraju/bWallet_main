@@ -18,7 +18,8 @@ module.exports = {
         'bg-sec': 'linear-gradient(95.51deg, #D02129 0%, #750069 100%)'
       },
       fontFamily: {
-        'sec':['Conthrax', 'sans-serif']
+        'sec':['var(--font-Conthrax)','sans'],
+        'prm':['var(--font-neue)','sans']
       },
       borderRadius: {
         'prm' : '3px'

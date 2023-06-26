@@ -6,6 +6,7 @@ border-radius: 23.6951px;
 transform: rotate(-10.45deg);
 z-index: 50;
 margin-top: -150px;
+transition: 0.5s;
 }
 .card2 {
     background: linear-gradient(110.28deg, rgba(255, 255, 255, 0.36) 0.2%, rgba(217, 217, 217, 0.12) 101.11%);
@@ -15,5 +16,15 @@ border-radius: 23.6951px;
 transform: rotate(10.45deg);
 margin-left: -200px;
 z-index: 10;
+transition: 0.5s;
+
+}
+.card:hover{
+    transform: perspective(2000px) rotateY(0deg);
+    
+}
+.card2:hover{
+    transform: perspective(2000px) rotateY(0deg);
+    z-index: 60;
 
 }
