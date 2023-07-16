@@ -3,7 +3,7 @@ import {PiArrowUpRightBold} from 'react-icons/pi'
 
 export const Hero = () => {
   return (
-    <div className="text-white">
+    <div className="text-white flex flex-col items-center mx-auto">
       <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium font-sec text-center">
       Secure Your Finances, <br/>  
 Minimize Risk

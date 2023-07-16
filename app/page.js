@@ -23,7 +23,7 @@ export default function Home() {
     <Hero />
   </div>
 
-    <div className="scale-[0.7] md:scale-100 md:mt-12 flex items-center justify-center">
+    <div className="scale-[0.6] md:scale-100 md:mt-12 flex items-center justify-center">
 
 <BCard/>
 </div>
@@ -38,10 +38,10 @@ export default function Home() {
 </div>
   </marquee>
 </div>
-<div className='my-24'>
+<div className='my-6 md:my-24 flex justify-center'>
   <Waitlist/>
 </div>
-<div className=' w-screen bottom-0 bg-[#272727] text-center py-2 text-white font-prm text-xl'>
+<div className='text-base  w-screen bottom-0 bg-[#272727] text-center py-2 text-white font-prm md:text-xl'>
 
 Built with love for the web3 community, by BanklessDAO Community
 </div>
