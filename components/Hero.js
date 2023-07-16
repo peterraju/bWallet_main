@@ -4,19 +4,18 @@ import {PiArrowUpRightBold} from 'react-icons/pi'
 export const Hero = () => {
   return (
     <div className="text-white">
-      <h1 className="text-9xl font-bold font-sec text-center">
-        Bankless <br />
-        Wallet
+      <h1 className="text-5xl md:text-6xl lg:text-7xl font-medium font-sec text-center">
+      Secure Your Finances, <br/>  
+Minimize Risk
       </h1>
-      <p className="text-2xl max-w-[50ch] mt-12 font-prm">
-        Bankless Wallet is a perfect platform for your web3 wallet, just plug
-        your wallet and play with additional features.
+      <p className="text-xl md:text-2xl max-w-[40ch] mt-12 mx-4 font-prm text-center">
+      Unlock the Power of Web3 with Bankless Wallet: Seamlessly Connect, Pay, and Explore with Extraordinary Features!
       </p>
-      <div className="text-xl flex items-center justify-center mt-12 gap-12">
+      <div className="text-xl flex-col md:flex-row flex items-center justify-center mt-12 gap-6 md:gap-12">
         <button style={{
             background:'linear-gradient(95.51deg, #D02129 0%, #750069 100%)'
-        }} className="p-3 rounded-prm flex items-center gap-3">Create Wallet <PiArrowUpRightBold/></button>
-        <button className="border border-1 p-3 rounded-prm flex items-center gap-3">How it Works <PiArrowUpRightBold/></button>
+        }} className="px-8 py-3 md:p-3 rounded-prm flex items-center gap-3">Create Wallet <PiArrowUpRightBold/></button>
+        <button className="border border-1 px-8 py-3 md:p-3 rounded-prm flex items-center gap-3">How it Works <PiArrowUpRightBold/></button>
       </div>
      
     </div>
