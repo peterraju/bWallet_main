@@ -6,12 +6,23 @@
     color: blue;
     
   }
+  .scrolling_text {
+    animation: scroll 10s linear infinite;
+    white-space: nowrap; 
+  }
+  
+  @keyframes scroll {
+    from {
+      transform: translateX(100vw);
+    }
+    to {
+      transform: translateX(-100vw);
+    }
+  }
+  
   @media (max-width: 500px) {
     .container {
       
       background-size: 280vw;
-      
-   
-      
     }
   }

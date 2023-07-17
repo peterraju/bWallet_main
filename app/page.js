@@ -27,8 +27,8 @@ export default function Home() {
 
 <BCard/>
 </div>
-<div className='flex mx-auto items-center justify-center my-6 md:my-12 '>
-  <marquee >
+<div className={`${styles.scrolling_text} flex mx-auto items-center justify-center my-6 md:my-12 `}>
+  {/* <marquee loop="-1" scrollamount="5"> */}
 <div className='flex items-center gap-12'>
 
   <PriceCard/>
@@ -36,7 +36,7 @@ export default function Home() {
   <PriceCard/>
 
 </div>
-  </marquee>
+  {/* </marquee> */}
 </div>
 <div className='my-6 md:my-24 flex justify-center'>
   <Waitlist/>
