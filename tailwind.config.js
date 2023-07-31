@@ -15,7 +15,9 @@ module.exports = {
       },
       colors: {
         'text-sec': '#878787',
-        'bg-sec': 'linear-gradient(95.51deg, #D02129 0%, #750069 100%)'
+        'bg-sec': 'linear-gradient(95.51deg, #D02129 0%, #750069 100%)',
+        'prm-bg':'#161616',
+        'sec-bg':'#212121'
       },
       fontFamily: {
         'sec':['var(--font-clash-display)','sans'],

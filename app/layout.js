@@ -73,7 +73,7 @@ export default function RootLayout({ children }) {
   return (
     <html className={`${Conthrax.variable} ${Neue.variable} ${ClashDisplay.variable} ${Grotesque.variable}` } lang="en">
       <body className="">
-        <Navbar/>
+        {/* <Navbar/> */}
         {children}</body>
     </html>
   )
