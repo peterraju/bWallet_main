@@ -17,7 +17,8 @@ module.exports = {
         'text-sec': '#878787',
         'bg-sec': 'linear-gradient(95.51deg, #D02129 0%, #750069 100%)',
         'prm-bg':'#161616',
-        'sec-bg':'#212121'
+        'sec-bg':'#212121',
+        'card-bg':'#1C1C1C'
       },
       fontFamily: {
         'sec':['var(--font-clash-display)','sans'],
