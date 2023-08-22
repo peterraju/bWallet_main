@@ -6,9 +6,9 @@ import { AiFillEuroCircle } from "react-icons/ai";
 function Portfolio() {
   return (
     <div className="h-40 bg-sec-bg rounded-md p-3 flex flex-col gap-2">
-    <h2 className="text-[#545454] text-xs  items-center">
+    <div className="text-[#545454] text-xs  items-center font-prm">
       Portfolio Value{" "}
-    </h2>
+    </div>
     <h2 className="text-white text-2xl font-prm font-bold flex gap-16">
       $ 240000{" "}
       <span className="text-green-500 text-xs flex items-center gap-1">

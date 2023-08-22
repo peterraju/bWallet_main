@@ -2,6 +2,7 @@ import Navbar from '@components/Navbar'
 import '../styles/globals.css'
 import { Inter } from 'next/font/google'
 import localFont from '@next/font/local'
+import { Providers } from './providers'
 
 const Conthrax = localFont({
   src :[
@@ -71,10 +72,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
+  
     <html className={`${Conthrax.variable} ${Neue.variable} ${ClashDisplay.variable} ${Grotesque.variable}` } lang="en">
       <body className="">
+      <Providers>
         {/* <Navbar/> */}
-        {children}</body>
+        {children}
+        </Providers>
+        </body>
     </html>
+ 
   )
 }

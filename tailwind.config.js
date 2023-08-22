@@ -1,9 +1,11 @@
 /** @type {import('tailwindcss').Config} */
+const {nextui} = require("@nextui-org/react");
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -16,9 +18,11 @@ module.exports = {
       colors: {
         'text-sec': '#878787',
         'bg-sec': 'linear-gradient(95.51deg, #D02129 0%, #750069 100%)',
+        'button-bg':'linear-gradient(102.64deg, #E51E2A -32.2%, #EA13F2 178.76%)',
         'prm-bg':'#161616',
         'sec-bg':'#212121',
-        'card-bg':'#1C1C1C'
+        'card-bg':'#1C1C1C',
+        'offwhite':'#C1C1C1'
       },
       fontFamily: {
         'sec':['var(--font-clash-display)','sans'],
@@ -28,6 +32,8 @@ module.exports = {
         'prm' : '3px'
       }
     },
+    darkMode: "class",
+  plugins: [nextui()],
   },
   plugins: [],
 }
