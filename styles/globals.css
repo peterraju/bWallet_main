@@ -9,5 +9,12 @@ body {
   font-family: "Conthrax", sans-serif;
 }
 
-
+::-webkit-scrollbar{
+background: #141414;
+width: 3px;
+}
+::-webkit-scrollbar-thumb{
+  width: 2px ;
+  background-color: #c1c1c1;
+}
 

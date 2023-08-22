@@ -4,7 +4,7 @@ import {BiDownload} from 'react-icons/bi'
 
 function TransactionHistory() {
   return (
-    <div className='h-full bg-sec-bg rounded-md overflow-hidden' > 
+    <div className='h-full bg-sec-bg rounded-md overflow-hidden  px-2' > 
           <div className='border-b-[1px] pb-2 text-white border-[#545454] flex items-center p-3 text-sm justify-between '>
           Transaction History
           </div>
