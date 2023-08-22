@@ -22,7 +22,7 @@ module.exports = {
         'prm-bg':'#161616',
         'sec-bg':'#212121',
         'card-bg':'#1C1C1C',
-        'offwhite':'#C1C1C1'
+        'offwhite':'#444444'
       },
       fontFamily: {
         'sec':['var(--font-clash-display)','sans'],
