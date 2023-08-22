@@ -3,17 +3,13 @@ import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import {BsArrowRight} from 'react-icons/bs'
 import {Progress} from "@nextui-org/react";
+import { setGlobalState } from "@store";
 function Step() {
   const [code, setCode] = useState("");
-
   const handleChange = (code) => setCode(code);
 
   return (
-    <div className="mt-4 flex flex-col gap-3 pb-4">
-     <div className="flex flex-col gap-6 w-full max-w-md">
-     <Progress color="danger" size="sm" aria-label="Loading..." value={30} />
-     </div>
-    
+    <div className="mt-4 flex flex-col gap-3 pb-4">    
       <div className="flex flex-col gap-1">
         <label className="text-xs text-white font-semibold">Email</label>
         <input
@@ -60,7 +56,7 @@ function Step() {
       </div>
       <div style={{
             background: 'linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)'
-        }} className="text-sm py-1 rounded-full gap-1 flex justify-center items-center">
+        }} className="text-sm py-1 rounded-full gap-1 flex justify-center items-center" onClick={()=>{setGlobalState('stepCount',2)}}>
         Next <BsArrowRight/>
         </div>
         <div style={{

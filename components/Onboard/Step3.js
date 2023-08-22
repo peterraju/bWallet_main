@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import { BsArrowRight } from "react-icons/bs";
+import { setGlobalState } from "@store";
 
 function Step() {
   const [code, setCode] = useState("");
@@ -81,7 +82,7 @@ function Step() {
         style={{
           background: "linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)",
         }}
-        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center"
+        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center" onClick={()=>{setGlobalState('stepCount',4)}}
       >
         Next <BsArrowRight />
       </div>
@@ -90,9 +91,9 @@ function Step() {
           background:
             "linear-gradient(0deg, #222222, #222222),linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
         }}
-        className="text-sm py-1 rounded-full flex justify-center items-center"
+        className="text-sm py-1 rounded-full flex justify-center items-center" onClick={()=>{setGlobalState('stepCount',2)}}
       >
-        Cancel
+        Back
       </div>
     </div>
   );

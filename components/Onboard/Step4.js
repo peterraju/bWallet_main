@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import { BsArrowRight } from "react-icons/bs";
 import Image from "next/image";
+import { setGlobalState } from "@store";
 
 function Step() {
   return (
@@ -75,7 +76,7 @@ function Step() {
           background:
             "linear-gradient(0deg, #222222, #222222),linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
         }}
-        className="text-sm py-1 rounded-full flex justify-center items-center"
+        className="text-sm py-1 rounded-full flex justify-center items-center" onClick={()=>{setGlobalState('stepCount',3)}}
       >
         Back
       </div>

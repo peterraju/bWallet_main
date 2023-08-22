@@ -1,6 +1,8 @@
 'use client';
 import Loader from '@components/Loader'
-import Step from '@components/Onboard/Step1'
+import RenderOnboard from '@components/Onboard/RenderOnboard';
+
+
 import Image from 'next/image'
 import {AiOutlineClose} from 'react-icons/ai'
 
@@ -19,8 +21,7 @@ export default function Onboard(){
             <Image  src='/assets/logo2.png' alt='' width={20} height={10} />
         </div>
         <h2 className='text-lg font-semibold text-center mt-2'>Set up your account</h2>
-        <Step/>
-        {/* <Loader/> */}
+        <RenderOnboard/>
         </div>
         </div>
 
