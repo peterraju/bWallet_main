@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import {BsArrowRight} from 'react-icons/bs'
-
+import {Progress} from "@nextui-org/react";
 function Step() {
   const [code, setCode] = useState("");
 
@@ -10,6 +10,10 @@ function Step() {
 
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
+     <div className="flex flex-col gap-6 w-full max-w-md">
+     <Progress color="danger" size="sm" aria-label="Loading..." value={30} />
+     </div>
+    
       <div className="flex flex-col gap-1">
         <label className="text-xs text-white font-semibold">Email</label>
         <input

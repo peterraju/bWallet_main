@@ -1,10 +1,14 @@
-import Step from '@components/Onboard/Step3'
+'use client';
+import Loader from '@components/Loader'
+import Step from '@components/Onboard/Step1'
 import Image from 'next/image'
 import {AiOutlineClose} from 'react-icons/ai'
+
 
 export default function Onboard(){
     return(
         <div className="flex mx-auto my-auto justify-center items-center w-screen h-screen">
+    
         <div className="bg-prm-bg w-96  rounded-xl text-white p-3" >
         <div className='flex justify-end w-full'>
             <AiOutlineClose className='text-white'/>
@@ -16,6 +20,7 @@ export default function Onboard(){
         </div>
         <h2 className='text-lg font-semibold text-center mt-2'>Set up your account</h2>
         <Step/>
+        {/* <Loader/> */}
         </div>
         </div>
 
