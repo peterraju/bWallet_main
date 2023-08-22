@@ -74,6 +74,12 @@ export default function RootLayout({ children }) {
   return (
   
     <html className={`${Conthrax.variable} ${Neue.variable} ${ClashDisplay.variable} ${Grotesque.variable}` } lang="en">
+    <head><link
+  rel="icon"
+  href="/icon?<generated>"
+  type="image/<generated>"
+  sizes="<generated>"
+/></head>
       <body className="">
       <Providers>
         {/* <Navbar/> */}
