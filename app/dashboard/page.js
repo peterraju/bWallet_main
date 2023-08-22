@@ -7,6 +7,7 @@ import { PiArrowUpRightBold, PiArrowDownLeftBold } from "react-icons/pi";
 import { BiSync, BiUpArrowAlt } from "react-icons/bi";
 import PortfolioDetails from "@components/Dashboard/PortfolioDetails";
 import Actions from "@components/Dashboard/Actions";
+import TransactionHistory from "@components/Dashboard/TransactionHistory";
 function Dashboard() {
   return (
     <div className="bg-prm-bg h-[90vh] w-[85vw] flex mx-auto mt-[6vh] gap-4 shadow-2xl rounded-md">
@@ -18,7 +19,7 @@ function Dashboard() {
       <div className="w-1/3 flex flex-col gap-3">
         <Actions/>
 
-        <div className="h-full bg-sec-bg rounded-md"></div>
+       <TransactionHistory/>
       </div>
     </div>
   );

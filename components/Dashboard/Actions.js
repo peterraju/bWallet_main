@@ -4,16 +4,14 @@ import { PiArrowUpRightBold, PiArrowDownLeftBold } from "react-icons/pi";
 import { BiSync } from "react-icons/bi";
 import {Select, SelectItem} from "@nextui-org/react";
 import Image from 'next/image';
+import {BsSendFill} from 'react-icons/bs'
+
 
 function Actions() {
   return (
-    <div className=" bg-sec-bg rounded-md ">
+    <div className=" bg-sec-bg rounded-md px-2">
           <div className='border-b-[1px] pb-2 border-[#545454] flex items-center p-3 text-sm justify-between font-semibold'>
           <div
-            // style={{
-            //  background: ''
-
-            // }}
             className="h-fit text-white px-1 py-1 bg-button-bg flex items-center gap-1 rounded-md"
           >
             Transfer <PiArrowUpRightBold />{" "}
@@ -71,7 +69,9 @@ const TransferFuntion = ()=>{
        <input type='text'  className='border border-offwhite rounded-md text-white text-sm w-full bg-prm-bg px-2 py-1' placeholder='USD' />
       </div>
       </div>
-
+      <div className='flex gap-3 items-center bg-[#313131] rounded-full text-offwhite mt-2 py-1 justify-center'>
+            Send <BsSendFill/>
+          </div>
     </div>
 
   )
