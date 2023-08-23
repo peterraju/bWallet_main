@@ -38,16 +38,22 @@ function Page() {
   }, []);
 
   const handleGoogleLogin = async () => {
-    if (!checkLogin(web3authInstance)) {
+    const logInStatus = await checkLogin(web3authInstance);
+    if (!logInStatus) {
       const web3authProvider = await login(web3authInstance);
       setProvider(web3authProvider);
-      getUserInfo();
+      const user = await getUserInfo(web3authInstance);
+      setUser(user);
+      const publicKey = await getPublicKey(web3authInstance.provider);
+      setAddress(publicKey);
     }
 
-    const user = await getUserInfo(web3authInstance);
-    setUser(user);
-    const publicKey = await getPublicKey(web3authInstance.provider);
-    setAddress(publicKey);
+    if (logInStatus) {
+      const user = await getUserInfo(web3authInstance);
+      setUser(user);
+      const publicKey = await getPublicKey(web3authInstance.provider);
+      setAddress(publicKey);
+    }
   };
 
   const initSafe = async () => {
@@ -176,7 +182,7 @@ function Page() {
           <h1>6.</h1>
           <button
             className=" bg-red-700 text-white rounded-xl p-4"
-            onClick={logout}
+            onClick={() => web3authInstance.logout()}
           >
             Log Out
           </button>
