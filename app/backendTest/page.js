@@ -37,7 +37,7 @@ function Page() {
     initialize();
   }, []);
 
-  const handleGoogleLogin = async () => {
+   const handleGoogleLogin = async () => {
     const logInStatus = await checkLogin(web3authInstance);
     if (!logInStatus) {
       const web3authProvider = await login(web3authInstance);

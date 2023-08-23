@@ -5,13 +5,14 @@ import { Waitlist } from '@components/Cards/SignInCard/Waitlist'
 import { Hero } from '@components/Hero'
 import Image from 'next/image'
 import styles from '../styles/hero.module.css'
+import Navbar from '@components/Navbar'
 
 export default function Home() {
   
 
   return (<>
 
-
+<Navbar/>
 <div style={{
     backgroundImage:'url(/assets/Grid.png)',
     backgroundRepeat: 'no-repeat',
@@ -20,6 +21,7 @@ export default function Home() {
    }} className='min-h-screen w-screen'>
   <div className={`${styles.container} ' w-screen h-screen flex items-center justify-center'`}
   >
+ 
     <Hero />
   </div>
 

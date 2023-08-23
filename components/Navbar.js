@@ -5,6 +5,7 @@ import { PiArrowUpRightBold } from "react-icons/pi";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { TbGridDots } from "react-icons/tb";
+import Link from "next/link";
 
 // const Navbar = () => {
 //   return (
@@ -74,10 +75,12 @@ export default function Navbar() {
                    
                   </div>
                 </div>
-                <div className="hidden cursor-pointer border text-white border-1 px-2 py-1 font-prm md:flex text-xl items-center gap-3">
+                <Link href="/login"><div className="hidden cursor-pointer border text-white border-1 px-2 py-1 font-prm md:flex text-xl items-center gap-3">
                       Launch App
                       <PiArrowUpRightBold />{" "}
                     </div>
+                </Link>
+
               </div>
 
               <div className=" flex items-center sm:hidden">
