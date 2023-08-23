@@ -7,7 +7,7 @@ import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import RPC from "@hooks/etherRPC";
 
 const clientId =
-  "BEglQSgt4cUWcj6SKRdu5QkOXTsePmMcusG5EAoyjyOYKlVRjIF1iCNnMOTfpzCiunHRrMui8TIwQPXdkQ8Yxuk";
+  "BA2stbOXA-r6JT9BKq9lsmEeE4rpoAAsQlyUkp1XdYQGcrcUzYYwtRvHEGXRjvkdOQRKMrWF8-Hhcqsy5YBBPVg";
 
 const LOGIN_PROVIDER = {
   GOOGLE: "google",
@@ -61,8 +61,10 @@ export default function useWeb3Auth() {
 
   const checkLogin = async (web3authInstance) => {
     if (web3authInstance && web3authInstance.connectedAdapterName) {
+      console.log("connected");
       return true;
     }
+    console.log("not connected");
     return false;
   };
 
