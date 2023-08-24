@@ -1,14 +1,42 @@
 "use client";
 import React, { useState } from "react";
-import OtpInput from "react-otp-input";
 import { BsArrowRight } from "react-icons/bs";
-import { setGlobalState } from "@store";
+import { setGlobalState, useGlobalState } from "@store";
+import { ethers } from "ethers";
+
 
 function Step() {
-  const [code, setCode] = useState("");
+  
+  const [useraddr] = useGlobalState('address')
 
-  const handleChange = (code) => setCode(code);
+  
 
+ const [data,setData] = useState({
+  safeName:'',
+  address:useraddr,
+  guardian:''
+ })
+ const handleChange =(e)=>{
+  const {name,value} = e.target
+  setData({...data,[name]:value})
+ }
+const handleSubmit=()=>{
+  //check if address and guardian are public keys
+  if(ethers.utils.isAddress(data.address) && ethers.utils.isAddress(data.guardian)){
+    let deploydata = {
+      address:data.address,
+      guardian1:data.guardian,
+      guardian2:null,
+      safeName:data.safeName
+    }
+    setGlobalState('deployData',deploydata)
+  }else{
+    alert("Please enter a valid address")
+    return;
+  }
+
+  console.log(data)
+}
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
       <div className="flex flex-col gap-1">
@@ -19,8 +47,11 @@ function Step() {
               "linear-gradient(0deg, #222222, #222222),linear-gradient(0deg, #161616, #161616)",
           }}
           type="text"
-          className="bg-white p-2 text-sm text-black rounded-md border border-offwhite"
+          className="bg-prm-bg p-2 text-sm text-white rounded-md border border-offwhite"
           placeholder="abc@bankless.xyz"
+          name="safeName"
+          value={data.safeName}
+          onChange={handleChange}
         />
       </div>
       <div className="grid grid-cols-4 gap-2">
@@ -34,7 +65,7 @@ function Step() {
                 "linear-gradient(0deg, #222222, #222222),linear-gradient(0deg, #161616, #161616)",
             }}
             type="text"
-            className="bg-white p-2 text-sm text-black rounded-md w-20 border border-offwhite"
+            className="bg-prm-bg p-2 text-sm text-white rounded-md w-20 border border-offwhite"
             placeholder="ABC"
           />
         </div>
@@ -46,8 +77,11 @@ function Step() {
                 "linear-gradient(0deg, #222222, #222222),linear-gradient(0deg, #161616, #161616)",
             }}
             type="text"
-            className="bg-white p-2 text-sm text-black rounded-md border border-offwhite w-full"
+            className="bg-prm-bg p-2 text-sm text-white rounded-md border border-offwhite w-full"
             placeholder="abc@bankless.xyz"
+            name="address"
+            value={useraddr}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -60,7 +94,7 @@ function Step() {
                 "linear-gradient(0deg, #222222, #222222),linear-gradient(0deg, #161616, #161616)",
             }}
             type="text"
-            className="bg-white p-2 text-sm text-black rounded-md w-20 border border-offwhite"
+            className=" bg-prm-bg p-2 text-sm text-white rounded-md w-20 border border-offwhite"
             placeholder="ABC"
           />
         </div>
@@ -72,8 +106,11 @@ function Step() {
                 "linear-gradient(0deg, #222222, #222222),linear-gradient(0deg, #161616, #161616)",
             }}
             type="text"
-            className="bg-white p-2 text-sm text-black rounded-md border border-offwhite w-full"
+            className="bg-prm-bg p-2 text-sm text-white rounded-md border border-offwhite w-full"
             placeholder="abc@bankless.xyz"
+            name="guardian"
+            value={data.guardian}
+            onChange={handleChange}
           />
         </div>
       </div>
@@ -82,7 +119,9 @@ function Step() {
         style={{
           background: "linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)",
         }}
-        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center" onClick={()=>{setGlobalState('stepCount',4)}}
+        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center" onClick={()=>{
+          handleSubmit()
+          setGlobalState('stepCount',4)}}
       >
         Next <BsArrowRight />
       </div>

@@ -1,16 +1,74 @@
 "use client";
-import { setGlobalState } from "@store";
-import React, { useState } from "react";
+import useWeb3Auth from "@hooks/useWeb3Auth";
+import { useState, useEffect, useRef } from "react";
+import { setGlobalState,useGlobalState,getGlobalState } from "@store";
 import {BsArrowRight} from 'react-icons/bs'
+import { FcGoogle } from "react-icons/fc";
+
 
 
 function Step() {
-  const [code, setCode] = useState("");
+  const [mounted, setMounted] = useState(false);
+  const [web3authInstance, setWeb3authInstance] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [address, setAddress] = useState(null);
+  const [user, setUser] = useState(null);
+  const [addr] = useGlobalState('address')
 
-  const handleChange = (code) => setCode(code);
+
+  const {
+    init,
+    login,
+    logout,
+    getPrivateKey,
+    getUserInfo,
+    checkLogin,
+    getPublicKey,
+  } = useWeb3Auth();
+
+  const initialize = async () => {
+    const { web3authInstance, provider } = await init();
+    setWeb3authInstance(web3authInstance);
+    setProvider(provider);
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    initialize();
+  }, []);
+
+   const handleGoogleLogin = async () => {
+    const logInStatus = await checkLogin(web3authInstance);
+    if (!logInStatus) {
+      const web3authProvider = await login(web3authInstance);
+      setProvider(web3authProvider);
+      setGlobalState('provider', web3authProvider)
+      const user = await getUserInfo(web3authInstance);
+      setUser(user);
+      setGlobalState('user',user)
+      const publicKey = await getPublicKey(web3authInstance.provider);
+      setAddress(publicKey);
+      setGlobalState('address',publicKey)
+
+    }
+
+    if (logInStatus) {
+      const user = await getUserInfo(web3authInstance);
+      setUser(user);
+      setGlobalState('user',user)
+      const publicKey = await getPublicKey(web3authInstance.provider);
+      setAddress(publicKey);
+      console.log(publicKey);
+      setGlobalState('address',publicKey);
+    }
+    if(getGlobalState('address')){alert('connected')}
+  };
 
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
+     <div onClick={handleGoogleLogin} className="bg-sec-bg border border-offwhite rounded-full w-fit h-fit p-2 flex mx-auto mt-3 cursor-pointer">
+          <FcGoogle />
+        </div>
     <div style={{
         background: 'linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)'
 
@@ -34,7 +92,13 @@ function Step() {
 
       <div style={{
             background: 'linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)'
-        }} className="text-sm py-1 rounded-full gap-1 flex justify-center items-center" onClick={()=>{setGlobalState('stepCount',3)}}>
+        }} className="text-sm py-1 rounded-full gap-1 flex justify-center items-center" onClick={()=>{
+          if(getGlobalState('address')){
+          setGlobalState('stepCount',3)
+          }else{
+            alert("connect with google")
+          }
+          }}>
         Next <BsArrowRight/>
         </div>
         <div style={{

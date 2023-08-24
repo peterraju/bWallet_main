@@ -3,9 +3,105 @@ import React, { useState } from "react";
 import OtpInput from "react-otp-input";
 import { BsArrowRight } from "react-icons/bs";
 import Image from "next/image";
-import { setGlobalState } from "@store";
+import { setGlobalState, useGlobalState } from "@store";
+import useWeb3Auth from "@hooks/useWeb3Auth";
+import { useEffect, useRef } from "react";
+import { ethers } from "ethers";
+import { EthersAdapter } from "@safe-global/protocol-kit";
+import { SafeFactory } from "@safe-global/protocol-kit";
+import SafeApiKit from "@safe-global/api-kit";
+
 
 function Step() {
+  const [data] = useGlobalState('deployData')
+  console.log(data)
+  const [mounted, setMounted] = useState(false);
+  const [web3authInstance, setWeb3authInstance] = useState(null);
+  const [provider, setProvider] = useState(null);
+  const [safeAddress, setSafeAddress] = useState(null);
+  const [loading,setLoading] = useState(false)
+
+  const {
+    init,
+    login,
+    logout,
+    getPrivateKey,
+    getUserInfo,
+    checkLogin,
+    getPublicKey,
+  } = useWeb3Auth();
+
+  const initialize = async () => {
+    const { web3authInstance, provider } = await init();
+    setWeb3authInstance(web3authInstance);
+    setProvider(provider);
+  };
+
+  useEffect(() => {
+    setMounted(true);
+    initialize();
+  }, []);
+
+
+  const initSafe = async () => {
+    const RPC_URL = "https://eth-goerli.public.blastapi.io";
+    const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+
+    const privateKey = await getPrivateKey(web3authInstance.provider);
+
+    // Initialize signers
+    const owner1Signer = new ethers.Wallet(privateKey, provider);
+
+    const ethAdapterOwner1 = new EthersAdapter({
+      ethers,
+      signerOrProvider: owner1Signer,
+    });
+
+    //Init Safe Service
+    const txServiceUrl = "https://safe-transaction-goerli.safe.global";
+    const safeService = new SafeApiKit({
+      txServiceUrl,
+      ethAdapter: ethAdapterOwner1,
+    });
+
+    //Init Safe Factory
+    const safeFactory = await SafeFactory.create({
+      ethAdapter: ethAdapterOwner1,
+    });
+
+    if (data.guardian1 && data.guardian2) {
+      //Preparing Safe Account Config
+      const safeAccountConfig = {
+        owners: [
+          await owner1Signer.getAddress(),
+          data.guardian1,
+         data.guardian2,
+        ],
+        threshold: 2,
+      };
+
+      //Deploy Safe
+      const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig });
+      const safeAddress = await safeSdkOwner1.getAddress();
+      setSafeAddress(safeAddress);
+    } else if (data.guardian1) {
+      //Preparing Safe Account Config
+      const safeAccountConfig = {
+        owners: [await owner1Signer.getAddress(), data.guardian1],
+        threshold: 2,
+      };
+      setLoading(true);
+
+      //Deploy Safe
+      const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig });
+      const safeAddress = await safeSdkOwner1.getAddress();
+      setSafeAddress(safeAddress);
+      setLoading(false)
+      console.log(safeAddress)
+    } else {
+      console.log("Please enter at least one guardian public key");
+    }
+  };
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
       <div>
@@ -25,7 +121,7 @@ function Step() {
             }}
             className="p-2 rounded-md col-span-3 w-fit "
           >
-            ABC Wallet
+            {data?.safeName}
            </div>
         </div>
         <div className="grid grid-cols-5">
@@ -40,7 +136,7 @@ function Step() {
            <Image src="/assets/btc.png" alt="" width={30} height={20}/>
             <div>
                 <h6 className="text-xs text-[rgb(95,95,95)]">mywallet</h6>
-                <h5 className="text-sm">0x12345678010..</h5>
+                <h5 className="text-sm">{data?.address?.slice(0,16)}....</h5>
             </div>
           </div>
         </div>
@@ -56,7 +152,7 @@ function Step() {
             <Image src="/assets/btc.png" alt="" width={30} height={20}/>
             <div>
                 <h6 className="text-xs text-[#5f5f5f]">mywallet</h6>
-                <h5 className="text-sm">0x12345678910..</h5>
+                <h5 className="text-sm">{data?.guardian1?.slice(0,16)}...</h5>
             </div>
           </div>
         </div>
@@ -64,12 +160,13 @@ function Step() {
       </div>
 
       <div
+      onClick={initSafe}
         style={{
           background: "linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)",
         }}
         className="text-sm py-1 rounded-full gap-1 flex justify-center items-center"
       >
-        Deploy Safe 
+       {loading?"Deploying safe..":"Deploy safe"}
       </div>
       <div
         style={{

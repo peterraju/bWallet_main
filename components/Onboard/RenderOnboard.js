@@ -10,7 +10,6 @@ function RenderOnboard() {
  const [count] = useGlobalState('stepCount');
 const cnt = getGlobalState('stepCount')
   useEffect(()=>{
-    console.log(count + ' steps' + cnt)
     switch(cnt) {
         case 1:  <Step1/>
         case 2: <Step2/>
