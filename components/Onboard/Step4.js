@@ -93,11 +93,16 @@ function Step() {
       setLoading(true);
 
       //Deploy Safe
-      const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig });
+      try {
+        const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig });
       const safeAddress = await safeSdkOwner1.getAddress();
       setSafeAddress(safeAddress);
       setLoading(false)
       console.log(safeAddress)
+      } catch (error) {
+        console.log(error)
+      }
+      
     } else {
       console.log("Please enter at least one guardian public key");
     }
