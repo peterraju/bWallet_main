@@ -5,6 +5,7 @@ import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
 import { Web3AuthNoModal } from "@web3auth/no-modal";
 import { OpenloginAdapter } from "@web3auth/openlogin-adapter";
 import RPC from "@hooks/etherRPC";
+import { MetamaskAdapter } from "@web3auth/metamask-adapter";
 
 const clientId =
   "BA2stbOXA-r6JT9BKq9lsmEeE4rpoAAsQlyUkp1XdYQGcrcUzYYwtRvHEGXRjvkdOQRKMrWF8-Hhcqsy5YBBPVg";
@@ -51,16 +52,37 @@ export default function useWeb3Auth() {
 
       const provider = web3authInstance.provider;
 
-      await web3authInstance.init();
-
       return { web3authInstance, provider };
     } catch (error) {
       console.error(error);
     }
   };
 
+  const loginMetamask = async (web3authInstance) => {
+    const metamaskAdapter = new MetamaskAdapter({
+      clientId,
+      sessionTime: 3600,
+      web3AuthNetwork: "cyan",
+      chainConfig: {
+        chainNamespace: CHAIN_NAMESPACES.EIP155,
+        chainId: "0x1",
+        rpcTarget: "https://rpc.ankr.com/eth",
+      },
+    });
+
+    web3authInstance.configureAdapter(metamaskAdapter);
+
+    await web3authInstance.init();
+
+    const web3authProvider = await web3authInstance.connectTo(
+      WALLET_ADAPTERS.METAMASK
+    );
+    return web3authProvider;
+  };
+
   const checkLogin = async (web3authInstance) => {
     if (web3authInstance && web3authInstance.connectedAdapterName) {
+      console.log(web3authInstance.connectedAdapterName);
       console.log("connected");
       return true;
     }
@@ -72,6 +94,7 @@ export default function useWeb3Auth() {
     if (!web3auth) {
       return;
     }
+    await web3auth.init();
     const web3authProvider = await web3auth.connectTo(
       WALLET_ADAPTERS.OPENLOGIN,
       {
@@ -85,6 +108,7 @@ export default function useWeb3Auth() {
     if (!web3auth || email.length === 0) {
       return;
     }
+    await web3auth.init();
     const web3authProvider = await web3auth.connectTo(
       WALLET_ADAPTERS.OPENLOGIN,
       {
@@ -146,5 +170,6 @@ export default function useWeb3Auth() {
     signMessage,
     getPublicKey,
     getPrivateKey,
+    loginMetamask,
   };
 }
