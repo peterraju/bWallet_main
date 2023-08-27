@@ -24,6 +24,7 @@ function Page() {
     getUserInfo,
     checkLogin,
     getPublicKey,
+    loginMetamask,
   } = useWeb3Auth();
 
   const initialize = async () => {
@@ -37,7 +38,19 @@ function Page() {
     initialize();
   }, []);
 
-   const handleGoogleLogin = async () => {
+  const handleMetamakLogin = async () => {
+    const logInStatus = await checkLogin(web3authInstance);
+    if (!logInStatus) {
+      const web3authProvider = await loginMetamask(web3authInstance);
+      setProvider(web3authProvider);
+      const user = await getUserInfo(web3authInstance);
+      setUser(user);
+      const publicKey = await getPublicKey(web3authInstance.provider);
+      setAddress(publicKey);
+    }
+  };
+
+  const handleGoogleLogin = async () => {
     const logInStatus = await checkLogin(web3authInstance);
     if (!logInStatus) {
       const web3authProvider = await login(web3authInstance);
@@ -126,6 +139,12 @@ function Page() {
             onClick={handleGoogleLogin}
           >
             Log In With Google
+          </button>
+          <button
+            className=" bg-red-700 text-white rounded-xl p-4"
+            onClick={handleMetamakLogin}
+          >
+            Log In With Metamask
           </button>
         </div>
 
