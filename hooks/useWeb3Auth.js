@@ -50,6 +50,8 @@ export default function useWeb3Auth() {
       });
       web3authInstance.configureAdapter(openloginAdapter);
 
+      await web3authInstance.init();
+
       const provider = web3authInstance.provider;
 
       return { web3authInstance, provider };
@@ -94,7 +96,6 @@ export default function useWeb3Auth() {
     if (!web3auth) {
       return;
     }
-    await web3auth.init();
     const web3authProvider = await web3auth.connectTo(
       WALLET_ADAPTERS.OPENLOGIN,
       {
@@ -108,7 +109,6 @@ export default function useWeb3Auth() {
     if (!web3auth || email.length === 0) {
       return;
     }
-    await web3auth.init();
     const web3authProvider = await web3auth.connectTo(
       WALLET_ADAPTERS.OPENLOGIN,
       {
