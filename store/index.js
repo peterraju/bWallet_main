@@ -9,7 +9,6 @@ const { setGlobalState, useGlobalState, getGlobalState } = createGlobalState({
     address: null,
     guardian1: null,
     guardian2: null,
-    safeName: null,
   },
   loginType: null,
 });
