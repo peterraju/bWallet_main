@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import localFont from "@next/font/local";
 import { Providers } from "./providers";
 import WagmiProvider from "@hooks/WagmiProvider";
+import { Web3AuthProvider } from "@hooks/web3AuthContext";
 
 const Conthrax = localFont({
   src: [
@@ -83,10 +84,12 @@ export default function RootLayout({ children }) {
       </head>
       <body className="">
         <Providers>
-          <WagmiProvider>
-            {/* <Navbar/> */}
-            {children}
-          </WagmiProvider>
+          <Web3AuthProvider>
+            <WagmiProvider>
+              {/* <Navbar/> */}
+              {children}
+            </WagmiProvider>
+          </Web3AuthProvider>
         </Providers>
       </body>
     </html>

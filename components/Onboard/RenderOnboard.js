@@ -6,18 +6,26 @@ import Step3 from "@components/Onboard/Step3";
 import Step4 from "@components/Onboard/Step4";
 import { getGlobalState, useGlobalState } from "@store";
 import useWeb3Auth from "@hooks/useWeb3Auth";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
 import { setGlobalState } from "@store";
+import { Web3AuthContext } from "@hooks/web3AuthContext";
 
 function RenderOnboard() {
   const [count] = useGlobalState("stepCount");
   const cnt = getGlobalState("stepCount");
-  const [web3authInstance, setWeb3authInstance] = useState(null);
+  const { web3authInstance, setWeb3authInstance, address, setAddress } =
+    useContext(Web3AuthContext);
   const [provider, setProvider] = useState(null);
   const email = useRef(null);
 
-  const { init, login, loginWithEmail, loginMetamask, checkLogin } =
-    useWeb3Auth();
+  const {
+    init,
+    login,
+    loginWithEmail,
+    loginMetamask,
+    checkLogin,
+    getPublicKey,
+  } = useWeb3Auth();
 
   const initialize = async () => {
     const { web3authInstance, provider } = await init();
@@ -31,9 +39,13 @@ function RenderOnboard() {
       if (!logInStatus) {
         const web3authProvider = await login(web3authInstance);
         setProvider(web3authProvider);
+        const address = await getPublicKey(web3authInstance.provider);
+        setAddress(address);
         setGlobalState("stepCount", 3);
         setGlobalState("loginType", "openLogin");
       } else {
+        const address = await getPublicKey(web3authInstance.provider);
+        setAddress(address);
         setGlobalState("stepCount", 3);
         setGlobalState("loginType", "openLogin");
       }
@@ -52,8 +64,12 @@ function RenderOnboard() {
       if (!logInStatus) {
         const web3authProvider = await loginWithEmail(web3authInstance, email);
         setProvider(web3authProvider);
+        const address = await getPublicKey(web3authInstance.provider);
+        setAddress(address);
         setGlobalState("stepCount", 3);
       } else {
+        const address = await getPublicKey(web3authInstance.provider);
+        setAddress(address);
         setGlobalState("stepCount", 3);
         setGlobalState("loginType", "openLogin");
       }
