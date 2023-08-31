@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { BsArrowRight } from "react-icons/bs";
-import { setGlobalState, useGlobalState } from "@store";
+import { setGlobalState, getGlobalState } from "@store";
 import { ethers } from "ethers";
 import { Web3AuthContext } from "@hooks/web3AuthContext";
 import { useAccount } from "wagmi";
@@ -9,7 +9,10 @@ import { useAccount } from "wagmi";
 function Step() {
   const { address } = useContext(Web3AuthContext);
   const { address: extAddress } = useAccount();
-  const loginType = useGlobalState("loginType");
+  const loginType = getGlobalState("loginType");
+
+  console.log(loginType);
+  console.log(address);
 
   const [data, setData] = useState({
     address: loginType === "openLogin" ? address : extAddress,

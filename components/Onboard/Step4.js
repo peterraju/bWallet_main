@@ -1,15 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import OtpInput from "react-otp-input";
 import { BsArrowRight } from "react-icons/bs";
 import Image from "next/image";
-import { setGlobalState, useGlobalState } from "@store";
+import { getGlobalState, setGlobalState, useGlobalState } from "@store";
 import useWeb3Auth from "@hooks/useWeb3Auth";
 import { useEffect, useRef } from "react";
 import { ethers } from "ethers";
 import { EthersAdapter } from "@safe-global/protocol-kit";
 import { SafeFactory } from "@safe-global/protocol-kit";
 import SafeApiKit from "@safe-global/api-kit";
+import { useAccount } from "wagmi";
+import { useEthersSigner } from "@hooks/etherWagmi";
 
 function Step() {
   const [data] = useGlobalState("deployData");
@@ -19,6 +21,8 @@ function Step() {
   const [provider, setProvider] = useState(null);
   const [safeAddress, setSafeAddress] = useState(null);
   const [loading, setLoading] = useState(false);
+  const signer = useEthersSigner();
+  const { address } = useAccount();
 
   const {
     init,
@@ -106,6 +110,64 @@ function Step() {
       console.log("Please enter at least one guardian public key");
     }
   };
+
+  const initSafeExternal = async () => {
+    const RPC_URL = "https://eth-goerli.public.blastapi.io";
+    const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
+
+    const ethAdapterOwner1 = new EthersAdapter({
+      ethers,
+      signerOrProvider: signer,
+    });
+
+    //Init Safe Service
+    const txServiceUrl = "https://safe-transaction-goerli.safe.global";
+    const safeService = new SafeApiKit({
+      txServiceUrl,
+      ethAdapter: ethAdapterOwner1,
+    });
+
+    //Init Safe Factory
+    const safeFactory = await SafeFactory.create({
+      ethAdapter: ethAdapterOwner1,
+    });
+
+    if (data.guardian1 && data.guardian2) {
+      //Preparing Safe Account Config
+      const safeAccountConfig = {
+        owners: [address, data.guardian1, data.guardian2],
+        threshold: 2,
+      };
+
+      //Deploy Safe
+      const safeSdkOwner1 = await safeFactory.deploySafe({ safeAccountConfig });
+      const safeAddress = await safeSdkOwner1.getAddress();
+      setSafeAddress(safeAddress);
+    } else if (data.guardian1) {
+      //Preparing Safe Account Config
+      const safeAccountConfig = {
+        owners: [address, data.guardian1],
+        threshold: 2,
+      };
+      setLoading(true);
+
+      //Deploy Safe
+      try {
+        const safeSdkOwner1 = await safeFactory.deploySafe({
+          safeAccountConfig,
+        });
+        const safeAddress = await safeSdkOwner1.getAddress();
+        setSafeAddress(safeAddress);
+        setLoading(false);
+        console.log(safeAddress);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      console.log("Please enter at least one guardian public key");
+    }
+  };
+
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
       <div>
@@ -170,7 +232,13 @@ function Step() {
       </div>
 
       <div
-        onClick={initSafe}
+        onClick={() => {
+          if (getGlobalState("loginType") === "openLogin") {
+            initSafe();
+          } else {
+            initSafeExternal();
+          }
+        }}
         style={{
           background: "linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)",
         }}
