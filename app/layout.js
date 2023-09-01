@@ -82,7 +82,7 @@ export default function RootLayout({ children }) {
           sizes="<generated>"
         />
       </head>
-      <body className="">
+      <body className="overflow-x-hidden">
         <Providers>
           <Web3AuthProvider>
             <WagmiProvider>

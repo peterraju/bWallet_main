@@ -81,7 +81,7 @@ export default function Onboard() {
             background:
               "radial-gradient(138.37% 138.37% at 50% -24.42%, rgba(234, 19, 242, 0.75) 0%, #E51E2A 54.62%, rgba(234, 19, 242, 0.75) 100%)",
           }}
-          className="flex justify-center"
+          className="flex justify-center w-fit p-1 items-center mx-auto rounded-md"
         >
           <Image src="/assets/logo2.png" alt="" width={20} height={10} />
         </div>

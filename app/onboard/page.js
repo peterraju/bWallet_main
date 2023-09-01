@@ -17,7 +17,7 @@ export default function Onboard(){
         </div>
         <div style={{
             background: 'radial-gradient(138.37% 138.37% at 50% -24.42%, rgba(234, 19, 242, 0.75) 0%, #E51E2A 54.62%, rgba(234, 19, 242, 0.75) 100%)'
-        }} className='flex justify-center'>
+        }} className='rounded-md flex justify-center w-fit p-1 items-center mx-auto'>
             <Image  src='/assets/logo2.png' alt='' width={20} height={10} />
         </div>
         <h2 className='text-lg font-semibold text-center mt-2'>Set up your account</h2>
