@@ -3,7 +3,7 @@ import React from 'react'
 function DepositFunction() {
   return (
     <div className='mt-3 flex flex-col gap-2  pb-3'>
-        <div className='flex border-b border-b-white pb-2 gap-2 px-2'>
+        <div className='flex border-b border-b-white pb-2 gap-2 px-2 items-center'>
         <div className='text-white flex flex-col  w-fit ' >
           <label className='opacity-50 text-xs'>Base Address</label> 
          <input type='text'  className='border border-offwhite rounded-md text-white text-sm w-full bg-prm-bg px-2 py-1' placeholder='0x123456' />
