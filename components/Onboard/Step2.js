@@ -56,7 +56,7 @@ function Step() {
           background:
             "linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)",
         }}
-        className="text-sm flex items-center justify-center rounded-full py-1 shadow-xl"
+        className="text-sm flex items-center justify-center rounded-full py-1 shadow-xl hover:cursor-pointer"
         onClick={() => connectExternal(0)}
       >
         Metamask
@@ -66,7 +66,7 @@ function Step() {
           background:
             "linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)",
         }}
-        className="text-sm flex items-center justify-center rounded-full py-1"
+        className="text-sm flex items-center justify-center rounded-full py-1 hover:cursor-pointer"
         onClick={() => connectExternal(1)}
       >
         Coinbase
@@ -87,7 +87,7 @@ function Step() {
           background:
             "linear-gradient(0deg, #222222, #222222),linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
         }}
-        className="text-sm py-1 rounded-full flex justify-center items-center"
+        className="text-sm py-1 rounded-full flex justify-center items-center hover:cursor-pointer"
         onClick={() => {
           setGlobalState("stepCount", 1);
         }}

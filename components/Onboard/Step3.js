@@ -100,7 +100,7 @@ function Step() {
         style={{
           background: "linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)",
         }}
-        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center mt-2"
+        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center mt-2 hover:cursor-pointer"
         onClick={() => {
           handleSubmit();
         }}
