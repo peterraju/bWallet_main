@@ -8,7 +8,7 @@ import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { useDisconnect, useEnsAvatar, useEnsName } from "wagmi";
 import { useIsMounted } from "@hooks/uselsmounted";
 
-var projId = "7a99dce825d9493a1453dd01dbca4ca3";
+// var projId = "7a99dce825d9493a1453dd01dbca4ca3";
 function Step() {
   const isMounted = useIsMounted();
   const { isReconnecting } = useAccount();
@@ -33,23 +33,23 @@ function Step() {
     }
   };
 
-  const connector = new WalletConnectConnector({
-    // chains:[goerli],
-    options: {
-      projectId: "7a99dce825d9493a1453dd01dbca4ca3",
-      showQrModal: false,
-      metadata: {
-        name: "b-Wallet",
-        description: "b-Wallet",
-        url: "https://b-wallet.vercel.app",
-        icons: ["/assets/logo2.png"],
-      },
-    },
-  });
+  // const connector = new WalletConnectConnector({
+  //   // chains:[goerli],
+  //   options: {
+  //     projectId: "7a99dce825d9493a1453dd01dbca4ca3",
+  //     showQrModal: false,
+  //     metadata: {
+  //       name: "b-Wallet",
+  //       description: "b-Wallet",
+  //       url: "https://b-wallet.vercel.app",
+  //       icons: ["/assets/logo2.png"],
+  //     },
+  //   },
+  // });
 
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
-      <div
+      {/* <div
         style={{
           background:
             "linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)",
@@ -91,7 +91,28 @@ function Step() {
         }}
       >
         Back{" "}
-      </div>
+      </div> */}
+      {connectors.map((connector) => (
+        <button
+        style={{
+          background:
+            "linear-gradient(0deg, #222222, #222222),linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
+        }}
+        className="text-sm py-1 rounded-full flex justify-center items-center hover:cursor-pointer"
+     
+          disabled={!connector.ready}
+          key={connector.id}
+          onClick={() => connect(connector)}
+        >
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isConnecting &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </button>
+      ))}
+
+      {error && <div>{error.message}</div>}
     </div>
   );
 }
