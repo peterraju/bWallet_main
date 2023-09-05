@@ -6,9 +6,19 @@ import { BsArrowRight } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { ethers } from "ethers";
 import { useConnect, useAccount } from "wagmi";
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+import {
+  useDisconnect,
+  useEnsAvatar,
+  useEnsName,
+} from 'wagmi'
 
+var projId = "7a99dce825d9493a1453dd01dbca4ca3"
 function Step() {
-  const { connectors, connectAsync } = useConnect();
+  const { connect, error, isConnecting, pendingConnector } =
+  useConnect()
+
+  // const { connectors, connectAsync } = useConnect();
 
   const { address } = useAccount();
 
@@ -26,6 +36,18 @@ function Step() {
       console.log(e);
     }
   };
+
+  const connector = new WalletConnectConnector({
+    // chains:[goerli],
+    options: {
+      projectId: projId,metadata:{
+        name:'b-Wallet',
+        description:'b-Wallet',
+        url:'https://b-wallet.vercel.app',
+        icons:['/assets/logo2.png']
+      }
+    },
+  })
 
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
@@ -55,7 +77,7 @@ function Step() {
             "linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)",
         }}
         className="text-sm flex items-center justify-center rounded-full py-1"
-        onClick={() => connectExternal(2)}
+        onClick={() => connect(connector)}
       >
         WalletConnect
       </div>
