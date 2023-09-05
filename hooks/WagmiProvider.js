@@ -32,6 +32,12 @@ const config = createConfig({
         appName: "bWallet",
       },
     }),
+    new WalletConnectConnector({
+      chains,
+      options: {
+        projectId: '7a99dce825d9493a1453dd01dbca4ca3',
+      },
+    }),
   ],
   publicClient,
   webSocketPublicClient,
