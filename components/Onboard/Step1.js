@@ -22,12 +22,8 @@ function Step({ handleGoogleLogin, handleEmailLogin, email }) {
           className="bg-white p-2 text-sm text-black rounded-md"
           placeholder="abc@bankless.xyz"
         />
-        <p className="text-xs text-[#5f5f5f]">
-          Provide your email to receive our newsletters and stay connected with
-          our latest developments
-        </p>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col">
         {/* <label className="text-xs text-white font-semibold">
           Verification code{" "}
           <span className="text-[#5f5f5f] ml-3">
@@ -65,7 +61,7 @@ function Step({ handleGoogleLogin, handleEmailLogin, email }) {
         className="text-sm py-1 rounded-full gap-1 flex justify-center items-center hover:cursor-pointer"
         onClick={handleEmailLogin}
       >
-        Connect <BsArrowRight />
+        Sign Up with Email <BsArrowRight />
       </div>
       <div
         style={{
@@ -77,7 +73,7 @@ function Step({ handleGoogleLogin, handleEmailLogin, email }) {
       >
         <FcGoogle className="mr-2 mb-1" /> Google
       </div>
-      <h2 className="text-center text-sm text-offwhite mt-2">or</h2>
+      <h2 className="text-center text-sm text-offwhite ">or</h2>
       <div
         style={{
           background:
