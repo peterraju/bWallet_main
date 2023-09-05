@@ -48,8 +48,7 @@ function Step() {
   }, []);
 
   const initSafe = async () => {
-    const RPC_URL =
-      "https://opt-goerli.g.alchemy.com/v2/5_ocm9TVKXIasmSK15B55FCI_hYMyH5F";
+    const RPC_URL = "https://optimism-goerli.publicnode.com";
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
     const privateKey = await getPrivateKey(web3authInstance.provider);
@@ -116,8 +115,7 @@ function Step() {
   };
 
   const initSafeExternal = async () => {
-    const RPC_URL =
-      "https://opt-goerli.g.alchemy.com/v2/5_ocm9TVKXIasmSK15B55FCI_hYMyH5F";
+    const RPC_URL = "https://optimism-goerli.publicnode.com";
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
     const ethAdapterOwner1 = new EthersAdapter({

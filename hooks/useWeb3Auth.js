@@ -29,7 +29,7 @@ export default function useWeb3Auth() {
       const chainConfig = {
         chainNamespace: CHAIN_NAMESPACES.EIP155,
         chainId: "0x1a4",
-        rpcTarget: "https://optimism-goerli.public.blastapi.io",
+        rpcTarget: "https://optimism-goerli.publicnode.com",
         displayName: "Optimism Goerli",
         blockExplorer: "https://goerli-optimism.etherscan.io/",
         ticker: "ETH",
