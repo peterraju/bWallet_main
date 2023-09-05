@@ -1,6 +1,4 @@
 "use client";
-import useWeb3Auth from "@hooks/useWeb3Auth";
-import { useState, useEffect, useRef } from "react";
 import { setGlobalState, useGlobalState, getGlobalState } from "@store";
 import { BsArrowRight } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
@@ -12,11 +10,14 @@ import {
   useEnsAvatar,
   useEnsName,
 } from 'wagmi'
+import { useIsMounted } from "@hooks/uselsmounted";
 
 var projId = "7a99dce825d9493a1453dd01dbca4ca3"
 function Step() {
-  const { connect, error, isConnecting, pendingConnector } =
-  useConnect()
+  const isMounted = useIsMounted()
+  const { isReconnecting } = useAccount()
+  const { connect, connectors, isLoading, error, pendingConnector } =
+    useConnect()
 
   // const { connectors, connectAsync } = useConnect();
 
@@ -40,18 +41,20 @@ function Step() {
   const connector = new WalletConnectConnector({
     // chains:[goerli],
     options: {
-      projectId: projId,metadata:{
+      projectId: '7a99dce825d9493a1453dd01dbca4ca3',
+      showQrModal: false,
+      metadata:{
         name:'b-Wallet',
         description:'b-Wallet',
         url:'https://b-wallet.vercel.app',
         icons:['/assets/logo2.png']
-      }
+      },
     },
   })
 
   return (
     <div className="mt-4 flex flex-col gap-3 pb-4">
-      <div
+      {/* <div
         style={{
           background:
             "linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)",
@@ -77,9 +80,18 @@ function Step() {
             "linear-gradient(180deg, #1E1E1E 0%, #141414 100%),linear-gradient(0deg, #EA13F2, #EA13F2)",
         }}
         className="text-sm flex items-center justify-center rounded-full py-1"
-        onClick={() => connect(connector)}
+        // onClick={() => connect(connector)}
       >
-        WalletConnect
+      <button
+            disabled={!connector.ready || isReconnecting || connector?.id === connector.id}
+            type='button'
+            key={connector.name}
+            onClick={() => connect({ connector: connector })}
+          >
+            {connector.id === 'injected' ? (isMounted ? connector.name :'1') : connector.name}
+            {isMounted && !connector  .ready && ' (unsupported)'}
+            {isLoading && connector.id === pendingConnector?.id && '…'}
+          </button>
       </div>
 
       <div
@@ -93,7 +105,22 @@ function Step() {
         }}
       >
         Back{" "}
-      </div>
+      </div> */}
+      {connectors.map((connector) => (
+        <button
+          disabled={!connector.ready}
+          key={connector.id}
+          onClick={() => connect({ connector })}
+        >
+          {connector.name}
+          {!connector.ready && ' (unsupported)'}
+          {isLoading &&
+            connector.id === pendingConnector?.id &&
+            ' (connecting)'}
+        </button>
+      ))}
+ 
+      {error && <div>{error.message}</div>}
     </div>
   );
 }
