@@ -46,7 +46,8 @@ function Step() {
   }, []);
 
   const initSafe = async () => {
-    const RPC_URL = "https://eth-goerli.public.blastapi.io";
+    const RPC_URL =
+      "https://opt-goerli.g.alchemy.com/v2/5_ocm9TVKXIasmSK15B55FCI_hYMyH5F";
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
     const privateKey = await getPrivateKey(web3authInstance.provider);
@@ -60,11 +61,11 @@ function Step() {
     });
 
     //Init Safe Service
-    const txServiceUrl = "https://safe-transaction-goerli.safe.global";
-    const safeService = new SafeApiKit({
-      txServiceUrl,
-      ethAdapter: ethAdapterOwner1,
-    });
+    // const txServiceUrl = "https://safe-transaction-goerli.safe.global";
+    // const safeService = new SafeApiKit({
+    //   txServiceUrl,
+    //   ethAdapter: ethAdapterOwner1,
+    // });
 
     //Init Safe Factory
     const safeFactory = await SafeFactory.create({
@@ -112,7 +113,8 @@ function Step() {
   };
 
   const initSafeExternal = async () => {
-    const RPC_URL = "https://eth-goerli.public.blastapi.io";
+    const RPC_URL =
+      "https://opt-goerli.g.alchemy.com/v2/5_ocm9TVKXIasmSK15B55FCI_hYMyH5F";
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
     const ethAdapterOwner1 = new EthersAdapter({
@@ -121,11 +123,11 @@ function Step() {
     });
 
     //Init Safe Service
-    const txServiceUrl = "https://safe-transaction-goerli.safe.global";
-    const safeService = new SafeApiKit({
-      txServiceUrl,
-      ethAdapter: ethAdapterOwner1,
-    });
+    // const txServiceUrl = "https://safe-transaction-goerli.safe.global";
+    // const safeService = new SafeApiKit({
+    //   txServiceUrl,
+    //   ethAdapter: ethAdapterOwner1,
+    // });
 
     //Init Safe Factory
     const safeFactory = await SafeFactory.create({
@@ -242,7 +244,7 @@ function Step() {
         style={{
           background: "linear-gradient(90deg, #E51E2A 0%, #EA13F2 100%)",
         }}
-        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center"
+        className="text-sm py-1 rounded-full gap-1 flex justify-center items-center hover:cursor-pointer"
       >
         {loading ? "Deploying safe.." : "Deploy safe"}
       </div>
@@ -251,7 +253,7 @@ function Step() {
           background:
             "linear-gradient(0deg, #222222, #222222),linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
         }}
-        className="text-sm py-1 rounded-full flex justify-center items-center"
+        className="text-sm py-1 rounded-full flex justify-center items-center hover:cursor-pointer"
         onClick={() => {
           setGlobalState("stepCount", 3);
         }}

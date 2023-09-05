@@ -11,10 +11,12 @@ import { InjectedConnector } from "wagmi/connectors/injected";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 
+import { optimismGoerli } from "@wagmi/core/chains";
+
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [mainnet],
+  [optimismGoerli],
   [
-    alchemyProvider({ apiKey: "3IgRi-BWemVdwlXdm7sT6CDf-bS5ECAk" }),
+    alchemyProvider({ apiKey: "5_ocm9TVKXIasmSK15B55FCI_hYMyH5F" }),
     publicProvider(),
   ]
 );
