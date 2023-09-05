@@ -12,6 +12,7 @@ import { SafeFactory } from "@safe-global/protocol-kit";
 import SafeApiKit from "@safe-global/api-kit";
 import { useAccount } from "wagmi";
 import { useEthersSigner } from "@hooks/etherWagmi";
+import { useRouter } from "next/navigation";
 
 function Step() {
   const [data] = useGlobalState("deployData");
@@ -23,6 +24,7 @@ function Step() {
   const [loading, setLoading] = useState(false);
   const signer = useEthersSigner();
   const { address } = useAccount();
+  const router = useRouter();
 
   const {
     init,
@@ -46,8 +48,7 @@ function Step() {
   }, []);
 
   const initSafe = async () => {
-    const RPC_URL =
-      "https://opt-goerli.g.alchemy.com/v2/5_ocm9TVKXIasmSK15B55FCI_hYMyH5F";
+    const RPC_URL = "https://optimism-goerli.publicnode.com";
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
     const privateKey = await getPrivateKey(web3authInstance.provider);
@@ -104,6 +105,7 @@ function Step() {
         setSafeAddress(safeAddress);
         setLoading(false);
         console.log(safeAddress);
+        router.push("/dashboard");
       } catch (error) {
         console.log(error);
       }
@@ -113,8 +115,7 @@ function Step() {
   };
 
   const initSafeExternal = async () => {
-    const RPC_URL =
-      "https://opt-goerli.g.alchemy.com/v2/5_ocm9TVKXIasmSK15B55FCI_hYMyH5F";
+    const RPC_URL = "https://optimism-goerli.publicnode.com";
     const provider = new ethers.providers.JsonRpcProvider(RPC_URL);
 
     const ethAdapterOwner1 = new EthersAdapter({
@@ -162,6 +163,7 @@ function Step() {
         setSafeAddress(safeAddress);
         setLoading(false);
         console.log(safeAddress);
+        router.push("/dashboard");
       } catch (error) {
         console.log(error);
       }
