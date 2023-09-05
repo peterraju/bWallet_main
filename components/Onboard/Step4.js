@@ -12,6 +12,7 @@ import { SafeFactory } from "@safe-global/protocol-kit";
 import SafeApiKit from "@safe-global/api-kit";
 import { useAccount } from "wagmi";
 import { useEthersSigner } from "@hooks/etherWagmi";
+import { useRouter } from "next/navigation";
 
 function Step() {
   const [data] = useGlobalState("deployData");
@@ -23,6 +24,7 @@ function Step() {
   const [loading, setLoading] = useState(false);
   const signer = useEthersSigner();
   const { address } = useAccount();
+  const router = useRouter();
 
   const {
     init,
@@ -104,6 +106,7 @@ function Step() {
         setSafeAddress(safeAddress);
         setLoading(false);
         console.log(safeAddress);
+        router.push("/dashboard");
       } catch (error) {
         console.log(error);
       }
@@ -162,6 +165,7 @@ function Step() {
         setSafeAddress(safeAddress);
         setLoading(false);
         console.log(safeAddress);
+        router.push("/dashboard");
       } catch (error) {
         console.log(error);
       }
