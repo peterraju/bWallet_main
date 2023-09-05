@@ -29,7 +29,7 @@ function Portfolio() {
         <span className="font-semibold">$32,100</span>
       </div>
       <div className="bg-prm-bg opacity-50 flex items-center text-sm py-1 px-2 rounded-full text-white gap-1 mt-2">
-     <span className="font-semibold">BASE</span>  <span className="flex items-center text-[#FCADFF] gap-1">| <BsFuelPump className=""/></span>  
+     <span className="font-semibold">Optimism-goerli</span>  <span className="flex items-center text-[#FCADFF] gap-1">| <BsFuelPump className=""/></span>  
      $0.04
       </div>
     </div>

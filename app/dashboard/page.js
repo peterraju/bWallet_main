@@ -10,7 +10,9 @@ import Actions from "@components/Dashboard/Actions";
 import TransactionHistory from "@components/Dashboard/TransactionHistory";
 function Dashboard() {
   return (
-    <div className="bg-prm-bg h-[90vh] w-[85vw] flex mx-auto mt-[6vh] gap-4 shadow-2xl rounded-md">
+  <div>
+  <div className="w-full bg-sec-bg flex text-white font-large gap-4 py-1 px-12"><Image src='/assets/Union.png' width={20} height={10} alt=""/>  <h2 className="font-semibold">Bankless Wallet</h2> </div>
+      <div className="bg-prm-bg h-[90vh] w-[85vw] flex mx-auto mt-[6vh] gap-4 shadow-2xl rounded-md">
       <div className="w-8/12 flex flex-col gap-3 ">
         <Portfolio/>
         <PortfolioDetails/>
@@ -22,6 +24,7 @@ function Dashboard() {
        <TransactionHistory/>
       </div>
     </div>
+  </div>
   );
 }
 
