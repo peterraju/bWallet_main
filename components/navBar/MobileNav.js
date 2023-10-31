@@ -1,14 +1,19 @@
 import { Collapse } from "@material-tailwind/react";
 
 import NavList from "./NavList";
-import { LaunchAppBtn } from "../ui/ClientButtons";
+import RippleButton from "../ui/RippleButton";
 
 const MobileNav = ({ openNav, navList }) => {
   return (
     <Collapse open={openNav}>
       <NavList list={navList} />
 
-      <LaunchAppBtn screen="sm" />
+      <RippleButton
+        style="flex border border-white"
+        label="Launch App"
+        location="/login"
+        icon="default"
+      />
     </Collapse>
   );
 };

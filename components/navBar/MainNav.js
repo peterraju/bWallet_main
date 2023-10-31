@@ -7,7 +7,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../Logo";
 import NavList from "./NavList";
 import MobileNav from "./MobileNav";
-import { LaunchAppBtn } from "../ui/ClientButtons";
+import RippleButton from "../ui/RippleButton";
 
 const MainNav = () => {
   const [openNav, setOpenNav] = useState(false);
@@ -31,11 +31,16 @@ const MainNav = () => {
         <Logo />
 
         <div className="mr-4 hidden lg:block">
-          <NavList list={navList} />
+          {/* <NavList list={navList} /> */}
         </div>
 
         <div className="flex items-center gap-4">
-          <LaunchAppBtn isDefault={true} screen="lg" />
+          <RippleButton
+            style="hidden lg:flex border border-white"
+            label="Launch App"
+            location="/login"
+            icon="default"
+          />
 
           <IconButton
             variant="text"

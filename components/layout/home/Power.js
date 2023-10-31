@@ -1,5 +1,7 @@
 import Image from "next/image";
-import PowerBtn from "./PowerBtn";
+
+import GradientBorder from "@/components/ui/GradientBorder";
+import RippleButton from "@/components/ui/RippleButton";
 
 const Power = () => {
   return (
@@ -15,7 +17,14 @@ const Power = () => {
           control over your digital assets and transactions.
         </p>
 
-        <PowerBtn />
+        <GradientBorder>
+          <RippleButton
+            style={"bg-white rounded-full text-primary-black font-medium"}
+            label="Create a Wallet"
+            icon=""
+            location="/onboard"
+          />
+        </GradientBorder>
       </div>
 
       <div className="flex flex-wrap justify-between gap-y-14 md:justify-evenly lg:flex-nowrap lg:items-center lg:justify-center">

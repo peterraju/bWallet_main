@@ -3,17 +3,18 @@ import Image from "next/image";
 import Card from "@/components/layout/home/card/Card";
 import EuroOnChain from "@/components/layout/home/EuroOnChain";
 import Header from "@/components/layout/home/Header";
-import LaunchApp from "@/components/layout/home/LaunchApp/LaunchApp";
+import LaunchApp from "@/components/layout/home/LaunchApp";
 import OneWallet from "@/components/layout/home/OneWallet";
 import Partners from "@/components/layout/home/Partners";
-import Power from "@/components/layout/home/power/Power";
+import Power from "@/components/layout/home/Power";
 import MainNav from "@/components/navBar/MainNav";
 import Footer from "@/components/layout/home/Footer";
 
 export default function Home() {
   return (
     <>
-      <MainNav />
+      {/* <MainNav /> */}
+
       <div className="hero-bg">
         <Header />
         <Card />
@@ -29,7 +30,7 @@ export default function Home() {
 
       <main className="mx-4 lg:mx-0">
         <OneWallet />
-        <EuroOnChain />
+        {/* <EuroOnChain /> */}
 
         <Image
           src="/images/home/breaker.svg"

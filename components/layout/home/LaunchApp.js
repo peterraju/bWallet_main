@@ -1,5 +1,7 @@
 import Image from "next/image";
-import LaunchAppBtn from "./LaunchAppBtn";
+
+import GradientBorder from "@/components/ui/GradientBorder";
+import RippleButton from "@/components/ui/RippleButton";
 
 const LaunchApp = () => {
   return (
@@ -26,7 +28,14 @@ const LaunchApp = () => {
           Get started with Bankless Wallet
         </h3>
 
-        <LaunchAppBtn style={"mt-6"} />
+        <GradientBorder>
+          <RippleButton
+            style={"bg-white rounded-full text-primary-black font-medium"}
+            label="Launch App"
+            icon=""
+            location="/login"
+          />
+        </GradientBorder>
       </div>
     </section>
   );
