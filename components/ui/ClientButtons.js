@@ -21,7 +21,7 @@ const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
 const DefaultWhiteButton = ({ label, style, onClick }) => {
   return (
     <Button
-      variant="fill"
+      variant="filled"
       color="white"
       className={`flex items-center rounded-full bg-white px-8 py-2 font-grotesque text-lg font-semibold capitalize md:text-xl ${
         style ? style : ""

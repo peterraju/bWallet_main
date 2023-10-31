@@ -58,7 +58,7 @@ const neue = localFont({
       weight: "700",
     },
     {
-      path: "../public/fonts/neue-machina/NeueMachina-UltraBold.woff2",
+      path: "../public/fonts/neue-machina/NeueMachina-Ultrabold.woff2",
       weight: "800",
     },
     {
