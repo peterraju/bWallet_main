@@ -1,53 +1,59 @@
+import Image from "next/image";
 
-import BCard from '@components/Cards/B-Card/B-Card'
-import { PriceCard } from '@components/Cards/PriceCard'
-import { Waitlist } from '@components/Cards/SignInCard/Waitlist'
-import { Hero } from '@components/Hero'
-import Image from 'next/image'
-import styles from '../styles/hero.module.css'
-import Navbar from '@components/Navbar'
+import Card from "@/components/layout/home/card/Card";
+import EuroOnChain from "@/components/layout/home/EuroOnChain";
+import Header from "@/components/layout/home/Header";
+import LaunchApp from "@/components/layout/home/LaunchApp/LaunchApp";
+import OneWallet from "@/components/layout/home/OneWallet";
+import Partners from "@/components/layout/home/Partners";
+import Power from "@/components/layout/home/power/Power";
+import MainNav from "@/components/navBar/MainNav";
+import Footer from "@/components/layout/home/Footer";
 
 export default function Home() {
-  
+  return (
+    <>
+      <MainNav />
+      <div className="hero-bg">
+        <Header />
+        <Card />
+      </div>
 
-  return (<>
+      <Image
+        src="/images/home/breaker.svg"
+        alt="hero-bg"
+        width={1920}
+        height={1}
+        className="mx-auto my-24 h-3 w-full md:my-32 md:w-4/5"
+      />
 
-<Navbar/>
-<div style={{
-    backgroundImage:'url(/assets/Grid.png)',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: '100vw',
-  backgroundPositionY: '20vh',
-   }} className='min-h-screen w-screen'>
-  <div className={`${styles.container} ' w-screen h-screen flex items-center justify-center'`}
-  >
- 
-    <Hero />
-  </div>
+      <main className="mx-4 lg:mx-0">
+        <OneWallet />
+        <EuroOnChain />
 
-    <div className="scale-[0.6] md:scale-100 md:mt-12 flex items-center justify-center">
+        <Image
+          src="/images/home/breaker.svg"
+          alt="hero-bg"
+          width={1920}
+          height={1}
+          className="mx-auto my-24 h-3 w-full md:my-32 md:w-4/5"
+        />
 
-<BCard/>
-</div>
-<div className={`${styles.scrolling_text} flex mx-auto items-center justify-center my-6 md:my-12 `}>
-  {/* <marquee loop="-1" scrollamount="5"> */}
-<div className='flex items-center gap-12'>
+        <Partners />
 
-  <PriceCard/>
-  <PriceCard/>
-  <PriceCard/>
+        <Image
+          src="/images/home/breaker.svg"
+          alt="hero-bg"
+          width={1920}
+          height={1}
+          className="mx-auto my-24 h-3 w-full md:my-32 md:w-4/5"
+        />
 
-</div>
-  {/* </marquee> */}
-</div>
-<div className='my-6 md:my-24 flex justify-center'>
-  <Waitlist/>
-</div>
-<div className='text-base  w-screen bottom-0 bg-[#272727] text-center py-2 text-white font-prm md:text-xl'>
+        <Power />
+        <LaunchApp />
+      </main>
 
-Built with love for the web3 community, by BanklessDAO Community
-</div>
-   </div>
-   </>
-  )
+      <Footer />
+    </>
+  );
 }

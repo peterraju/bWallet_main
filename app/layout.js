@@ -1,66 +1,73 @@
-import Navbar from "@components/Navbar";
-import "../styles/globals.css";
-import { Inter } from "next/font/google";
-import localFont from "@next/font/local";
-import { Providers } from "./providers";
-import WagmiProvider from "@hooks/WagmiProvider";
-import { Web3AuthProvider } from "@hooks/web3AuthContext";
+import "./globals.css";
 
-const Conthrax = localFont({
+import localFont from "next/font/local";
+
+const grotesque = localFont({
   src: [
     {
-      path: "../public/assets/conthrax-cdnfonts/conthrax-sb.ttf",
+      path: "../public/fonts/basis-grotesque/BasisGrotesqueArabicPro-Light.woff2",
+      weight: "300",
+    },
+    {
+      path: "../public/fonts/basis-grotesque/BasisGrotesqueArabicPro-Regular.woff2",
       weight: "400",
     },
     {
-      path: "../public/assets/conthrax-cdnfonts/conthrax-sb.ttf",
-      weight: "700",
-    },
-  ],
-  variable: "--font-Conthrax",
-});
-
-const Neue = localFont({
-  src: "../public/assets/neue-machina-free-for-personal-use/Neue Machina - Free for Personal Use/NeueMachina-Regular.otf",
-  variable: "--font-neue",
-});
-const Grotesque = localFont({
-  src: [
-    {
-      path: "../public/assets/Basis Grotesque PRO Font Family/BasisGrotesqueArabicPro-Regular.ttf",
-      weight: "400",
-    },
-    {
-      path: "../public/assets/Basis Grotesque PRO Font Family/BasisGrotesqueArabicPro-Bold.ttf",
-      weight: "700",
-    },
-    {
-      path: "../public/assets/Basis Grotesque PRO Font Family/BasisGrotesqueArabicPro-Medium.ttf",
+      path: "../public/fonts/basis-grotesque/BasisGrotesqueArabicPro-Medium.woff2",
       weight: "500",
     },
+    {
+      path: "../public/fonts/basis-grotesque/BasisGrotesqueArabicPro-Bold.woff2",
+      weight: "700",
+    },
   ],
+
   variable: "--font-grotesque",
 });
-const ClashDisplay = localFont({
+
+const clashDisplay = localFont({
+  src: "../public/fonts/clash-display/ClashDisplay-Variable.woff2",
+  variable: "--font-clash-display",
+});
+
+const conthrax = localFont({
+  src: "../public/fonts/conthrax/conthrax-sb.ttf",
+  variable: "--font-conthrax",
+});
+
+const neue = localFont({
   src: [
     {
-      path: "../public/assets/Clash_DIsplay/ClashDisplay-Regular.otf",
+      path: "../public/fonts/neue-machina/NeueMachina-Ultralight.woff2",
+      weight: "200",
+    },
+    {
+      path: "../public/fonts/neue-machina/NeueMachina-Light.woff2",
+      weight: "300",
+    },
+    {
+      path: "../public/fonts/neue-machina/NeueMachina-Regular.woff2",
       weight: "400",
     },
     {
-      path: "../public/assets/Clash_DIsplay/ClashDisplay-Bold.otf",
-      weight: "700",
-    },
-    {
-      path: "../public/assets/Clash_DIsplay/ClashDisplay-Medium.otf",
+      path: "../public/fonts/neue-machina/NeueMachina-Medium.woff2",
       weight: "500",
     },
     {
-      path: "../public/assets/Clash_DIsplay/ClashDisplay-Semibold.otf",
-      weight: "600",
+      path: "../public/fonts/neue-machina/NeueMachina-Bold.woff2",
+      weight: "700",
+    },
+    {
+      path: "../public/fonts/neue-machina/NeueMachina-UltraBold.woff2",
+      weight: "800",
+    },
+    {
+      path: "../public/fonts/neue-machina/NeueMachina-Black.woff2",
+      weight: "900",
     },
   ],
-  variable: "--font-clash-display",
+
+  variable: "--font-neue",
 });
 
 export const metadata = {
@@ -71,27 +78,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html
-      className={`${Conthrax.variable} ${Neue.variable} ${ClashDisplay.variable} ${Grotesque.variable}`}
+      className={`${grotesque.variable} ${clashDisplay.variable} ${conthrax.variable} ${neue.variable}`}
       lang="en"
     >
-      <head>
-        <link
-          rel="icon"
-          href="/icon?<generated>"
-          type="image/<generated>"
-          sizes="<generated>"
-        />
-      </head>
-      <body className="overflow-x-hidden">
-        <Providers>
-          <Web3AuthProvider>
-            <WagmiProvider>
-              {/* <Navbar/> */}
-              {children}
-            </WagmiProvider>
-          </Web3AuthProvider>
-        </Providers>
-      </body>
+      <body className="overflow-x-hidden">{children}</body>
     </html>
   );
 }
