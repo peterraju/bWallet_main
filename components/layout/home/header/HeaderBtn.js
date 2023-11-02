@@ -5,7 +5,7 @@ import {
 
 const HeaderBtn = () => {
   return (
-    <div className="flex justify-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
       <CreateWalletBtn isDefault={true} />
       <HardwareWalletBtn />
     </div>

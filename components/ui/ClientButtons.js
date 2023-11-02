@@ -9,7 +9,7 @@ const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
     <Button
       variant={variant}
       color={color}
-      className={`items-center gap-3 px-4 py-2 font-grotesque text-lg font-normal capitalize md:text-xl ${
+      className={`items-center gap-3 px-4 py-2 font-grotesque text-base font-normal capitalize sm:text-lg md:text-xl ${
         style ? style : "flex"
       }`}
       onClick={onClick}
@@ -25,7 +25,7 @@ const DefaultWhiteButton = ({ label, style, onClick }) => {
     <Button
       variant="filled"
       color="white"
-      className={`flex items-center rounded-full bg-white px-8 py-2 font-grotesque text-lg font-semibold capitalize md:text-xl ${
+      className={`flex items-center rounded-full bg-white px-8 py-2 font-grotesque text-base font-semibold capitalize sm:text-lg md:text-xl ${
         style ? style : ""
       }`}
       onClick={onClick}
