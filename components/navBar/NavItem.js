@@ -1,16 +1,23 @@
 import Link from "next/link";
 
-const NavItem = ({ name, href, active }) => {
+const NavItem = ({
+  name,
+  href,
+  active,
+  size = "text-xl",
+  itemStyle = "rounded-lg",
+  activeStyle = "text-white",
+  nonActiveStyle = "text-gray-500 md:hover:text-white md:hover:bg-gray-700",
+}) => {
   return (
     <li
-      className={`px-3 py-1.5 font-normal text-xl transition-colors  ${
-        active
-          ? "text-white"
-          : "text-gray-500 hover:text-white hover:bg-gray-700 rounded"
+      className={`px-4 py-1.5 font-normal transition-colors ${itemStyle} ${size}  ${
+        active ? activeStyle : nonActiveStyle
       }`}
     >
       <Link href={href}>{name}</Link>
     </li>
   );
 };
+
 export default NavItem;
