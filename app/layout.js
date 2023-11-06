@@ -1,4 +1,7 @@
 import { WagmiProvider } from "@/utils/WagmiProvider";
+import store from "@/redux/store";
+import ReduxProvider from "@/provider/ReduxProvider";
+
 import "./globals.css";
 
 import localFont from "next/font/local";
@@ -83,7 +86,9 @@ export default function RootLayout({ children }) {
       lang="en"
     >
       <body className="overflow-x-hidden">
-        <WagmiProvider>{children}</WagmiProvider>
+        <ReduxProvider store={store}>
+          <WagmiProvider>{children}</WagmiProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
