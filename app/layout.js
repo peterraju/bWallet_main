@@ -1,3 +1,4 @@
+import { WagmiProvider } from "@/utils/WagmiProvider";
 import "./globals.css";
 
 import localFont from "next/font/local";
@@ -81,7 +82,9 @@ export default function RootLayout({ children }) {
       className={`${grotesque.variable} ${clashDisplay.variable} ${conthrax.variable} ${neue.variable}`}
       lang="en"
     >
-      <body className="overflow-x-hidden">{children}</body>
+      <body className="overflow-x-hidden">
+        <WagmiProvider>{children}</WagmiProvider>
+      </body>
     </html>
   );
 }
