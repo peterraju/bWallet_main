@@ -7,9 +7,9 @@ export const metadata = {
 
 export default function TlBankLayout({ children }) {
   return (
-    <section className="h-screen overflow-hidden bg-black">
+    <section className="h-screen bg-black">
       <TlBankNav />
-      <main>{children}</main>
+      {children}
     </section>
   );
 }
