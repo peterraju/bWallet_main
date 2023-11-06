@@ -7,9 +7,18 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Logo from "../Logo";
 import NavList from "./NavList";
 import MobileNav from "./MobileNav";
-import { LaunchAppBtn } from "../ui/ClientButtons";
 
-const MainNav = () => {
+const MainNav = ({
+  navList,
+  btn,
+  mobileBtn,
+  style,
+  maxWidth,
+  size,
+  itemStyle,
+  activeStyle,
+  nonActiveStyle,
+}) => {
   const [openNav, setOpenNav] = useState(false);
 
   useEffect(() => {
@@ -19,23 +28,29 @@ const MainNav = () => {
     );
   }, []);
 
-  const navList = [
-    { name: "Home", href: "#", active: true },
-    { name: "Features", href: "#", active: false },
-    { name: "Contact Us", href: "#", active: false },
-  ];
-
   return (
-    <Navbar className="sticky top-0 z-40 h-max max-w-full rounded-none border-none bg-primary-black/40 px-4 py-2 shadow-none backdrop-blur-sm lg:px-8 lg:py-3">
-      <div className="mx-auto flex max-w-6xl items-center justify-between text-gray-300">
+    <Navbar
+      className={`sticky top-0 z-40 h-max max-w-full rounded-none border-none px-4 py-2 backdrop-blur-sm lg:px-8 lg:py-3 ${style}`}
+    >
+      <div
+        className={`mx-auto flex items-center justify-between text-gray-300 ${
+          maxWidth || "max-w-6xl"
+        }`}
+      >
         <Logo />
 
         <div className="mr-4 hidden lg:block">
-          <NavList list={navList} />
+          <NavList
+            list={navList}
+            size={size}
+            itemStyle={itemStyle}
+            activeStyle={activeStyle}
+            nonActiveStyle={nonActiveStyle}
+          />
         </div>
 
         <div className="flex items-center gap-4">
-          <LaunchAppBtn isDefault={true} screen="lg" />
+          {btn}
 
           <IconButton
             variant="text"
@@ -52,7 +67,9 @@ const MainNav = () => {
         </div>
       </div>
 
-      <MobileNav openNav={openNav} navList={navList} />
+      <MobileNav openNav={openNav} navList={navList}>
+        {mobileBtn}
+      </MobileNav>
     </Navbar>
   );
 };
