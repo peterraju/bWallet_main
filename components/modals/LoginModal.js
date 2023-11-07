@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
-  Button,
   Dialog,
   DialogHeader,
   DialogBody,
@@ -14,78 +14,78 @@ import {
   ArrowTopRightOnSquareIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
+import { useDispatch, useSelector } from "react-redux";
+
+import { handleLoginModal } from "@/redux/slice/modalSlice";
+import { loginModal } from "@/redux/slice/modalSlice";
 import WalletList from "./login/WalletList";
-import Link from "next/link";
 import SelectedWallet from "./login/SelectedWallet";
 
 const LoginModal = () => {
-  const [open, setOpen] = useState(true);
   const [activeWallet, setActiveWallet] = useState("MetaMask");
+  const isOpen = useSelector((state) => state.modal.loginModal);
+  const dispatch = useDispatch();
 
   const handleOpen = () => {
-    setOpen((cur) => !cur);
+    dispatch(handleLoginModal());
     setActiveWallet(null);
   };
 
   return (
-    <>
-      <Button onClick={handleOpen}>Connect Wallet</Button>
-      <Dialog
-        id="content"
-        size="md"
-        open={open}
-        handler={handleOpen}
-        className="flex bg-gray-900"
-        aria-hidden={open}
-      >
-        <section className="w-2/5 border-r border-gray-700">
-          <DialogHeader className="flex items-center gap-2">
-            <Image
-              src="/logo-white.svg"
-              alt="Bankless Logo"
-              width={28}
-              height={28}
-            />
+    <Dialog
+      id="content"
+      size="md"
+      open={isOpen}
+      handler={handleOpen}
+      className="flex bg-gray-900"
+      aria-hidden={isOpen}
+    >
+      <section className="w-2/5 border-r border-gray-700">
+        <DialogHeader className="flex items-center gap-2">
+          <Image
+            src="/logo-white.svg"
+            alt="Bankless Logo"
+            width={28}
+            height={28}
+          />
 
-            <p className="text-xl font-medium text-white">Connect</p>
-          </DialogHeader>
+          <p className="text-xl font-medium text-white">Connect</p>
+        </DialogHeader>
 
-          <DialogBody className="my-5 !px-2">
-            <WalletList setActiveWallet={setActiveWallet} />
-          </DialogBody>
+        <DialogBody className="my-5 !px-2">
+          <WalletList setActiveWallet={setActiveWallet} />
+        </DialogBody>
 
-          <DialogFooter className="justify-start border-t border-gray-700">
-            <Link href="#" className="flex text-sm text-[#FCADFF]">
-              Connect Hardware Wallet
-              <ArrowTopRightOnSquareIcon className="ml-1 h-5 w-5" />
-            </Link>
-          </DialogFooter>
-        </section>
+        <DialogFooter className="justify-start border-t border-gray-700">
+          <Link href="#" className="flex text-sm text-[#FCADFF]">
+            Connect Hardware Wallet
+            <ArrowTopRightOnSquareIcon className="ml-1 h-5 w-5" />
+          </Link>
+        </DialogFooter>
+      </section>
 
-        <section className="flex w-3/5 flex-col justify-between">
-          <DialogHeader className="flex items-center">
-            <p className="ml-6 w-full text-center text-xl font-medium text-white">
-              Sign In
-            </p>
+      <section className="flex w-3/5 flex-col justify-between">
+        <DialogHeader className="flex items-center">
+          <p className="ml-6 w-full text-center text-xl font-medium text-white">
+            Sign In
+          </p>
 
-            <IconButton size="sm" variant="text" onClick={handleOpen}>
-              <XMarkIcon className="h-6 w-6 text-white" />
-            </IconButton>
-          </DialogHeader>
+          <IconButton size="sm" variant="text" onClick={handleOpen}>
+            <XMarkIcon className="h-6 w-6 text-white" />
+          </IconButton>
+        </DialogHeader>
 
-          <DialogBody className="border-white !px-5">
-            <SelectedWallet activeWallet={activeWallet} />
-          </DialogBody>
+        <DialogBody className="border-white !px-5">
+          <SelectedWallet activeWallet={activeWallet} />
+        </DialogBody>
 
-          <DialogFooter className="justify-center">
-            <p className="w-4/5 text-center text-sm text-gray-500">
-              By connecting, you agree to the Terms of Service and Privacy
-              Policy
-            </p>
-          </DialogFooter>
-        </section>
-      </Dialog>
-    </>
+        <DialogFooter className="justify-center">
+          <p className="w-4/5 text-center text-sm text-gray-500">
+            By connecting, you agree to the Terms of Service and Privacy Policy
+          </p>
+        </DialogFooter>
+      </section>
+    </Dialog>
   );
 };
 

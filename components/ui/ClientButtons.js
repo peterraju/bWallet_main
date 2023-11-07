@@ -1,8 +1,13 @@
 "use client";
 
-import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
+import {
+  handleContributorModal,
+  handleLoginModal,
+} from "@/redux/slice/modalSlice";
+import { ArrowUpRightIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 
 const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
   return (
@@ -15,7 +20,7 @@ const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
       onClick={onClick}
     >
       {label}
-      {icon ? <ArrowUpRightIcon className="h-5 w-5" /> : null}
+      {icon ? icon : <ArrowUpRightIcon className="h-5 w-5" />}
     </Button>
   );
 };
@@ -31,6 +36,26 @@ const DefaultWhiteButton = ({ label, style, onClick }) => {
       onClick={onClick}
     >
       {label}
+    </Button>
+  );
+};
+
+const TlBankLoginBtn = () => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(handleLoginModal());
+  };
+
+  return (
+    <Button
+      style={{
+        background: "linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
+      }}
+      className="mt-10 flex cursor-pointer rounded-full border-2 border-gray-900 px-20 py-2 text-xl font-bold text-white"
+      onClick={handleClick}
+    >
+      Login Wallet
     </Button>
   );
 };
@@ -113,6 +138,25 @@ const SignWalletBtn = () => {
   );
 };
 
+const AddContributorBtn = () => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(handleContributorModal());
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Add"
+      icon={<PlusIcon className="h-5 w-5 text-white" />}
+      style="flex bg-gradient-primary"
+      onClick={handleClick}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -120,4 +164,6 @@ export {
   ConnectWalletBtn,
   SignWalletBtn,
   DefaultButton,
+  TlBankLoginBtn,
+  AddContributorBtn,
 };
