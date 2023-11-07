@@ -88,10 +88,7 @@ export default function RootLayout({ children }) {
     >
       <body className="overflow-x-hidden">
         <ReduxProvider store={store}>
-          <WagmiProvider>
-            <LoginModal />
-            {children}
-          </WagmiProvider>
+          <WagmiProvider>{children}</WagmiProvider>
         </ReduxProvider>
       </body>
     </html>

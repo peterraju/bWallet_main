@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loginModal: false,
-  contributprModal: false,
+  contributorModal: true,
 };
 
 export const modalSlice = createSlice({
@@ -15,7 +15,7 @@ export const modalSlice = createSlice({
     },
 
     handleContributorModal: (state) => {
-      state.contributprModal = !state.contributprModal;
+      state.contributorModal = !state.contributorModal;
     },
   },
 });

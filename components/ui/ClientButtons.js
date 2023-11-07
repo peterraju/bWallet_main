@@ -1,13 +1,13 @@
 "use client";
 
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
+import { Button } from "@material-tailwind/react";
 import {
   handleContributorModal,
   handleLoginModal,
 } from "@/redux/slice/modalSlice";
 import { ArrowUpRightIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { Button } from "@material-tailwind/react";
-import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
 
 const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
   return (
@@ -138,7 +138,7 @@ const SignWalletBtn = () => {
   );
 };
 
-const AddContributorBtn = () => {
+const ContributorModalBtn = () => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -157,6 +157,23 @@ const AddContributorBtn = () => {
   );
 };
 
+const AddContributorBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Add Contributor"
+      icon={<PlusIcon className="h-5 w-5 text-white" />}
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={handleClick}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -165,5 +182,6 @@ export {
   SignWalletBtn,
   DefaultButton,
   TlBankLoginBtn,
+  ContributorModalBtn,
   AddContributorBtn,
 };
