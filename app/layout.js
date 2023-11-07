@@ -1,10 +1,11 @@
 import { WagmiProvider } from "@/utils/WagmiProvider";
-import store from "@/redux/store";
+import { store } from "@/redux/store";
 import ReduxProvider from "@/provider/ReduxProvider";
 
 import "./globals.css";
 
 import localFont from "next/font/local";
+import LoginModal from "@/components/modals/LoginModal";
 
 const grotesque = localFont({
   src: [
@@ -87,7 +88,10 @@ export default function RootLayout({ children }) {
     >
       <body className="overflow-x-hidden">
         <ReduxProvider store={store}>
-          <WagmiProvider>{children}</WagmiProvider>
+          <WagmiProvider>
+            <LoginModal />
+            {children}
+          </WagmiProvider>
         </ReduxProvider>
       </body>
     </html>
