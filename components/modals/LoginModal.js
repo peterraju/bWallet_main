@@ -1,4 +1,7 @@
-import React from "react";
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import {
   Button,
   Dialog,
@@ -6,125 +9,84 @@ import {
   DialogBody,
   DialogFooter,
   IconButton,
-  Typography,
-  MenuItem,
 } from "@material-tailwind/react";
+import {
+  ArrowTopRightOnSquareIcon,
+  XMarkIcon,
+} from "@heroicons/react/24/outline";
+import WalletList from "./login/WalletList";
+import Link from "next/link";
+import SelectedWallet from "./login/SelectedWallet";
 
-export function Web3Dialog() {
-  const [open, setOpen] = React.useState(false);
+const LoginModal = () => {
+  const [open, setOpen] = useState(true);
+  const [activeWallet, setActiveWallet] = useState("MetaMask");
 
-  const handleOpen = () => setOpen((cur) => !cur);
+  const handleOpen = () => {
+    setOpen((cur) => !cur);
+    setActiveWallet(null);
+  };
 
   return (
     <>
       <Button onClick={handleOpen}>Connect Wallet</Button>
-      <Dialog size="xs" open={open} handler={handleOpen}>
-        <DialogHeader className="justify-between">
-          <div>
-            <Typography variant="h5" color="blue-gray">
-              Connect a Wallet
-            </Typography>
-            <Typography color="gray" variant="paragraph">
-              Choose which card you want to connect
-            </Typography>
-          </div>
-          <IconButton
-            color="blue-gray"
-            size="sm"
-            variant="text"
-            onClick={handleOpen}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              strokeWidth={2}
-              className="h-5 w-5"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </IconButton>
-        </DialogHeader>
-        <DialogBody className="overflow-y-scroll !px-5">
-          <div className="mb-6">
-            <Typography
-              variant="paragraph"
-              color="blue-gray"
-              className="py-3 font-semibold uppercase opacity-70"
-            >
-              Popular
-            </Typography>
-            <ul className="-ml-2 mt-3 flex flex-col gap-1">
-              <MenuItem className="mb-4 flex items-center justify-center gap-3 !py-4 shadow-md">
-                <img
-                  src="/icons/metamask.svg"
-                  alt="metamast"
-                  className="h-6 w-6"
-                />
-                <Typography
-                  className="uppercase"
-                  color="blue-gray"
-                  variant="h6"
-                >
-                  Connect with MetaMask
-                </Typography>
-              </MenuItem>
-              <MenuItem className="mb-1 flex items-center justify-center gap-3 !py-4 shadow-md">
-                <img
-                  src="/icons/coinbase.svg"
-                  alt="metamast"
-                  className="h-6 w-6 rounded-md"
-                />
-                <Typography
-                  className="uppercase"
-                  color="blue-gray"
-                  variant="h6"
-                >
-                  Connect with Coinbase
-                </Typography>
-              </MenuItem>
-            </ul>
-          </div>
-          <div>
-            <Typography
-              variant="paragraph"
-              color="blue-gray"
-              className="py-4 font-semibold uppercase opacity-70"
-            >
-              Other
-            </Typography>
-            <ul className="-ml-2.5 mt-4 flex flex-col gap-1">
-              <MenuItem className="mb-4 flex items-center justify-center gap-3 !py-4 shadow-md">
-                <img
-                  src="/icons/trust-wallet.svg"
-                  alt="metamast"
-                  className="h-7 w-7 rounded-md border border-blue-gray-50"
-                />
-                <Typography
-                  className="uppsecase"
-                  color="blue-gray"
-                  variant="h6"
-                >
-                  Connect with Trust Wallet
-                </Typography>
-              </MenuItem>
-            </ul>
-          </div>
-        </DialogBody>
-        <DialogFooter className="justify-between gap-2">
-          <Typography variant="small" color="gray" className="font-normal">
-            New to Ethereum wallets?
-          </Typography>
-          <Button variant="outlined" size="sm">
-            Learn More
-          </Button>
-        </DialogFooter>
+      <Dialog
+        id="content"
+        size="md"
+        open={open}
+        handler={handleOpen}
+        className="flex bg-gray-900"
+        aria-hidden={open}
+      >
+        <section className="w-2/5 border-r border-gray-700">
+          <DialogHeader className="flex items-center gap-2">
+            <Image
+              src="/logo-white.svg"
+              alt="Bankless Logo"
+              width={28}
+              height={28}
+            />
+
+            <p className="text-xl font-medium text-white">Connect</p>
+          </DialogHeader>
+
+          <DialogBody className="my-5 !px-2">
+            <WalletList setActiveWallet={setActiveWallet} />
+          </DialogBody>
+
+          <DialogFooter className="justify-start border-t border-gray-700">
+            <Link href="#" className="flex text-sm text-[#FCADFF]">
+              Connect Hardware Wallet
+              <ArrowTopRightOnSquareIcon className="ml-1 h-5 w-5" />
+            </Link>
+          </DialogFooter>
+        </section>
+
+        <section className="flex w-3/5 flex-col justify-between">
+          <DialogHeader className="flex items-center">
+            <p className="ml-6 w-full text-center text-xl font-medium text-white">
+              Sign In
+            </p>
+
+            <IconButton size="sm" variant="text" onClick={handleOpen}>
+              <XMarkIcon className="h-6 w-6 text-white" />
+            </IconButton>
+          </DialogHeader>
+
+          <DialogBody className="border-white !px-5">
+            <SelectedWallet activeWallet={activeWallet} />
+          </DialogBody>
+
+          <DialogFooter className="justify-center">
+            <p className="w-4/5 text-center text-sm text-gray-500">
+              By connecting, you agree to the Terms of Service and Privacy
+              Policy
+            </p>
+          </DialogFooter>
+        </section>
       </Dialog>
     </>
   );
-}
+};
+
+export default LoginModal;

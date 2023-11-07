@@ -15,7 +15,7 @@ const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
       onClick={onClick}
     >
       {label}
-      {icon === "" || <ArrowUpRightIcon className="h-5 w-5" />}
+      {icon ? <ArrowUpRightIcon className="h-5 w-5" /> : null}
     </Button>
   );
 };
@@ -85,4 +85,39 @@ const HardwareWalletBtn = () => {
   );
 };
 
-export { LaunchAppBtn, CreateWalletBtn, HardwareWalletBtn };
+const ConnectWalletBtn = () => {
+  const handleClick = () => console.log("clicked");
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Connect Wallet"
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={handleClick}
+    />
+  );
+};
+
+const SignWalletBtn = () => {
+  const handleClick = () => console.log("clicked");
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Sign In"
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={handleClick}
+    />
+  );
+};
+
+export {
+  LaunchAppBtn,
+  CreateWalletBtn,
+  HardwareWalletBtn,
+  ConnectWalletBtn,
+  SignWalletBtn,
+  DefaultButton,
+};

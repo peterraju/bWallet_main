@@ -18,6 +18,8 @@ module.exports = withMT({
           "linear-gradient(90deg, #cf202933 0%, #75006abe 100%)",
         "tlBank-gradient-primary":
           "radial-gradient(50% 180.65% at 50% 50%, #FAFAFA 0%, #929292 100%)",
+        "wallet-gradient":
+          "radial-gradient(100% 100% at 0% 50%, #5D9DF6 0%, #006FFF 100%)",
       },
 
       fontFamily: {
