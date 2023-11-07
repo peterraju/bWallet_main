@@ -1,5 +1,7 @@
 import Image from "next/image";
 
+import { TlBankLoginBtn } from "@/components/ui/ClientButtons";
+
 const TlBankPage = () => {
   return (
     <main className="flex h-full flex-col items-center justify-center bg-black">
@@ -11,7 +13,7 @@ const TlBankPage = () => {
       />
 
       <div className="mt-6 flex flex-col gap-4 text-center">
-        <h2 className="bg-tlBank-gradient-primary gradient-text-primary prevent-select w-fit text-7xl font-bold leading-normal">
+        <h2 className="prevent-select w-fit bg-tlBank-gradient-primary text-7xl font-bold leading-normal gradient-text-primary">
           Enabling Payents in tlBank
         </h2>
 
@@ -20,14 +22,7 @@ const TlBankPage = () => {
         </p>
       </div>
 
-      <button
-        style={{
-          background: "linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
-        }}
-        className="mt-10 flex cursor-pointer rounded-full border-2 border-gray-900 px-20 py-2 text-xl font-bold text-white"
-      >
-        Login Wallet
-      </button>
+      <TlBankLoginBtn />
     </main>
   );
 };
