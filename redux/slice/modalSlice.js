@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   loginModal: false,
-  contributprModal: false,
+  contributorModal: false,
   activeWallet: null,
 };
 
@@ -16,7 +16,7 @@ export const modalSlice = createSlice({
     },
 
     handleContributorModal: (state) => {
-      state.contributprModal = !state.contributprModal;
+      state.contributorModal = !state.contributorModal;
     },
 
     setActiveWallet: (state, action) => {

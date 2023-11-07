@@ -35,7 +35,7 @@ const ContributorItem = ({ contributor }) => {
         {contributor.address.slice(0, 6)}...{contributor.address.slice(-4)}
       </p>
 
-      <button className="rounded-md bg-black p-2">
+      <button className="rounded-md bg-black/40 p-2">
         <PaperAirplaneIcon className="h-5 w-5 text-[#FCADFF]" />
       </button>
 
