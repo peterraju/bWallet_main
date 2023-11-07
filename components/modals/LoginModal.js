@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Dialog,
   DialogHeader,
@@ -17,7 +17,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 import { handleLoginModal } from "@/redux/slice/modalSlice";
-import { loginModal } from "@/redux/slice/modalSlice";
 import WalletList from "./login/WalletList";
 import SelectedWallet from "./login/SelectedWallet";
 
