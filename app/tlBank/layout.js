@@ -1,6 +1,5 @@
 import LoginModal from "@/components/modals/LoginModal";
 import TlBankNav from "@/components/navBar/TlBankNav";
-import LoginModal from "@/components/modals/LoginModal";
 import ContributorModal from "@/components/modals/ContributorModal";
 
 export const metadata = {
