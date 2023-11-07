@@ -1,15 +1,15 @@
-import Link from "next/link";
-import { MenuItem } from "@material-tailwind/react";
+import { Button, MenuItem } from "@material-tailwind/react";
 
-const ProfileMenuItem = ({ icon, href, label }) => {
+const ProfileMenuItem = ({ icon, label, onClick, labelStyle }) => {
   return (
-    <MenuItem className="flex items-center gap-2 hover:bg-gray-800 active:bg-gray-800">
+    <Button
+      className="flex w-full items-center justify-center gap-2 bg-transparent p-3 hover:bg-gray-800 active:bg-gray-800"
+      onClick={onClick}
+    >
       {icon || null}
 
-      <Link href={href} className="text-white">
-        {label}
-      </Link>
-    </MenuItem>
+      <div className={"text-red-500 " + labelStyle}>{label}</div>
+    </Button>
   );
 };
 

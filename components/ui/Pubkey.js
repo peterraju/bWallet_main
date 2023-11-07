@@ -1,8 +1,11 @@
 "use client";
 
+import { useAccount } from "wagmi";
+
 const Pubkey = () => {
+  const { address } = useAccount();
   const handlePubKeyClick = () => {
-    navigator.clipboard.writeText("0x1234...567");
+    navigator.clipboard.writeText(address);
   };
 
   return (
@@ -10,7 +13,7 @@ const Pubkey = () => {
       className="rounded-full bg-[#292929] px-3 py-1 text-base font-medium"
       onClick={handlePubKeyClick}
     >
-      0x1234...567
+      {address.slice(0, 4)}...{address.slice(-4)}
     </p>
   );
 };

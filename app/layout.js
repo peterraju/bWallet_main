@@ -1,4 +1,4 @@
-import { WagmiProvider } from "@/utils/WagmiProvider";
+import { WagmiProvider } from "@/provider/WagmiProvider";
 import { store } from "@/redux/store";
 import ReduxProvider from "@/provider/ReduxProvider";
 
@@ -88,10 +88,7 @@ export default function RootLayout({ children }) {
     >
       <body className="overflow-x-hidden">
         <ReduxProvider store={store}>
-          <WagmiProvider>
-            <LoginModal />
-            {children}
-          </WagmiProvider>
+          <WagmiProvider>{children}</WagmiProvider>
         </ReduxProvider>
       </body>
     </html>

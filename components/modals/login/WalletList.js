@@ -1,6 +1,6 @@
 import WalletItem from "./WalletItem";
 
-const WalletList = ({ setActiveWallet }) => {
+const WalletList = () => {
   const wallets = [
     {
       name: "MetaMask",
@@ -8,7 +8,7 @@ const WalletList = ({ setActiveWallet }) => {
       src: "metamask.svg",
     },
     {
-      name: "Coinbase",
+      name: "Coinbase Wallet",
       bg: "bg-[#0052FF]",
       src: "coinbase.svg",
     },
@@ -27,7 +27,6 @@ const WalletList = ({ setActiveWallet }) => {
           name={wallet.name}
           bg={wallet.bg}
           src={wallet.src}
-          setActiveWallet={setActiveWallet}
         />
       ))}
     </ul>

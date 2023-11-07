@@ -1,17 +1,19 @@
 import Image from "next/image";
 import ConnectSignBtn from "./ConnectSignBtn";
+import { useSelector } from "react-redux";
 
-const SelectedWallet = ({ activeWallet }) => {
+const SelectedWallet = () => {
+  const activeWallet = useSelector((state) => state.modal.activeWallet);
   const name =
     activeWallet === "MetaMask"
       ? "metamask"
-      : activeWallet === "Coinbase"
+      : activeWallet === "Coinbase Wallet"
       ? "coinbase"
       : "walletconnect";
   const bg =
     activeWallet === "MetaMask"
       ? "bg-[#ffe6ce]"
-      : activeWallet === "Coinbase"
+      : activeWallet === "Coinbase Wallet"
       ? "bg-[#0052FF]"
       : "bg-wallet-gradient";
 

@@ -1,3 +1,4 @@
+"use client";
 import {
   ArrowLeftOnRectangleIcon,
   Cog8ToothIcon,
@@ -6,28 +7,34 @@ import {
 import { MenuList } from "@material-tailwind/react";
 
 import ProfileMenuItem from "./ProfileMenuItem";
+import { useDisconnect } from "wagmi";
+import { setSignature } from "@/redux/slice/walletSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLoginModal } from "@/redux/slice/modalSlice";
 
 const ProfileMenuList = () => {
+  const { disconnect } = useDisconnect();
+  const signature = useSelector((state) => state.wallet.signature);
+  const dispatch = useDispatch();
   return (
-    <MenuList className="border-gray-500 bg-gray-900">
+    <MenuList className="min-w-[172px] border-gray-500 bg-gray-900 p-0">
+      {!signature && (
+        <ProfileMenuItem
+          label="Sign Message"
+          icon={<Cog8ToothIcon className="h-4 w-4" />}
+          onClick={() => {
+            dispatch(handleLoginModal());
+          }}
+          labelStyle={"text-white"}
+        />
+      )}
       <ProfileMenuItem
-        href="tlBank/profile"
-        label="My Profile"
-        icon={<UserCircleIcon className="h-4 w-4 text-white" />}
-      />
-
-      <ProfileMenuItem
-        href="tlBank/settings"
-        label="Edit Profile"
-        icon={<Cog8ToothIcon className="h-4 w-4 text-white" />}
-      />
-
-      <hr className="my-2 border-gray-500" />
-
-      <ProfileMenuItem
-        href="/"
-        label="Sign Out"
-        icon={<ArrowLeftOnRectangleIcon className="h-4 w-4 text-white" />}
+        label="Disconnect"
+        icon={<ArrowLeftOnRectangleIcon className="h-4 w-4 text-red-500" />}
+        onClick={() => {
+          dispatch(setSignature(null));
+          disconnect();
+        }}
       />
     </MenuList>
   );

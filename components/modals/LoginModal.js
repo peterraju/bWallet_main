@@ -16,20 +16,28 @@ import {
 } from "@heroicons/react/24/outline";
 import { useDispatch, useSelector } from "react-redux";
 
-import { handleLoginModal } from "@/redux/slice/modalSlice";
-import { loginModal } from "@/redux/slice/modalSlice";
+import { handleLoginModal, setActiveWallet } from "@/redux/slice/modalSlice";
 import WalletList from "./login/WalletList";
 import SelectedWallet from "./login/SelectedWallet";
+import { useAccount, useConnect } from "wagmi";
 
 const LoginModal = () => {
-  const [activeWallet, setActiveWallet] = useState("MetaMask");
+  const activeWallet = useSelector((state) => state.modal.activeWallet);
   const isOpen = useSelector((state) => state.modal.loginModal);
   const dispatch = useDispatch();
+  const { connector, isConnected } = useAccount();
 
   const handleOpen = () => {
     dispatch(handleLoginModal());
-    setActiveWallet(null);
+    if (isConnected) return;
+    dispatch(setActiveWallet(null));
   };
+
+  useEffect(() => {
+    if (isConnected) {
+      dispatch(setActiveWallet(connector.name));
+    }
+  }, [isConnected, connector, dispatch]);
 
   return (
     <Dialog
@@ -37,7 +45,7 @@ const LoginModal = () => {
       size="md"
       open={isOpen}
       handler={handleOpen}
-      className="flex bg-gray-900"
+      className="!z-0 flex bg-gray-900"
       aria-hidden={isOpen}
     >
       <section className="w-2/5 border-r border-gray-700">
@@ -53,7 +61,7 @@ const LoginModal = () => {
         </DialogHeader>
 
         <DialogBody className="my-5 !px-2">
-          <WalletList setActiveWallet={setActiveWallet} />
+          <WalletList />
         </DialogBody>
 
         <DialogFooter className="justify-start border-t border-gray-700">

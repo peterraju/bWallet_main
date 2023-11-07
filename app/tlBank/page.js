@@ -14,7 +14,7 @@ const TlBankPage = () => {
 
       <div className="mt-6 flex flex-col gap-4 text-center">
         <h2 className="prevent-select w-fit bg-tlBank-gradient-primary text-7xl font-bold leading-normal gradient-text-primary">
-          Enabling Payents in tlBank
+          Enabling Payments in tlBank
         </h2>
 
         <p className="text-xl">

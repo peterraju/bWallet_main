@@ -3,11 +3,15 @@
 import {
   handleContributorModal,
   handleLoginModal,
+  setActiveWallet,
 } from "@/redux/slice/modalSlice";
+import { setSignature } from "@/redux/slice/walletSlice";
 import { ArrowUpRightIcon, PlusIcon } from "@heroicons/react/24/outline";
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAccount, useConnect, useSignMessage } from "wagmi";
 
 const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
   return (
@@ -42,21 +46,25 @@ const DefaultWhiteButton = ({ label, style, onClick }) => {
 
 const TlBankLoginBtn = () => {
   const dispatch = useDispatch();
+  const signature = useSelector((state) => state.wallet.signature);
+  const { isConnected } = useAccount();
 
   const handleClick = () => {
     dispatch(handleLoginModal());
   };
 
   return (
-    <Button
-      style={{
-        background: "linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
-      }}
-      className="mt-10 flex cursor-pointer rounded-full border-2 border-gray-900 px-20 py-2 text-xl font-bold text-white"
-      onClick={handleClick}
-    >
-      Login Wallet
-    </Button>
+    !signature && (
+      <Button
+        style={{
+          background: "linear-gradient(180deg, #1E1E1E 0%, #141414 100%)",
+        }}
+        className="mt-10 flex cursor-pointer rounded-full border-2 border-gray-900 px-20 py-2 text-xl font-bold text-white"
+        onClick={handleClick}
+      >
+        {isConnected ? "Sign Message" : "Login"}
+      </Button>
+    )
   );
 };
 
@@ -111,7 +119,25 @@ const HardwareWalletBtn = () => {
 };
 
 const ConnectWalletBtn = () => {
-  const handleClick = () => console.log("clicked");
+  const activeWallet = useSelector((state) => state.modal.activeWallet);
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    connect({
+      connector:
+        connectors[
+          activeWallet === "MetaMask"
+            ? 0
+            : activeWallet === "Coinbase Wallet"
+            ? 1
+            : 2
+        ],
+    });
+
+    if (activeWallet === "WalletConnect") {
+      dispatch(handleLoginModal());
+    }
+  };
+  const { connect, connectors } = useConnect();
 
   return (
     <DefaultButton
@@ -125,7 +151,18 @@ const ConnectWalletBtn = () => {
 };
 
 const SignWalletBtn = () => {
-  const handleClick = () => console.log("clicked");
+  const { data, signMessage } = useSignMessage();
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    signMessage({ message: process.env.NEXT_PUBLIC_AUTH_MESSAGE });
+  };
+
+  useEffect(() => {
+    if (data) {
+      dispatch(handleLoginModal());
+      dispatch(setSignature(data));
+    }
+  }, [data, dispatch]);
 
   return (
     <DefaultButton

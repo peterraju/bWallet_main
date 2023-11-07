@@ -8,7 +8,13 @@ const ConnectSignBtn = ({ name }) => {
 
   return (
     <div className="space-y-2 px-5 text-center">
-      <p className="px-4">Please connect your {name} to continue</p>
+      {!isConnected ? (
+        <p className="px-4">Please connect your {name} to continue</p>
+      ) : (
+        <p className="px-4">
+          Please sign the message request in your wallet to continue
+        </p>
+      )}
 
       {isConnected ? <SignWalletBtn /> : <ConnectWalletBtn />}
     </div>
