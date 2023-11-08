@@ -19,8 +19,24 @@ export const tlbankSlice = createSlice({
     addContributor: (state, action) => {
       state.contributors.push(action.payload);
     },
+    removeContributor: (state, action) => {
+      state.contributors = state.contributors.filter(
+        (c) => c.pubkey !== action.payload,
+      );
+    },
+    updateContributor: (state, action) => {
+      const index = state.contributors.findIndex(
+        (c) => c.pubkey === action.payload.pubkey,
+      );
+      state.contributors[index].name = action.payload.name;
+    },
   },
 });
 
-export const { setContributors, setStatus, addContributor } =
-  tlbankSlice.actions;
+export const {
+  setContributors,
+  setStatus,
+  addContributor,
+  removeContributor,
+  updateContributor,
+} = tlbankSlice.actions;

@@ -48,10 +48,9 @@ export default function usePostServer() {
         safeAddress: selectedSafe,
       };
 
-      const res = await axios.post(
+      const res = await axios.delete(
         `${process.env.NEXT_PUBLIC_API_URL}/contributors/delete/${contributorPubkey}`,
-        body,
-        { headers },
+        { headers, data: body },
       );
 
       return res.data;
@@ -61,5 +60,32 @@ export default function usePostServer() {
     }
   };
 
-  return { addContributor, deleteContributor };
+  const updateContributor = async (contributorPubkey, name) => {
+    try {
+      const headers = {
+        "x-auth-sig": signature,
+        "x-auth-pubkey": address,
+      };
+
+      const body = {
+        name,
+        safeAddress: selectedSafe,
+      };
+
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_API_URL}/contributors/update/${contributorPubkey}`,
+        body,
+        { headers },
+      );
+
+      console.log(res.data);
+
+      return res.data;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
+  return { addContributor, deleteContributor, updateContributor };
 }
