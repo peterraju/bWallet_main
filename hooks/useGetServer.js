@@ -1,12 +1,14 @@
 "use client";
+import { setContributors } from "@/redux/slice/tlbankSlice";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
 
 export default function useGetServer() {
   const selectedSafe = useSelector((state) => state.wallet.safe);
   const { address } = useAccount();
   const signature = useSelector((state) => state.wallet.signature);
+  const dispatch = useDispatch();
 
   const getAllContributors = async () => {
     try {
@@ -20,9 +22,11 @@ export default function useGetServer() {
         { headers },
       );
 
-      return res.data;
+      dispatch(setContributors(res.data));
+      return true;
     } catch (error) {
       console.log(error);
+      return false;
     }
   };
 

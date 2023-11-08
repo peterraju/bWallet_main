@@ -1,12 +1,14 @@
 "use client";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
+import { addContributor as add } from "@/redux/slice/tlbankSlice";
 
 export default function usePostServer() {
   const selectedSafe = useSelector((state) => state.wallet.safe);
   const { address } = useAccount();
   const signature = useSelector((state) => state.wallet.signature);
+  const dispatch = useDispatch();
 
   const addContributor = async (name, contributorPubkey) => {
     try {
@@ -27,7 +29,8 @@ export default function usePostServer() {
         { headers },
       );
 
-      return res.data;
+      dispatch(add(res.data));
+      return true;
     } catch (error) {
       console.log(error);
       return false;

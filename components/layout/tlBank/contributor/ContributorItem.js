@@ -23,9 +23,7 @@ const ContributorItem = ({ contributor }) => {
         />
       </div>
 
-      <p className="w-28 text-[#FCADFF]">
-        {contributor.address.slice(0, 6)}...{contributor.address.slice(-4)}
-      </p>
+      <p className="w-28 text-[#FCADFF]">{contributor.pubkey}</p>
 
       <button className="rounded-md bg-black/40 p-2">
         <PaperAirplaneIcon className="h-5 w-5 text-[#FCADFF]" />
