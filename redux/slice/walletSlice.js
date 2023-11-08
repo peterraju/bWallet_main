@@ -2,6 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   signature: null,
+  status: "contributor",
+  safe: "0x1dBA01d7519f3CD18cBdF2B207CC3D261eEadeF3",
 };
 
 export const walletSlice = createSlice({
@@ -11,7 +13,13 @@ export const walletSlice = createSlice({
     setSignature: (state, action) => {
       state.signature = action.payload;
     },
+    setStatus: (state, action) => {
+      state.status = action.payload;
+    },
+    setSafe: (state, action) => {
+      state.safe = action.payload;
+    },
   },
 });
 
-export const { setSignature } = walletSlice.actions;
+export const { setSignature, setSafe, setStatus } = walletSlice.actions;

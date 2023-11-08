@@ -195,11 +195,7 @@ const ContributorModalBtn = () => {
   );
 };
 
-const AddContributorBtn = () => {
-  const handleClick = () => {
-    console.log("clicked");
-  };
-
+const AddContributorBtn = ({ onClick }) => {
   return (
     <DefaultButton
       variant={"filled"}
@@ -207,7 +203,7 @@ const AddContributorBtn = () => {
       label="Add Contributor"
       icon={<PlusIcon className="h-5 w-5 text-white" />}
       style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
-      onClick={handleClick}
+      onClick={onClick}
     />
   );
 };

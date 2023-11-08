@@ -17,14 +17,6 @@ const ContributorItem = ({ contributor }) => {
           color="purple"
           label={
             <div className="ml-3 flex items-center">
-              <Image
-                src={contributor.src}
-                alt={contributor.name}
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-
               <p className="text-white/90">{contributor.name}</p>
             </div>
           }
