@@ -53,6 +53,14 @@ module.exports = withMT({
           "-webkit-background-clip": "text",
           "-webkit-text-fill-color": "transparent",
         },
+
+        ".hide-scrollbar": {
+          "scrollbar-width": "none",
+          "-ms-overflow-style": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
       };
 
       addUtilities(newUtilities);

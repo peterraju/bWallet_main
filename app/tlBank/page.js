@@ -4,7 +4,7 @@ import { TlBankLoginBtn } from "@/components/ui/ClientButtons";
 
 const TlBankPage = () => {
   return (
-    <main className="flex h-full flex-col items-center justify-center bg-black">
+    <main className="flex h-screen flex-col items-center justify-center bg-black">
       <Image
         src="/images/tlbank/logo.png"
         alt="TL Bank Logo"
