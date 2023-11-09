@@ -91,7 +91,7 @@ const OneWallet = () => {
 
         <Image
           src="/images/home/coins/aragon-ant.svg"
-          alt="x Logo"
+          alt="Aragon AWT Logo"
           width={48}
           height={48}
           className="h-10 w-10 md:h-12 md:w-12"

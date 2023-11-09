@@ -9,10 +9,11 @@ export const metadata = {
 
 export default function TlBankLayout({ children }) {
   return (
-    <section className="h-screen bg-black">
+    <section className="bg-black font-grotesque">
       <LoginModal />
       <TlBankNav />
       <ContributorModal />
+
       {children}
     </section>
   );

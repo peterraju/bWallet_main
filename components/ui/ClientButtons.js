@@ -1,18 +1,17 @@
 "use client";
 
-import { useDispatch } from "react-redux";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@material-tailwind/react";
+import { useDispatch, useSelector } from "react-redux";
+import { useAccount, useConnect, useSignMessage } from "wagmi";
+import { ArrowUpRightIcon, PlusIcon } from "@heroicons/react/24/outline";
+
 import {
   handleContributorModal,
   handleLoginModal,
-  setActiveWallet,
 } from "@/redux/slice/modalSlice";
 import { setSignature } from "@/redux/slice/walletSlice";
-import { ArrowUpRightIcon, PlusIcon } from "@heroicons/react/24/outline";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useAccount, useConnect, useSignMessage } from "wagmi";
 
 const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
   return (
@@ -212,6 +211,54 @@ const AddContributorBtn = () => {
   );
 };
 
+const CreateTransactionBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Create Transaction"
+      style="flex bg-gradient-primary w-full justify-center"
+      onClick={handleClick}
+    />
+  );
+};
+
+const AddToQueueBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant="outlined"
+      color="white"
+      label="+ Add to Queue"
+      style="flex w-full justify-center"
+      onClick={handleClick}
+    />
+  );
+};
+
+const PayContributorBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Pay Contributor"
+      style="flex bg-gradient-primary w-full justify-center"
+      onClick={handleClick}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -222,4 +269,7 @@ export {
   TlBankLoginBtn,
   ContributorModalBtn,
   AddContributorBtn,
+  CreateTransactionBtn,
+  AddToQueueBtn,
+  PayContributorBtn,
 };

@@ -86,7 +86,7 @@ export default function RootLayout({ children }) {
       className={`${grotesque.variable} ${clashDisplay.variable} ${conthrax.variable} ${neue.variable}`}
       lang="en"
     >
-      <body className="overflow-x-hidden">
+      <body className="overflow-x-hidden font-grotesque">
         <ReduxProvider store={store}>
           <WagmiProvider>{children}</WagmiProvider>
         </ReduxProvider>
