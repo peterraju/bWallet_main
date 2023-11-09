@@ -13,13 +13,28 @@ import { XMarkIcon } from "@heroicons/react/24/outline";
 
 import { handleContributorModal } from "@/redux/slice/modalSlice";
 import { AddContributorBtn } from "../ui/ClientButtons";
+import { useState } from "react";
+import usePostServer from "@/hooks/usePostServer";
 
 const ContributorModal = () => {
   const isOpen = useSelector((state) => state.modal.contributorModal);
   const dispatch = useDispatch();
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const { addContributor } = usePostServer();
 
   const handleOpen = () => {
     dispatch(handleContributorModal());
+  };
+
+  const handleAddContributor = async () => {
+    const res = await addContributor(name, address);
+    if (res) {
+      setName("");
+      setAddress("");
+      dispatch(handleContributorModal());
+    }
+    console.log(res);
   };
 
   return (
@@ -42,12 +57,24 @@ const ContributorModal = () => {
       </DialogHeader>
 
       <DialogBody className="space-y-4 px-10">
-        <Input type="text" label="Wallet Address" color="white" />
-        <Input type="text" label="Name" color="white" />
+        <Input
+          type="text"
+          label="Wallet Address"
+          color="white"
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
+        />
+        <Input
+          type="text"
+          label="Name"
+          color="white"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
       </DialogBody>
 
       <DialogFooter className="justify-end px-10">
-        <AddContributorBtn />
+        <AddContributorBtn onClick={handleAddContributor} />
       </DialogFooter>
     </Dialog>
   );

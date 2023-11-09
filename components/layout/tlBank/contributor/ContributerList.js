@@ -1,39 +1,24 @@
+"use client";
 import { CheckIcon } from "@heroicons/react/24/outline";
 import ContributorItem from "./ContributorItem";
+import { useEffect } from "react";
+import useGetServer from "@/hooks/useGetServer";
+import { useAccount } from "wagmi";
+import { useSelector } from "react-redux";
 
 const ContributerList = () => {
-  const contributors = [
-    {
-      src: "/images/contributors/1.jpg",
-      name: "John Doe",
-      address: "0x1234567890abcdef1234567890",
-    },
-    {
-      src: "/images/contributors/2.jpg",
-      name: "John Doe",
-      address: "0x1234567890abcdef1234567890",
-    },
-    {
-      src: "/images/contributors/3.jpg",
-      name: "John Doe",
-      address: "0x1234567890abcdef1234567890",
-    },
-    {
-      src: "/images/contributors/4.jpg",
-      name: "John Doe",
-      address: "0x1234567890abcdef1234567890",
-    },
-    {
-      src: "/images/contributors/5.jpg",
-      name: "John Doe",
-      address: "0x1234567890abcdef1234567890",
-    },
-    {
-      src: "/images/contributors/6.jpg",
-      name: "John Doe",
-      address: "0x1234567890abcdef1234567890",
-    },
-  ];
+  const { getAllContributors } = useGetServer();
+  const { address } = useAccount();
+  const signature = useSelector((state) => state.wallet.signature);
+  const status = useSelector((state) => state.tlbank.status);
+  const contributors = useSelector((state) => state.tlbank.contributors);
+
+  useEffect(() => {
+    if (signature && address && status === "ORG") {
+      getAllContributors();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [signature, address, status]);
 
   return (
     <section className="mt-10 w-full max-w-6xl space-y-3 rounded-3xl bg-gray-800/70 px-4 py-4">
