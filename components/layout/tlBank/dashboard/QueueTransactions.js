@@ -1,4 +1,3 @@
-import { CreateTransactionBtn } from "@/components/ui/ClientButtons";
 import TransactionList from "./TransactionList";
 
 const QueueTransactions = () => {
