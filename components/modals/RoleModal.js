@@ -106,7 +106,7 @@ const RoleModal = () => {
 
                 <div>
                   <Image
-                    src="/images/tlBank/roles/organization-member.svg"
+                    src="/images/tlbank/roles/organization-member.svg"
                     width={80}
                     height={80}
                     alt="ORG members standing"
@@ -156,7 +156,7 @@ const RoleModal = () => {
 
                 <div>
                   <Image
-                    src="/images/tlBank/roles/contributor.svg"
+                    src="/images/tlbank/roles/contributor.svg"
                     width={80}
                     height={80}
                     alt="ORG members standing"
