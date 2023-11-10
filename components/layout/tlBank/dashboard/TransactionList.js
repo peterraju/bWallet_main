@@ -1,31 +1,27 @@
-import Image from "next/image";
+"use client";
+
+import { useSelector } from "react-redux";
 import TransactionItem from "./TransactionItem";
 import { PlusIcon } from "@heroicons/react/24/outline";
+import { ExecuteTransactionBtn } from "@/components/ui/ClientButtons";
 
 const TransactionList = () => {
-  let transaction = [
-    {
-      amount: 324,
-      token: "ETH",
-      pubKey: "0x1234567890",
-    },
-    {
-      amount: 324,
-      token: "ETH",
-      pubKey: "0x1234567890",
-    },
-  ];
+  const transactions = useSelector((state) => state.tlbank.queue);
 
-  return transaction && transaction.length > 0 ? (
-    <div className="mt-6 space-y-3">
-      {transaction.map((item, index) => (
-        <TransactionItem
-          key={index}
-          amount={item.amount}
-          token={item.token}
-          pubKey={item.pubKey}
-        />
-      ))}
+  return transactions && transactions.length > 0 ? (
+    <div className="mt-6 flex h-[85%] flex-col justify-between space-y-3">
+      <div className="space-y-2">
+        {transactions.map((transaction, index) => (
+          <TransactionItem
+            key={index}
+            amount={transaction.quantity}
+            time={transaction.lockDate}
+            pubKey={transaction.walletAddress}
+          />
+        ))}
+      </div>
+
+      <ExecuteTransactionBtn />
     </div>
   ) : (
     <div className="mt-6 text-center">

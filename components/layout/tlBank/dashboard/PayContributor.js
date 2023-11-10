@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/ClientButtons";
 import useSafe from "@/hooks/useSafe";
 import useTLBank from "@/hooks/useTLBank";
+import { addToQueue } from "@/redux/slice/tlbankSlice";
 import {
   Input,
   Radio,
@@ -14,11 +15,12 @@ import {
   List,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
 
 const PayContributor = () => {
   const [walletAddress, setWalletAddress] = useState("");
+  const dispatch = useDispatch();
   const { address } = useAccount();
   const status = useSelector((state) => state.tlbank.status);
   const [quantity, setQuantity] = useState(0);
@@ -77,6 +79,21 @@ const PayContributor = () => {
         unSignedTx,
       );
     }
+  };
+
+  const handleAddToQueue = async () => {
+    if (!walletAddress || !quantity || !lockDate) return;
+
+    const item = {
+      walletAddress,
+      quantity,
+      lockDate,
+    };
+
+    dispatch(addToQueue(item));
+
+    setWalletAddress("");
+    setQuantity(0);
   };
 
   return (
@@ -178,7 +195,7 @@ const PayContributor = () => {
           </div>
         </div>
 
-        <AddToQueueBtn />
+        <AddToQueueBtn handleClick={handleAddToQueue} />
 
         <PayContributorBtn handleClick={handlePayContributor} />
       </section>

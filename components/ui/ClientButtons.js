@@ -230,11 +230,7 @@ const CreateTransactionBtn = () => {
   );
 };
 
-const AddToQueueBtn = () => {
-  const handleClick = () => {
-    console.log("clicked");
-  };
-
+const AddToQueueBtn = ({ handleClick }) => {
   return (
     <DefaultButton
       variant="outlined"
@@ -290,6 +286,22 @@ const SelectRoleBtn = ({ handleClick }) => {
   );
 };
 
+const ExecuteTransactionBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Execute Transaction"
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={handleClick}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -305,4 +317,5 @@ export {
   PayContributorBtn,
   ExportTransactionBtn,
   SelectRoleBtn,
+  ExecuteTransactionBtn,
 };
