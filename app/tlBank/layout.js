@@ -1,6 +1,7 @@
 import LoginModal from "@/components/modals/LoginModal";
 import TlBankNav from "@/components/navBar/TlBankNav";
 import ContributorModal from "@/components/modals/ContributorModal";
+import RoleModal from "@/components/modals/RoleModal";
 
 export const metadata = {
   title: "B-Wallet | TL Bank",
@@ -9,12 +10,16 @@ export const metadata = {
 
 export default function TlBankLayout({ children }) {
   return (
-    <section className="bg-black font-grotesque">
+    <>
       <LoginModal />
-      <TlBankNav />
-      <ContributorModal />
+      <RoleModal />
 
-      {children}
-    </section>
+      <section className="bg-black font-grotesque">
+        <TlBankNav />
+        <ContributorModal />
+
+        {children}
+      </section>
+    </>
   );
 }

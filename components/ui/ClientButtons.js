@@ -9,11 +9,13 @@ import {
   ArrowDownOnSquareIcon,
   ArrowUpRightIcon,
   PlusIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 
 import {
   handleContributorModal,
   handleLoginModal,
+  handleRoleModal,
 } from "@/redux/slice/modalSlice";
 import { setSignature } from "@/redux/slice/walletSlice";
 
@@ -55,6 +57,10 @@ const TlBankLoginBtn = () => {
 
   const handleClick = () => {
     dispatch(handleLoginModal());
+
+    setTimeout(() => {
+      dispatch(handleRoleModal());
+    }, 1000);
   };
 
   return (
@@ -274,6 +280,23 @@ const ExportTransactionBtn = () => {
   );
 };
 
+const SelectRoleBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Select Role"
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={handleClick}
+      icon={<UserIcon className="h-5 w-5 text-white" />}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -288,4 +311,5 @@ export {
   AddToQueueBtn,
   PayContributorBtn,
   ExportTransactionBtn,
+  SelectRoleBtn,
 };
