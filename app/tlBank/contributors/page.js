@@ -1,5 +1,5 @@
 import { ContributorModalBtn } from "@/components/ui/ClientButtons";
-import ContributerList from "@/components/layout/tlBank/contributor/ContributerList";
+import ContributorList from "@/components/layout/tlBank/contributor/ContributorList";
 
 const ContributorsPage = () => {
   return (
@@ -9,7 +9,7 @@ const ContributorsPage = () => {
         <ContributorModalBtn />
       </div>
 
-      <ContributerList />
+      <ContributorList />
     </main>
   );
 };
