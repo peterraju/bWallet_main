@@ -5,7 +5,11 @@ import { useRouter } from "next/navigation";
 import { Button } from "@material-tailwind/react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAccount, useConnect, useSignMessage } from "wagmi";
-import { ArrowUpRightIcon, PlusIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowDownOnSquareIcon,
+  ArrowUpRightIcon,
+  PlusIcon,
+} from "@heroicons/react/24/outline";
 
 import {
   handleContributorModal,
@@ -251,6 +255,25 @@ const PayContributorBtn = ({ handleClick }) => {
   );
 };
 
+const ExportTransactionBtn = () => {
+  const handleClick = () => {
+    console.log("clicked");
+  };
+
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Export Transaction"
+      style="flex bg-gradient-primary"
+      icon={
+        <ArrowDownOnSquareIcon className="h-5 w-5 text-sm text-white sm:text-sm md:text-base" />
+      }
+      onClick={handleClick}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -264,4 +287,5 @@ export {
   CreateTransactionBtn,
   AddToQueueBtn,
   PayContributorBtn,
+  ExportTransactionBtn,
 };

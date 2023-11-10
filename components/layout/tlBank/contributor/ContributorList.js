@@ -6,7 +6,7 @@ import useGetServer from "@/hooks/useGetServer";
 import { useAccount } from "wagmi";
 import { useSelector } from "react-redux";
 
-const ContributerList = () => {
+const ContributorList = () => {
   const { getAllContributors } = useGetServer();
   const { address } = useAccount();
   const signature = useSelector((state) => state.wallet.signature);
@@ -21,7 +21,7 @@ const ContributerList = () => {
   }, [signature, address, status]);
 
   return (
-    <section className="mt-10 w-full max-w-6xl space-y-3 rounded-3xl bg-gray-800/70 px-4 py-4">
+    <section className="mt-10 w-full max-w-6xl space-y-3 rounded-xl bg-gray-800/70 px-4 py-4">
       <div className="flex w-full items-center justify-between px-4">
         <div className="flex w-1/3 items-center gap-2">
           <div className="flex h-12 w-12 items-center justify-center">
@@ -45,4 +45,4 @@ const ContributerList = () => {
   );
 };
 
-export default ContributerList;
+export default ContributorList;
