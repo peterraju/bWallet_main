@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   loginModal: false,
   contributorModal: false,
-  roleModal: true,
+  roleModal: false,
   activeWallet: null,
 };
 

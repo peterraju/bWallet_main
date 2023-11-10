@@ -126,6 +126,7 @@ const PayContributor = () => {
                       className: "p-0",
                     }}
                     color="purple"
+                    checked={selected === 1}
                   />
                 </ListItemPrefix>
 

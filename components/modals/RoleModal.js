@@ -16,14 +16,17 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { handleRoleModal } from "@/redux/slice/modalSlice";
+import { useRouter } from "next/navigation";
 
 import { SelectRoleBtn } from "../ui/ClientButtons";
 import { setRole } from "@/redux/slice/userSlice";
+import { setStatus } from "@/redux/slice/tlbankSlice";
 
 const RoleModal = () => {
   const isOpen = useSelector((state) => state.modal.roleModal);
   const dispatch = useDispatch();
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(2);
+  const router = useRouter();
 
   const handleOpen = () => {
     dispatch(handleRoleModal());
@@ -31,12 +34,25 @@ const RoleModal = () => {
     setSelected(0);
   };
 
+  const selectStatus = () => {
+    if (selected === 0) return;
+
+    if (selected === 1) {
+      dispatch(setStatus("ORG"));
+      router.push("/tlBank/organisations");
+    } else {
+      dispatch(setStatus("CON"));
+      router.push("/tlBank/dashboard");
+    }
+
+    dispatch(handleRoleModal());
+  };
+
   return (
     <Dialog
       id="content"
       size="sm"
       open={isOpen}
-      handler={handleOpen}
       className="bg-gray-900"
       aria-hidden={isOpen}
     >
@@ -45,8 +61,8 @@ const RoleModal = () => {
           Select your role to proceed
         </h3>
 
-        <IconButton size="sm" variant="text" onClick={handleOpen}>
-          <XMarkIcon className="h-6 w-6 text-white" />
+        <IconButton size="sm" variant="text" className="cursor-default">
+          <XMarkIcon className="hidden h-6 w-6 text-white" />
         </IconButton>
       </DialogHeader>
 
@@ -123,6 +139,7 @@ const RoleModal = () => {
                   containerProps={{
                     className: "p-0",
                   }}
+                  checked={selected === 2}
                 />
               </ListItemPrefix>
 
@@ -152,7 +169,7 @@ const RoleModal = () => {
       </DialogBody>
 
       <DialogFooter className="justify-end px-10">
-        <SelectRoleBtn />
+        <SelectRoleBtn handleClick={selectStatus} />
       </DialogFooter>
     </Dialog>
   );
