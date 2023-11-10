@@ -57,10 +57,6 @@ const TlBankLoginBtn = () => {
 
   const handleClick = () => {
     dispatch(handleLoginModal());
-
-    setTimeout(() => {
-      dispatch(handleRoleModal());
-    }, 1000);
   };
 
   return (
@@ -171,6 +167,7 @@ const SignWalletBtn = () => {
     if (data) {
       dispatch(handleLoginModal());
       dispatch(setSignature(data));
+      dispatch(handleRoleModal());
     }
   }, [data, dispatch]);
 
@@ -276,11 +273,7 @@ const ExportTransactionBtn = () => {
   );
 };
 
-const SelectRoleBtn = () => {
-  const handleClick = () => {
-    console.log("clicked");
-  };
-
+const SelectRoleBtn = ({ handleClick }) => {
   return (
     <DefaultButton
       variant={"filled"}

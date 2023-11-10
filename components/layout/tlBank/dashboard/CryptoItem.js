@@ -22,6 +22,7 @@ const CryptoItem = ({ src, amount, crypto, id, index }) => {
       setDollars((data * amount.formatted).toFixed(2));
       dispatch(setBalance({ index, value: data * amount.formatted }));
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amount, id]);
 
   return (
