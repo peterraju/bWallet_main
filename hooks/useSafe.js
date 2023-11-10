@@ -3,6 +3,7 @@ import { useEthersSigner } from "./utils/useEthersSigner";
 import SafeApiKit from "@safe-global/api-kit";
 import Safe from "@safe-global/protocol-kit";
 import { EthersAdapter } from "@safe-global/protocol-kit";
+import { ethers } from "ethers";
 
 const SAFE_TRANSACTION_API = {
   mainnet: "https://safe-transaction-mainnet.safe.global",

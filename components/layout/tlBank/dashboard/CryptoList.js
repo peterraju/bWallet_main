@@ -15,16 +15,19 @@ const CryptoList = () => {
   const { data: ETHBalance } = useBalance({
     address: status === "ORG" ? safeAddress : address,
     chainId: 1,
+    watch: true,
   });
   const { data: BankBalance } = useBalance({
     address: status === "ORG" ? safeAddress : address,
     token: "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
     chainId: 1,
+    watch: true,
   });
   const { data: USDTBalance } = useBalance({
     address: status === "ORG" ? safeAddress : address,
     token: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     chainId: 1,
+    watch: true,
   });
 
   const coins = [
@@ -48,41 +51,6 @@ const CryptoList = () => {
       src: "eth",
       id: "ethereum",
     },
-    // {
-    //   name: "Base",
-    //   amount: 278,
-    //   src: "base",
-    // },
-    // {
-    //   name: "Dai",
-    //   amount: 278,
-    //   src: "dai",
-    // },
-    // {
-    //   name: "Euro",
-    //   amount: 278,
-    //   src: "euro",
-    // },
-    // {
-    //   name: "Uniswap",
-    //   amount: 278,
-    //   src: "uniswap",
-    // },
-    // {
-    //   name: "Dollar",
-    //   amount: 278,
-    //   src: "dollar",
-    // },
-    // {
-    //   name: "Safe",
-    //   amount: 278,
-    //   src: "safe",
-    // },
-    // {
-    //   name: "Aragon ANT",
-    //   amount: 278,
-    //   src: "aragon-ant",
-    // },
     {
       name: "Tether",
       amount: USDTBalance
@@ -118,6 +86,7 @@ const CryptoList = () => {
               amount={coin.amount}
               crypto={coin.name}
               id={coin.id}
+              index={index}
             />
           ))}
         </div>

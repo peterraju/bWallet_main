@@ -1,9 +1,12 @@
 "use client";
+import { setBalance } from "@/redux/slice/walletSlice";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
-const CryptoItem = ({ src, amount, crypto, id }) => {
+const CryptoItem = ({ src, amount, crypto, id, index }) => {
   const [dollars, setDollars] = useState(0);
+  const dispatch = useDispatch();
 
   const fetchDollarBalance = async (name) => {
     const response = await fetch(
@@ -17,6 +20,7 @@ const CryptoItem = ({ src, amount, crypto, id }) => {
     if (!id) return;
     fetchDollarBalance(id).then((data) => {
       setDollars((data * amount.formatted).toFixed(2));
+      dispatch(setBalance({ index, value: data * amount.formatted }));
     });
   }, [amount, id]);
 

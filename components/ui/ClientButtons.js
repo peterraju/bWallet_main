@@ -239,11 +239,7 @@ const AddToQueueBtn = () => {
   );
 };
 
-const PayContributorBtn = () => {
-  const handleClick = () => {
-    console.log("clicked");
-  };
-
+const PayContributorBtn = ({ handleClick }) => {
   return (
     <DefaultButton
       variant={"filled"}
