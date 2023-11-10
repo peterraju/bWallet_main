@@ -139,7 +139,7 @@ const RoleModal = () => {
                   containerProps={{
                     className: "p-0",
                   }}
-                  checked={selected === 2}
+                  defaultChecked
                 />
               </ListItemPrefix>
 

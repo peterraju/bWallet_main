@@ -39,7 +39,7 @@ const PayContributor = () => {
       if (selected === 1) {
         lockDate.setMonth(lockDate.getMonth() + 6);
       } else {
-        lockDate.setMonth(lockDate.getMonth() + 10);
+        lockDate.setMonth(lockDate.getMonth() + 12);
       }
       setLockDate(lockDate);
     }, 1000);
@@ -100,7 +100,7 @@ const PayContributor = () => {
     client && (
       <section className="flex-[3] space-y-6 rounded-xl bg-gray-900 p-4">
         <h3 className="border-b border-gray-700 bg-transparent pb-3 text-xl font-semibold">
-          Pay Contributor
+          Pay {status === "CON" ? "Yourself" : "Contributor"}
         </h3>
 
         <div className="mt-6 space-y-4">
@@ -143,7 +143,7 @@ const PayContributor = () => {
                       className: "p-0",
                     }}
                     color="purple"
-                    checked={selected === 1}
+                    defaultChecked
                   />
                 </ListItemPrefix>
 
@@ -151,31 +151,35 @@ const PayContributor = () => {
               </label>
             </ListItem>
 
-            <ListItem
-              className="rounded-lg bg-black/20 p-0 hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-900"
-              selected={selected === 2}
-              onClick={() => setSelectedItem(2)}
-            >
-              <label
-                htmlFor="horizontal-list-10"
-                className="flex w-full cursor-pointer items-center justify-center py-4"
+            {status === "CON" && (
+              <ListItem
+                className="rounded-lg bg-black/20 p-0 hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-900"
+                selected={selected === 2}
+                onClick={() => setSelectedItem(2)}
               >
-                <ListItemPrefix className="mr-3">
-                  <Radio
-                    name="horizontal-list"
-                    id="horizontal-list-10"
-                    ripple={false}
-                    className="hover:before:opacity-0"
-                    containerProps={{
-                      className: "p-0",
-                    }}
-                    color="purple"
-                  />
-                </ListItemPrefix>
+                <label
+                  htmlFor="horizontal-list-10"
+                  className="flex w-full cursor-pointer items-center justify-center py-4"
+                >
+                  <ListItemPrefix className="mr-3">
+                    <Radio
+                      name="horizontal-list"
+                      id="horizontal-list-10"
+                      ripple={false}
+                      className="hover:before:opacity-0"
+                      containerProps={{
+                        className: "p-0",
+                      }}
+                      color="purple"
+                    />
+                  </ListItemPrefix>
 
-                <p className="prevent-select font-bold text-white">10 Months</p>
-              </label>
-            </ListItem>
+                  <p className="prevent-select font-bold text-white">
+                    12 Months
+                  </p>
+                </label>
+              </ListItem>
+            )}
           </List>
 
           <div className="mt-5 font-medium">
