@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   contributors: [],
-  status: "ORG",
+  status: "CON",
 };
 
 export const tlbankSlice = createSlice({

@@ -10,17 +10,19 @@ const CryptoList = () => {
   const scrollContainer = useRef(null);
   const safeAddress = useSelector((state) => state.wallet.safe);
   const { address } = useAccount();
+  const [client, setClient] = useState(false);
+  const status = useSelector((state) => state.tlbank.status);
   const { data: ETHBalance } = useBalance({
-    address: address,
+    address: status === "ORG" ? safeAddress : address,
     chainId: 1,
   });
   const { data: BankBalance } = useBalance({
-    address: address,
+    address: status === "ORG" ? safeAddress : address,
     token: "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
     chainId: 1,
   });
   const { data: USDTBalance } = useBalance({
-    address: address,
+    address: status === "ORG" ? safeAddress : address,
     token: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
     chainId: 1,
   });
@@ -97,25 +99,31 @@ const CryptoList = () => {
     scrollContainer.current.scrollLeft += scrollOffset;
   };
 
+  useEffect(() => {
+    setClient(true);
+  }, []);
+
   return (
-    <div className="flex w-full items-center gap-4">
-      {/* <button onClick={() => scroll(-100)}>&lt;</button> */}
-      <div
-        ref={scrollContainer}
-        className="flex gap-4 overflow-x-scroll hide-scrollbar"
-      >
-        {coins.map((coin, index) => (
-          <CryptoItem
-            key={index}
-            src={coin.src}
-            amount={coin.amount}
-            crypto={coin.name}
-            id={coin.id}
-          />
-        ))}
+    client && (
+      <div className="flex w-full items-center gap-4">
+        {/* <button onClick={() => scroll(-100)}>&lt;</button> */}
+        <div
+          ref={scrollContainer}
+          className="flex gap-4 overflow-x-scroll hide-scrollbar"
+        >
+          {coins.map((coin, index) => (
+            <CryptoItem
+              key={index}
+              src={coin.src}
+              amount={coin.amount}
+              crypto={coin.name}
+              id={coin.id}
+            />
+          ))}
+        </div>
+        {/* <button onClick={() => scroll(100)}>&gt;</button> */}
       </div>
-      {/* <button onClick={() => scroll(100)}>&gt;</button> */}
-    </div>
+    )
   );
 };
 
