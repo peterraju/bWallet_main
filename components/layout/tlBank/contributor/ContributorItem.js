@@ -46,7 +46,7 @@ const ContributorItem = ({ contributor }) => {
   };
 
   return (
-    <div className="flex w-full items-center justify-between rounded-lg bg-gray-900/90 px-4 py-3">
+    <div className="flex w-full items-center justify-between rounded-md bg-gray-900/90 px-4 py-3">
       <div className="w-1/3">
         <Checkbox
           color="purple"
