@@ -10,16 +10,16 @@ export const metadata = {
 
 export default function TlBankLayout({ children }) {
   return (
-    <>
+    <div className="h-screen">
       <LoginModal />
       <RoleModal />
 
-      <section className="bg-black font-grotesque">
+      <section className="min-h-full bg-black font-grotesque">
         <TlBankNav />
         <ContributorModal />
 
         {children}
       </section>
-    </>
+    </div>
   );
 }

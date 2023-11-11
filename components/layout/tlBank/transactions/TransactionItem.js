@@ -9,7 +9,7 @@ const TransactionItem = ({ contributor }) => {
 
       <div
         className="hidden w-2/12 overflow-hidden whitespace-nowrap md:block"
-        style={{ "text-overflow": "ellipsis" }}
+        style={{ textOverflow: "ellipsis" }}
       >
         {"21004 " + contributor.token}
       </div>

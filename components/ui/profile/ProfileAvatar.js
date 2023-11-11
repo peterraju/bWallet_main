@@ -6,11 +6,16 @@ import { DefaultButton } from "../ClientButtons";
 import { useDispatch } from "react-redux";
 import { handleLoginModal } from "@/redux/slice/modalSlice";
 
-const ProfileAvatar = () => {
+const ProfileAvatar = ({ screen }) => {
   const { isConnected } = useAccount();
   const dispatch = useDispatch();
+
   return isConnected ? (
-    <div className="prevent-select flex cursor-pointer items-center gap-2 rounded-full border border-gray-800 p-1.5">
+    <div
+      className={`prevent-select flex cursor-pointer items-center gap-2 rounded-full border border-gray-800 p-1.5 ${
+        screen === "lg" ? "hidden lg:flex" : ""
+      }`}
+    >
       <ProfileMenu />
       <Pubkey />
     </div>
@@ -19,7 +24,9 @@ const ProfileAvatar = () => {
       variant={"filled"}
       color="gray"
       label="Connect Wallet"
-      style="flex bg-gradient-primary rounded-full md:text-base px-9 h-[46px]"
+      style={`flex bg-gradient-primary rounded-full md:text-base px-9 h-[46px] ${
+        screen === "lg" ? "hidden lg:flex" : ""
+      }`}
       icon={<></>}
       onClick={() => dispatch(handleLoginModal())}
     />
