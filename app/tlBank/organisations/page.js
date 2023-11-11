@@ -9,7 +9,7 @@ const OrganisationsPage = () => {
       <div className="flex h-screen w-screen flex-col items-center justify-center">
         <h2 className="text-4xl font-bold">Your Organisation</h2>
         <p className="mt-4 text-2xl font-medium text-gray-600">
-          Choose a safe from your is of Organisation.
+          Choose a safe from your list of Organisation.
         </p>
 
         <OrganisationList />

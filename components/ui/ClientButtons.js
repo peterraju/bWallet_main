@@ -250,11 +250,12 @@ const AddToQueueBtn = ({ handleClick }) => {
 };
 
 const PayContributorBtn = ({ handleClick }) => {
+  const status = useSelector((state) => state.wallet.status);
   return (
     <DefaultButton
       variant={"filled"}
       color="gray"
-      label="Pay Contributor"
+      label={"Pay " + (status === "CON" ? "Yourself" : "Contributor")}
       style="flex bg-gradient-primary w-full justify-center"
       onClick={handleClick}
     />
