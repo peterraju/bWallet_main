@@ -92,13 +92,15 @@ const TlBankLoginBtn = () => {
 const LaunchAppBtn = ({ isDefault, screen, style }) => {
   const router = useRouter();
 
-  const handleClick = () => console.log("clicked");
+  const handleClick = () => {
+    window.open("https://tally.so/r/nPpvRQ", "_blank");
+  };
 
   return isDefault ? (
     <DefaultButton
       variant="outlined"
       color="white"
-      label="Launch App"
+      label="Join the Waitlist"
       style={screen === "lg" ? "hidden lg:flex" : ""}
       onClick={handleClick}
     />
@@ -114,13 +116,15 @@ const LaunchAppBtn = ({ isDefault, screen, style }) => {
 const CreateWalletBtn = ({ isDefault, color, style }) => {
   const router = useRouter();
 
-  const handleClick = () => router.push("/onboard");
+  const handleClick = () => {
+    window.open("https://tally.so/r/nPpvRQ", "_blank");
+  };
 
   return isDefault ? (
     <DefaultButton
       variant={"filled"}
       color="gray"
-      label="Create Wallet"
+      label="Join the waitlist"
       style="flex bg-gradient-primary"
       onClick={handleClick}
     />
