@@ -13,7 +13,6 @@ const TransactionList = () => {
   const { getAllTransactions } = useGetServer();
 
   useEffect(() => {
-    console.log("address", address);
     if (status === "CON") {
       if (!address) return;
       getAllTransactions(address);
@@ -21,7 +20,7 @@ const TransactionList = () => {
       if (!safeAddress) return;
       getAllTransactions(safeAddress);
     }
-  }, [address, safeAddress, status]);
+  }, [address, safeAddress, status, getAllTransactions]);
 
   return (
     <section className="mt-10 w-full max-w-6xl space-y-3 rounded-xl bg-gray-800/70 px-4 py-4">

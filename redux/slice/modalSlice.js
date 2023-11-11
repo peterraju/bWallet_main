@@ -4,6 +4,7 @@ const initialState = {
   loginModal: false,
   contributorModal: false,
   roleModal: false,
+  transactionModal: false,
   activeWallet: null,
 };
 
@@ -24,6 +25,10 @@ export const modalSlice = createSlice({
       state.roleModal = !state.roleModal;
     },
 
+    handleTransactionModal: (state) => {
+      state.transactionModal = !state.transactionModal;
+    },
+
     setActiveWallet: (state, action) => {
       state.activeWallet = action.payload;
     },
@@ -35,4 +40,5 @@ export const {
   handleContributorModal,
   setActiveWallet,
   handleRoleModal,
+  handleTransactionModal,
 } = modalSlice.actions;
