@@ -2,20 +2,14 @@
 
 import { handleTransactionModal } from "@/redux/slice/modalSlice";
 import { handleSelectedTransaction } from "@/redux/slice/selectedSlice";
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import { useDispatch } from "react-redux";
 
 const TransactionItem = ({ contributor }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    const transaction = {
-      price: contributor.price,
-      contributor: contributor.contributor,
-      date: contributor.date,
-      status: contributor.status,
-    };
-
-    dispatch(handleSelectedTransaction(transaction));
+    dispatch(handleSelectedTransaction(contributor));
     dispatch(handleTransactionModal());
   };
 
@@ -24,7 +18,12 @@ const TransactionItem = ({ contributor }) => {
       className="flex w-full items-center justify-between rounded-md bg-gray-900/90 px-4 py-3"
       onClick={handleClick}
     >
-      <div className="w-2/12 text-left text-gray-400">{contributor.status}</div>
+      <div className="flex w-2/12 items-center gap-2 text-left text-gray-400">
+        <div className=" w-fit  rounded-md bg-[#00B728]/10 p-3">
+          <PaperAirplaneIcon className="h-5 w-5 -translate-y-0.5 translate-x-px -rotate-45 text-[#00B728]" />
+        </div>
+        {contributor.status}
+      </div>
 
       <div
         className="hidden w-2/12 overflow-hidden whitespace-nowrap md:block"
@@ -41,7 +40,7 @@ const TransactionItem = ({ contributor }) => {
       </div>
 
       <div className="hidden max-w-[90px] text-right md:block">
-        {new Date(contributor.date / 1000).toLocaleString()}
+        {new Date(Number(contributor.date)).toLocaleString()}
       </div>
     </div>
   );

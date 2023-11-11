@@ -41,7 +41,6 @@ export default function useGetServer() {
         `${process.env.NEXT_PUBLIC_API_URL}/transactions/${inputAddress}/all`,
         { headers },
       );
-
       dispatch(setTransactions(res.data));
       return true;
     } catch (error) {

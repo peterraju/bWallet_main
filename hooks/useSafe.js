@@ -24,7 +24,7 @@ export default function useSafe() {
     }
   };
 
-  const executeSafeTransaction = async (safeAddress, to, unsignedTx) => {
+  const executeSafeTransaction = async (safeAddress, tos, unsignedTxs) => {
     const ethAdapter = new EthersAdapter({
       ethers,
       signerOrProvider: signer,
@@ -40,14 +40,25 @@ export default function useSafe() {
       safeAddress: safeAddress,
     });
 
-    const safeTransactionData = {
-      to: to,
-      value: 0,
-      data: unsignedTx.data,
+    let safeTransactionData;
+
+    for (let i = 0; i < unsignedTxs.length; i++) {
+      safeTransactionData = {
+        to: tos[i],
+        value: 0,
+        data: unsignedTxs[i],
+      };
+    }
+
+    const nonce = await safeApiKit.getNextNonce(safeAddress);
+
+    const txConfig = {
+      nonce,
     };
 
     const safeTransaction = await safe.createTransaction({
       safeTransactionData,
+      options: txConfig,
     });
 
     const senderAddress = await signer.getAddress();

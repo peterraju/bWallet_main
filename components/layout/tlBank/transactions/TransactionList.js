@@ -20,7 +20,8 @@ const TransactionList = () => {
       if (!safeAddress) return;
       getAllTransactions(safeAddress);
     }
-  }, [address, safeAddress, status, getAllTransactions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [address, safeAddress, status]);
 
   return (
     <section className="mt-10 w-full max-w-6xl space-y-3 rounded-xl bg-gray-800/70 px-4 py-4">
@@ -38,9 +39,10 @@ const TransactionList = () => {
         </div>
       </div>
 
-      {transactions.map((contributor, index) => (
-        <TransactionItem key={index} contributor={contributor} />
-      ))}
+      {transactions &&
+        transactions.map((contributor, index) => (
+          <TransactionItem key={index} contributor={contributor} />
+        ))}
     </section>
   );
 };

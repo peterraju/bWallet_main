@@ -27,7 +27,12 @@ const PayContributor = () => {
   const [lockDate, setLockDate] = useState();
   const [selected, setSelected] = useState(1);
   const setSelectedItem = (value) => setSelected(value);
-  const { createTLBank, lockAndLoadTLBank, executeTransaction } = useTLBank();
+  const {
+    createTLBank,
+    lockAndLoadTLBank,
+    executeTransaction,
+    allowwanceBank,
+  } = useTLBank();
   const { executeSafeTransaction } = useSafe();
   const safeAddress = useSelector((state) => state.wallet.safe);
   const [client, setClient] = useState(false);
@@ -62,21 +67,30 @@ const PayContributor = () => {
   const handlePayContributor = async () => {
     if (!walletAddress || !quantity || !lockDate) return;
 
+    const allowance = await allowwanceBank(quantity);
+
     const unSignedTx = await createTLBank(
       walletAddress,
       quantity,
       (lockDate.getTime() / 1000).toFixed(0),
     );
 
-    console.log(unSignedTx);
-
     if (status === "CON") {
-      await executeTransaction(unSignedTx);
+      const firstResponse = await executeTransaction(allowance);
+
+      if (!firstResponse) return;
+
+      const secondResponse = await executeTransaction(unSignedTx);
+
+      console.log(secondResponse);
     } else {
       await executeSafeTransaction(
         safeAddress,
-        "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02",
-        unSignedTx,
+        [
+          "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
+          "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02",
+        ],
+        [allowance.data, unSignedTx.data],
       );
     }
   };
