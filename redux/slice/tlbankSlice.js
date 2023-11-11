@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   contributors: [],
   queue: [],
+  transactions: [],
   status: "CON",
 };
 
@@ -49,6 +50,14 @@ export const tlbankSlice = createSlice({
     emptyQueue: (state) => {
       state.queue = [];
     },
+
+    setTransactions: (state, action) => {
+      state.transactions = action.payload;
+    },
+
+    addTransaction: (state, action) => {
+      state.transactions.push(action.payload);
+    },
   },
 });
 
@@ -61,4 +70,6 @@ export const {
   addToQueue,
   removeFromQueue,
   emptyQueue,
+  setTransactions,
+  addTransaction,
 } = tlbankSlice.actions;

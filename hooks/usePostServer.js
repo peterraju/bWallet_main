@@ -2,7 +2,10 @@
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
-import { addContributor as add } from "@/redux/slice/tlbankSlice";
+import {
+  addContributor as add,
+  addTransaction as addTx,
+} from "@/redux/slice/tlbankSlice";
 
 export default function usePostServer() {
   const selectedSafe = useSelector((state) => state.wallet.safe);
@@ -81,6 +84,35 @@ export default function usePostServer() {
       console.log(res.data);
 
       return res.data;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  };
+
+  const addTransaction = async (status, price, contributor, sender) => {
+    try {
+      const headers = {
+        "x-auth-sig": signature,
+        "x-auth-pubkey": address,
+      };
+
+      const body = {
+        status,
+        price,
+        contributor,
+        sender,
+      };
+
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_API_URL}/transactions/add`,
+        body,
+        { headers },
+      );
+
+      dispatch(addTx(res.data));
+
+      return true;
     } catch (error) {
       console.log(error);
       return false;

@@ -1,92 +1,32 @@
+"use client";
+import { useSelector } from "react-redux";
 import TransactionItem from "./TransactionItem";
+import { useEffect } from "react";
+import useGetServer from "@/hooks/useGetServer";
+import { useAccount } from "wagmi";
 
 const TransactionList = () => {
-  const transactions = [
-    {
-      status: "Transfer",
-      price: 380,
-      token: "BANK",
-      contributor: "koolade.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-    {
-      status: "Queue Transfer",
-      price: 31385,
-      token: "BANK",
-      contributor: "koolade.transbut.eth",
-      date: "2021-09-01",
-    },
-  ];
+  const transactions = useSelector((state) => state.tlbank.transactions);
+  const { address } = useAccount();
+  const safeAddress = useSelector((state) => state.wallet.safe);
+  const status = useSelector((state) => state.tlbank.status);
+  const { getAllTransactions } = useGetServer();
+
+  useEffect(() => {
+    console.log("address", address);
+    if (status === "CON") {
+      if (!address) return;
+      getAllTransactions(address);
+    } else {
+      if (!safeAddress) return;
+      getAllTransactions(safeAddress);
+    }
+  }, [address, safeAddress, status]);
 
   return (
     <section className="mt-10 w-full max-w-6xl space-y-3 rounded-xl bg-gray-800/70 px-4 py-4">
       <div className="flex w-full items-center justify-between px-4">
         <div className="w-2/12 text-gray-500">Status</div>
-
-        <div className="w-1/12 font-medium text-gray-500">Price</div>
 
         <div className="hidden w-full text-gray-500 md:block md:w-2/12">
           Amount
