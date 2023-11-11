@@ -92,8 +92,9 @@ const PayContributor = () => {
 
     dispatch(addToQueue(item));
 
-    setWalletAddress("");
     setQuantity(0);
+    if (status === "CON") return;
+    setWalletAddress("");
   };
 
   return (

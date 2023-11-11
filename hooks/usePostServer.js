@@ -119,5 +119,10 @@ export default function usePostServer() {
     }
   };
 
-  return { addContributor, deleteContributor, updateContributor };
+  return {
+    addContributor,
+    deleteContributor,
+    updateContributor,
+    addTransaction,
+  };
 }
