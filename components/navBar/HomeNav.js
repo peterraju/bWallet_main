@@ -15,6 +15,11 @@ const HomeNav = () => {
       href: "contacts",
       active: activeNav === "/contacts",
     },
+    {
+      name: "TL Bank",
+      href: "tlBank",
+      active: activeNav === "/tlBank",
+    },
   ];
 
   return (
