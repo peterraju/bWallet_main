@@ -1,12 +1,29 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 import MainNav from "./MainNav";
-import { LaunchAppBtn } from "@/components/ui/ClientButtons";
 import ProfileAvatar from "../ui/profile/ProfileAvatar";
 
 const TlBankNav = () => {
+  const activeNav = usePathname().split("/")[2];
+
   const navList = [
-    { name: "Dashboard", href: "tlBank//dashboard", active: true },
-    { name: "Transactions", href: "tlBank//transactions", active: false },
-    { name: "Contributors", href: "tlBank//contributors", active: false },
+    {
+      name: "Dashboard",
+      href: "/tlBank/dashboard",
+      active: activeNav === "dashboard",
+    },
+    {
+      name: "Transactions",
+      href: "/tlBank/transactions",
+      active: activeNav === "transactions",
+    },
+    {
+      name: "Contributors",
+      href: "/tlBank/contributors",
+      active: activeNav === "contributors",
+    },
   ];
 
   return (
@@ -14,8 +31,8 @@ const TlBankNav = () => {
       style="bg-tlbank-black/40 shadow-white/5"
       maxWidth={"max-w-none"}
       navList={navList}
-      btn={<ProfileAvatar />}
-      mobileBtn={<ProfileAvatar />}
+      btn={<ProfileAvatar screen="lg" />}
+      mobileBtn={<ProfileAvatar screen="sm" />}
       size="text-lg"
       itemStyle="rounded-full"
       activeStyle="bg-gradient-primary/20 text-white"

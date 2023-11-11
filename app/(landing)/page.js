@@ -1,20 +1,16 @@
 import Image from "next/image";
 
-import HomeNav from "@/components/navBar/HomeNav";
 import Header from "@/components/layout/home/header/Header";
 import Card from "@/components/layout/home/card/Card";
 import EuroOnChain from "@/components/layout/home/EuroOnChain";
 import OneWallet from "@/components/layout/home/OneWallet";
 import Partners from "@/components/layout/home/Partners";
-import Footer from "@/components/layout/home/Footer";
 import Power from "@/components/layout/home/power/Power";
 import LaunchApp from "@/components/layout/home/launchApp/LaunchApp";
 
 export default function Home() {
   return (
     <>
-      <HomeNav />
-
       <div className="hero-bg">
         <Header />
         <Card />
@@ -53,8 +49,6 @@ export default function Home() {
         <Power />
         <LaunchApp />
       </main>
-
-      <Footer />
     </>
   );
 }

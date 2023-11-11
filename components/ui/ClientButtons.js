@@ -30,7 +30,13 @@ const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
       onClick={onClick}
     >
       {label}
-      {icon ? icon : <ArrowUpRightIcon className="h-5 w-5" />}
+      {icon === "" ? (
+        ""
+      ) : icon ? (
+        icon
+      ) : (
+        <ArrowUpRightIcon className="h-5 w-5" />
+      )}
     </Button>
   );
 };
@@ -238,6 +244,7 @@ const AddToQueueBtn = ({ handleClick }) => {
       label="+ Add to Queue"
       style="flex w-full justify-center"
       onClick={handleClick}
+      icon=""
     />
   );
 };

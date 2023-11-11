@@ -1,11 +1,9 @@
-import { WagmiProvider } from "@/provider/WagmiProvider";
 import { store } from "@/redux/store";
+import localFont from "next/font/local";
 import ReduxProvider from "@/provider/ReduxProvider";
+import { WagmiProvider } from "@/provider/WagmiProvider";
 
 import "./globals.css";
-
-import localFont from "next/font/local";
-import LoginModal from "@/components/modals/LoginModal";
 
 const grotesque = localFont({
   src: [

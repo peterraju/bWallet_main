@@ -1,11 +1,20 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import MainNav from "./MainNav";
 import { LaunchAppBtn } from "@/components/ui/ClientButtons";
 
 const HomeNav = () => {
+  const activeNav = usePathname();
+
   const navList = [
-    { name: "Home", href: "#", active: true },
-    { name: "Features", href: "#", active: false },
-    { name: "Contact Us", href: "#", active: false },
+    { name: "Home", href: "/", active: activeNav === "/" },
+    { name: "Features", href: "features", active: activeNav === "/features" },
+    {
+      name: "Contact Us",
+      href: "contacts",
+      active: activeNav === "/contacts",
+    },
   ];
 
   return (

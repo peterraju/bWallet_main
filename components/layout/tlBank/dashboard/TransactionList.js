@@ -24,7 +24,7 @@ const TransactionList = () => {
       <ExecuteTransactionBtn />
     </div>
   ) : (
-    <div className="mt-6 text-center">
+    <div className="mt-28 text-center">
       <button
         style={{
           background: "url(/images/tlBank/bg-btn.svg) no-repeat center center",
