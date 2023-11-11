@@ -96,18 +96,19 @@ const PayContributor = () => {
   };
 
   const handleAddToQueue = async () => {
+    if (status === "CON") return;
+
     if (!walletAddress || !quantity || !lockDate) return;
 
     const item = {
-      walletAddress,
-      quantity,
-      lockDate,
+      pubKey: walletAddress,
+      amount: quantity,
+      time: lockDate,
     };
 
     dispatch(addToQueue(item));
 
     setQuantity(0);
-    if (status === "CON") return;
     setWalletAddress("");
   };
 
@@ -214,7 +215,10 @@ const PayContributor = () => {
           </div>
         </div>
 
-        <AddToQueueBtn handleClick={handleAddToQueue} />
+        <AddToQueueBtn
+          disabled={status === "CON"}
+          handleClick={handleAddToQueue}
+        />
 
         <PayContributorBtn handleClick={handlePayContributor} />
       </section>

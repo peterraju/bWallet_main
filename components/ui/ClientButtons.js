@@ -19,7 +19,15 @@ import {
 } from "@/redux/slice/modalSlice";
 import { setSignature } from "@/redux/slice/walletSlice";
 
-const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
+const DefaultButton = ({
+  variant,
+  label,
+  icon,
+  style,
+  color,
+  onClick,
+  disabled,
+}) => {
   return (
     <Button
       variant={variant}
@@ -28,6 +36,7 @@ const DefaultButton = ({ variant, label, icon, style, color, onClick }) => {
         style ? style : "flex"
       }`}
       onClick={onClick}
+      disabled={disabled}
     >
       {label}
       {icon === "" ? (
@@ -236,15 +245,16 @@ const CreateTransactionBtn = () => {
   );
 };
 
-const AddToQueueBtn = ({ handleClick }) => {
+const AddToQueueBtn = ({ handleClick, disabled }) => {
   return (
     <DefaultButton
       variant="outlined"
       color="white"
       label="+ Add to Queue"
-      style="flex w-full justify-center"
+      style="flex w-full justify-center disabled:opacity-50"
       onClick={handleClick}
       icon=""
+      disabled={disabled}
     />
   );
 };
@@ -310,6 +320,30 @@ const ExecuteTransactionBtn = () => {
   );
 };
 
+const AddContributorQueueBtn = ({ onClick }) => {
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Add to Queue"
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={onClick}
+    />
+  );
+};
+
+const AddSelectedContributorsBtn = ({ onClick }) => {
+  return (
+    <DefaultButton
+      variant={"filled"}
+      color="gray"
+      label="Add Contributors"
+      style="flex bg-gradient-primary w-full justify-center text-sm sm:text-sm md:text-base"
+      onClick={onClick}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -326,4 +360,6 @@ export {
   ExportTransactionBtn,
   SelectRoleBtn,
   ExecuteTransactionBtn,
+  AddContributorQueueBtn,
+  AddSelectedContributorsBtn,
 };

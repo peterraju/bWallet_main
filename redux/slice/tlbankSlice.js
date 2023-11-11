@@ -42,9 +42,10 @@ export const tlbankSlice = createSlice({
     },
 
     removeFromQueue: (state, action) => {
-      state.queue = state.queue.filter(
-        (c) => c.walletAddress !== action.payload,
-      );
+      state.queue = state.queue.filter((c) => {
+        console.log(c, action.payload);
+        return c.pubKey !== action.payload;
+      });
     },
 
     emptyQueue: (state) => {

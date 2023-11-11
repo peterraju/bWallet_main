@@ -29,12 +29,12 @@ const ContributorModal = () => {
 
   const handleAddContributor = async () => {
     const res = await addContributor(name, address);
+
     if (res) {
       setName("");
       setAddress("");
       dispatch(handleContributorModal());
     }
-    console.log(res);
   };
 
   return (

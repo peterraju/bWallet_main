@@ -5,6 +5,7 @@ const initialState = {
   contributorModal: false,
   roleModal: false,
   transactionModal: false,
+  addContributorsModal: false,
   activeWallet: null,
 };
 
@@ -19,6 +20,10 @@ export const modalSlice = createSlice({
 
     handleContributorModal: (state) => {
       state.contributorModal = !state.contributorModal;
+    },
+
+    handleAddContributorsModal: (state) => {
+      state.addContributorsModal = !state.addContributorsModal;
     },
 
     handleRoleModal: (state) => {
@@ -41,4 +46,5 @@ export const {
   setActiveWallet,
   handleRoleModal,
   handleTransactionModal,
+  handleAddContributorsModal,
 } = modalSlice.actions;
