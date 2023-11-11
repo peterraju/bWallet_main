@@ -2,6 +2,7 @@
 
 import { useSelector } from "react-redux";
 import TransactionItem from "./TransactionItem";
+import { Tooltip } from "@material-tailwind/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { ExecuteTransactionBtn } from "@/components/ui/ClientButtons";
 
@@ -9,14 +10,14 @@ const TransactionList = () => {
   const transactions = useSelector((state) => state.tlbank.queue);
 
   return transactions && transactions.length > 0 ? (
-    <div className="mt-6 flex h-[85%] flex-col justify-between space-y-3">
-      <div className="space-y-2">
+    <div className="mt-6 flex h-[86%] flex-col justify-between space-y-6">
+      <div className="max-h-[352px] space-y-2 overflow-y-auto hide-scrollbar">
         {transactions.map((transaction, index) => (
           <TransactionItem
             key={index}
-            amount={transaction.quantity}
-            time={transaction.lockDate}
-            pubKey={transaction.walletAddress}
+            amount={transaction.amount}
+            time={transaction.time}
+            pubKey={transaction.pubKey}
           />
         ))}
       </div>

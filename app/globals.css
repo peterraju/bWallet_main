@@ -48,6 +48,15 @@ body {
   user-select: none;
 }
 
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 .hero-bg {
   background-image: url("/images/home/bg.svg");
   background-repeat: no-repeat;
