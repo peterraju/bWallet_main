@@ -2,9 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   signature: null,
-  safe: "0x1dBA01d7519f3CD18cBdF2B207CC3D261eEadeF3",
+  safe: "0xf93d09fA1847Ef7606eAA52E26F66ea0Ab89181D",
   balance: [0, 0, 0],
-  safeName: "Bankless Design Treasury",
+  safeName: "Testnet Treasury",
 };
 
 export const walletSlice = createSlice({

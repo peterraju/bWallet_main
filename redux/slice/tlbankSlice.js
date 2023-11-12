@@ -5,6 +5,9 @@ const initialState = {
   queue: [],
   transactions: [],
   status: "CON",
+  SAFE_TRANSACTION_API: "https://safe-transaction-mainnet.safe.global",
+  TLBANK: "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02",
+  BANK: "0x2d94aa3e47d9d5024503ca8491fce9a2fb4da198",
 };
 
 export const tlbankSlice = createSlice({
@@ -59,6 +62,20 @@ export const tlbankSlice = createSlice({
     addTransaction: (state, action) => {
       state.transactions.push(action.payload);
     },
+
+    setMainnet: (state, action) => {
+      state.SAFE_TRANSACTION_API =
+        "https://safe-transaction-mainnet.safe.global";
+      state.TLBANK = "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02";
+      state.BANK = "0x2d94aa3e47d9d5024503ca8491fce9a2fb4da198";
+    },
+
+    setGoerli: (state, action) => {
+      state.SAFE_TRANSACTION_API =
+        "https://safe-transaction-goerli.safe.global";
+      state.TLBANK = "0x8e6e3b92E4f1818bc7CEEE6B7B7228952aa41acb";
+      state.BANK = "0x077154D2931eEC781f8F1a1D0a23Ce6Ef896a2ac";
+    },
   },
 });
 
@@ -73,4 +90,6 @@ export const {
   emptyQueue,
   setTransactions,
   addTransaction,
+  setMainnet,
+  setGoerli,
 } = tlbankSlice.actions;

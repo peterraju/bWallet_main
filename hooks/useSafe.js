@@ -4,18 +4,18 @@ import SafeApiKit from "@safe-global/api-kit";
 import Safe from "@safe-global/protocol-kit";
 import { EthersAdapter } from "@safe-global/protocol-kit";
 import { ethers } from "ethers";
-
-const SAFE_TRANSACTION_API = {
-  mainnet: "https://safe-transaction-mainnet.safe.global",
-};
+import { useSelector } from "react-redux";
 
 export default function useSafe() {
   const signer = useEthersSigner();
+  const SAFE_TRANSACTION_API = useSelector(
+    (state) => state.tlbank.SAFE_TRANSACTION_API,
+  );
 
   const getAllSafes = async (address) => {
     try {
       const safes = await axios.get(
-        `${SAFE_TRANSACTION_API.mainnet}/api/v1/owners/${address}/safes/`,
+        `${SAFE_TRANSACTION_API}/api/v1/owners/${address}/safes/`,
       );
 
       return safes.data.safes;
@@ -31,7 +31,7 @@ export default function useSafe() {
     });
 
     const safeApiKit = new SafeApiKit({
-      txServiceUrl: SAFE_TRANSACTION_API.mainnet,
+      txServiceUrl: SAFE_TRANSACTION_API,
       ethAdapter,
     });
 
@@ -40,15 +40,18 @@ export default function useSafe() {
       safeAddress: safeAddress,
     });
 
-    let safeTransactionData;
+    let safeTransactionData = [];
 
     for (let i = 0; i < unsignedTxs.length; i++) {
-      safeTransactionData = {
+      let tx = {
         to: tos[i],
         value: 0,
         data: unsignedTxs[i],
       };
+      safeTransactionData.push(tx);
     }
+
+    console.log(safeTransactionData);
 
     const nonce = await safeApiKit.getNextNonce(safeAddress);
 

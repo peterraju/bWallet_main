@@ -14,6 +14,7 @@ import {
   ListItemPrefix,
   List,
 } from "@material-tailwind/react";
+import { ethers } from "ethers";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
@@ -27,6 +28,8 @@ const PayContributor = () => {
   const [lockDate, setLockDate] = useState();
   const [selected, setSelected] = useState(1);
   const setSelectedItem = (value) => setSelected(value);
+  const tlBankAddress = useSelector((state) => state.tlbank.TLBANK);
+  const bankAddress = useSelector((state) => state.tlbank.BANK);
   const {
     createTLBank,
     lockAndLoadTLBank,
@@ -71,25 +74,25 @@ const PayContributor = () => {
 
     const unSignedTx = await createTLBank(
       walletAddress,
-      quantity,
+      ethers.utils.parseEther(quantity.toString()),
       (lockDate.getTime() / 1000).toFixed(0),
     );
 
     if (status === "CON") {
-      const firstResponse = await executeTransaction(allowance);
+      const firstResponse = await executeTransaction(allowance, bankAddress);
 
       if (!firstResponse) return;
 
-      const secondResponse = await executeTransaction(unSignedTx);
+      const secondResponse = await executeTransaction(
+        unSignedTx,
+        tlBankAddress,
+      );
 
       console.log(secondResponse);
     } else {
       await executeSafeTransaction(
         safeAddress,
-        [
-          "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
-          "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02",
-        ],
+        [bankAddress, tlBankAddress],
         [allowance.data, unSignedTx.data],
       );
     }
