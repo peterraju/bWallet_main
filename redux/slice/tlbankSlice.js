@@ -8,6 +8,7 @@ const initialState = {
   SAFE_TRANSACTION_API: "https://safe-transaction-mainnet.safe.global",
   TLBANK: "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02",
   BANK: "0x2d94aa3e47d9d5024503ca8491fce9a2fb4da198",
+  filteredOrganisations: [],
 };
 
 export const tlbankSlice = createSlice({
@@ -76,6 +77,10 @@ export const tlbankSlice = createSlice({
       state.TLBANK = "0x8e6e3b92E4f1818bc7CEEE6B7B7228952aa41acb";
       state.BANK = "0x077154D2931eEC781f8F1a1D0a23Ce6Ef896a2ac";
     },
+
+    setFilteredOrganisations: (state, action) => {
+      state.filteredOrganisations = action.payload;
+    },
   },
 });
 
@@ -92,4 +97,5 @@ export const {
   addTransaction,
   setMainnet,
   setGoerli,
+  setFilteredOrganisations,
 } = tlbankSlice.actions;

@@ -4,8 +4,14 @@ import {
   AddToQueueBtn,
   PayContributorBtn,
 } from "@/components/ui/ClientButtons";
+import usePostServer from "@/hooks/usePostServer";
 import useSafe from "@/hooks/useSafe";
 import useTLBank from "@/hooks/useTLBank";
+import { handleTxCompleteModal } from "@/redux/slice/modalSlice";
+import {
+  setExecutedTransaction,
+  setWalletAddress,
+} from "@/redux/slice/selectedSlice";
 import { addToQueue } from "@/redux/slice/tlbankSlice";
 import {
   Input,
@@ -20,7 +26,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useAccount } from "wagmi";
 
 const PayContributor = () => {
-  const [walletAddress, setWalletAddress] = useState("");
   const dispatch = useDispatch();
   const { address } = useAccount();
   const status = useSelector((state) => state.tlbank.status);
@@ -30,15 +35,12 @@ const PayContributor = () => {
   const setSelectedItem = (value) => setSelected(value);
   const tlBankAddress = useSelector((state) => state.tlbank.TLBANK);
   const bankAddress = useSelector((state) => state.tlbank.BANK);
-  const {
-    createTLBank,
-    lockAndLoadTLBank,
-    executeTransaction,
-    allowwanceBank,
-  } = useTLBank();
+  const { createTLBank, executeTransaction, allowwanceBank } = useTLBank();
   const { executeSafeTransaction } = useSafe();
   const safeAddress = useSelector((state) => state.wallet.safe);
   const [client, setClient] = useState(false);
+  const { addTransaction } = usePostServer();
+  const walletAddress = useSelector((state) => state.selected.walletAddress);
 
   useEffect(() => {
     setTimeout(() => {
@@ -54,7 +56,7 @@ const PayContributor = () => {
   }, [lockDate, selected]);
 
   useEffect(() => {
-    if (status !== "ORG") setWalletAddress(address);
+    if (status !== "ORG") dispatch(setWalletAddress(address));
   }, [status, address]);
 
   useEffect(() => {
@@ -63,7 +65,7 @@ const PayContributor = () => {
 
   const handleChange = (e) => {
     if (status === "ORG") {
-      setWalletAddress(e.target.value);
+      dispatch(setWalletAddress(e.target.value));
     }
   };
 
@@ -88,13 +90,46 @@ const PayContributor = () => {
         tlBankAddress,
       );
 
-      console.log(secondResponse);
+      if (secondResponse) {
+        await addTransaction(
+          "Transfer",
+          `${quantity} Banks`,
+          walletAddress,
+          address,
+          "Contributor",
+        );
+        dispatch(
+          setExecutedTransaction({
+            status: "Transfer",
+            price: `${quantity} Banks`,
+          }),
+        );
+        dispatch(handleTxCompleteModal());
+      }
     } else {
-      await executeSafeTransaction(
-        safeAddress,
-        [bankAddress, tlBankAddress],
-        [allowance.data, unSignedTx.data],
-      );
+      try {
+        await executeSafeTransaction(
+          safeAddress,
+          [bankAddress, tlBankAddress],
+          [allowance.data, unSignedTx.data],
+        );
+        await addTransaction(
+          "Transfer",
+          `${quantity} Banks`,
+          walletAddress,
+          safeAddress,
+          "Organisation",
+        );
+        dispatch(
+          setExecutedTransaction({
+            status: "Queue Transfer",
+            price: `${quantity} Banks`,
+          }),
+        );
+        dispatch(handleTxCompleteModal());
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

@@ -1,13 +1,21 @@
 "use client";
-import { useAccount } from "wagmi";
+import { useAccount, useNetwork } from "wagmi";
 import OrganisationItem from "./OrganisationItem";
 import { useEffect, useState } from "react";
 import useSafe from "@/hooks/useSafe";
+import { useDispatch, useSelector } from "react-redux";
+import { setFilteredOrganisations } from "@/redux/slice/tlbankSlice";
 
 const OrganisationList = () => {
   const { address } = useAccount();
-  const [filteredOrganisations, setFilteredOrganisations] = useState([]);
+  const filteredOrganisations = useSelector(
+    (state) => state.tlbank.filteredOrganisations,
+  );
+  const dispatch = useDispatch();
   const { getAllSafes } = useSafe();
+  const SAFE_TRANSACTION_API = useSelector(
+    (state) => state.tlbank.SAFE_TRANSACTION_API,
+  );
   const organisations = [
     {
       src: "/images/tlbank/org/gnosis-safe.svg",
@@ -147,21 +155,27 @@ const OrganisationList = () => {
       label: "Dummy Safe",
       pubKey: "0x1dBA01d7519f3CD18cBdF2B207CC3D261eEadeF3",
     },
+    {
+      src: "/images/tlbank/org/gnosis-safe.svg",
+      name: "Gnosis Safe",
+      label: "Testnet Safe",
+      pubKey: "0xf93d09fA1847Ef7606eAA52E26F66ea0Ab89181D",
+    },
   ];
 
   useEffect(() => {
     if (!address) return;
     const getOrganisations = async () => {
       const safes = await getAllSafes(address);
-      console.log(safes);
+
       const filtered = organisations.filter((org) =>
         safes.find((safe) => safe === org.pubKey),
       );
-      console.log(filtered);
-      setFilteredOrganisations(filtered);
+
+      dispatch(setFilteredOrganisations(filtered));
     };
     getOrganisations();
-  }, [address]);
+  }, [address, SAFE_TRANSACTION_API]);
 
   return (
     <div className="mt-20 flex w-full flex-col gap-6">

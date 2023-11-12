@@ -10,18 +10,28 @@ import {
   CheckIcon,
 } from "@heroicons/react/24/outline";
 import usePostServer from "@/hooks/usePostServer";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   removeContributor,
   updateContributor as update,
 } from "@/redux/slice/tlbankSlice";
 import { useState } from "react";
+import {
+  addSelectedContributor,
+  removeSelectedContributor,
+  setWalletAddress,
+} from "@/redux/slice/selectedSlice";
+import { useRouter } from "next/navigation";
 
 const ContributorItem = ({ contributor }) => {
   const { deleteContributor, updateContributor } = usePostServer();
   const dispatch = useDispatch();
   const [isEditing, setIsEditing] = useState(false);
   const [text, setText] = useState(contributor.name);
+  const selectedContributors = useSelector(
+    (state) => state.selected.selectedContributors,
+  );
+  const router = useRouter();
 
   const handleDeleteContributor = async () => {
     const res = await deleteContributor(contributor.pubkey);
@@ -50,6 +60,21 @@ const ContributorItem = ({ contributor }) => {
       <div className="w-1/3">
         <Checkbox
           color="purple"
+          checked={selectedContributors.some(
+            (selectedContributor) => selectedContributor === contributor.pubkey,
+          )}
+          onChange={() => {
+            if (
+              selectedContributors.some(
+                (selectedContributor) =>
+                  selectedContributor === contributor.pubkey,
+              )
+            ) {
+              dispatch(removeSelectedContributor(contributor.pubkey));
+            } else {
+              dispatch(addSelectedContributor(contributor.pubkey));
+            }
+          }}
           label={
             <div className="ml-3 flex items-center">
               <div onDoubleClick={handleDoubleClick}>
@@ -72,7 +97,13 @@ const ContributorItem = ({ contributor }) => {
 
       <p className="w-28 text-[#FCADFF]">{contributor.pubkey}</p>
 
-      <button className="rounded-md bg-black/40 p-2">
+      <button
+        className="rounded-md bg-black/40 p-2"
+        onClick={() => {
+          dispatch(setWalletAddress(contributor.pubkey));
+          router.push("/tlBank/dashboard");
+        }}
+      >
         <PaperAirplaneIcon className="h-5 w-5 text-[#FCADFF]" />
       </button>
 

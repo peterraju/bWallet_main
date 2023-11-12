@@ -7,6 +7,7 @@ const initialState = {
   transactionModal: false,
   addContributorsModal: false,
   activeWallet: null,
+  txCompleteModal: false,
 };
 
 export const modalSlice = createSlice({
@@ -37,6 +38,10 @@ export const modalSlice = createSlice({
     setActiveWallet: (state, action) => {
       state.activeWallet = action.payload;
     },
+
+    handleTxCompleteModal: (state) => {
+      state.txCompleteModal = !state.txCompleteModal;
+    },
   },
 });
 
@@ -47,4 +52,5 @@ export const {
   handleRoleModal,
   handleTransactionModal,
   handleAddContributorsModal,
+  handleTxCompleteModal,
 } = modalSlice.actions;

@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   selectedTransaction: null,
   selectedContributors: [],
+  walletAddress: "",
+  executedTransaction: null,
 };
 
 export const selectedSlice = createSlice({
@@ -27,6 +29,14 @@ export const selectedSlice = createSlice({
     clearSelectedContributors: (state) => {
       state.selectedContributors = [];
     },
+
+    setWalletAddress: (state, action) => {
+      state.walletAddress = action.payload;
+    },
+
+    setExecutedTransaction: (state, action) => {
+      state.executedTransaction = action.payload;
+    },
   },
 });
 
@@ -35,4 +45,6 @@ export const {
   addSelectedContributor,
   removeSelectedContributor,
   clearSelectedContributors,
+  setWalletAddress,
+  setExecutedTransaction,
 } = selectedSlice.actions;

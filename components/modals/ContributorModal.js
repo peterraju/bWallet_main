@@ -42,13 +42,12 @@ const ContributorModal = () => {
       id="content"
       size="xs"
       open={isOpen}
-      handler={handleOpen}
       className="bg-gray-900"
       aria-hidden={isOpen}
     >
       <DialogHeader className="flex items-center">
         <p className="ml-6 w-full text-xl font-medium text-white">
-          Add Contributors
+          Add Contributor
         </p>
 
         <IconButton size="sm" variant="text" onClick={handleOpen}>

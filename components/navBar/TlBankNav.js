@@ -11,6 +11,7 @@ const TlBankNav = () => {
   const activeNav = usePathname().split("/")[2];
   const { address } = useAccount();
   const signature = useSelector((state) => state.wallet.signature);
+  const status = useSelector((state) => state.tlbank.status);
 
   const navList = address &&
     signature && [
@@ -26,7 +27,7 @@ const TlBankNav = () => {
       },
       {
         name: "Contributors",
-        href: "/tlBank/contributors",
+        href: status === "ORG" ? "/tlBank/contributors" : "",
         active: activeNav === "contributors",
       },
     ];

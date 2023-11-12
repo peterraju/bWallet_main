@@ -90,7 +90,7 @@ export default function usePostServer() {
     }
   };
 
-  const addTransaction = async (status, price, contributor, sender) => {
+  const addTransaction = async (status, price, contributor, sender, role) => {
     try {
       const headers = {
         "x-auth-sig": signature,
@@ -102,6 +102,7 @@ export default function usePostServer() {
         price,
         contributor,
         sender,
+        role,
       };
 
       const res = await axios.post(

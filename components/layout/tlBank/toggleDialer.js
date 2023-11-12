@@ -15,33 +15,23 @@ import {
   LinkIcon,
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { useAccount, useSwitchNetwork } from "wagmi";
+import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
 import { useDispatch } from "react-redux";
 import { setGoerli, setMainnet } from "@/redux/slice/tlbankSlice";
+import { useEffect } from "react";
 
 export function ToggleDialer() {
   const { address } = useAccount();
 
-  const { switchNetworkAsync } = useSwitchNetwork();
+  const { switchNetwork } = useSwitchNetwork();
   const dispatch = useDispatch();
+  const { chain } = useNetwork();
 
-  const switchGoerli = async () => {
-    try {
-      await switchNetworkAsync(5);
-      dispatch(setGoerli());
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const switchMainnet = async () => {
-    try {
-      await switchNetworkAsync(1);
-      dispatch(setMainnet());
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  useEffect(() => {
+    if (!chain) return;
+    if (chain.id === 1) dispatch(setMainnet());
+    if (chain.id === 5) dispatch(setGoerli());
+  }, [chain]);
 
   return (
     address && (
@@ -53,7 +43,7 @@ export function ToggleDialer() {
             </IconButton>
           </SpeedDialHandler>
           <SpeedDialContent>
-            <SpeedDialAction onClick={switchMainnet}>
+            <SpeedDialAction onClick={() => switchNetwork(1)}>
               <Image
                 src="/images/tlbank/ethereum.svg"
                 width={12}
@@ -61,7 +51,7 @@ export function ToggleDialer() {
                 alt="ETH"
               />
             </SpeedDialAction>
-            <SpeedDialAction onClick={switchGoerli}>
+            <SpeedDialAction onClick={() => switchNetwork(5)}>
               <p className="text-black ">G</p>
             </SpeedDialAction>
           </SpeedDialContent>

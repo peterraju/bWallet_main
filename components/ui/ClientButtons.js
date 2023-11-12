@@ -16,8 +16,14 @@ import {
   handleContributorModal,
   handleLoginModal,
   handleRoleModal,
+  handleTxCompleteModal,
 } from "@/redux/slice/modalSlice";
 import { setSignature } from "@/redux/slice/walletSlice";
+import useTLBank from "@/hooks/useTLBank";
+import { ethers } from "ethers";
+import useSafe from "@/hooks/useSafe";
+import usePostServer from "@/hooks/usePostServer";
+import { setExecutedTransaction } from "@/redux/slice/selectedSlice";
 
 const DefaultButton = ({
   variant,
@@ -309,8 +315,67 @@ const SelectRoleBtn = ({ handleClick }) => {
 };
 
 const ExecuteTransactionBtn = () => {
-  const handleClick = () => {
-    console.log("clicked");
+  const transactions = useSelector((state) => state.tlbank.queue);
+  const {
+    createTLBank,
+    lockAndLoadTLBank,
+    executeTransaction,
+    allowwanceBank,
+  } = useTLBank();
+  const walletAddress = useSelector((state) => state.wallet.address);
+  const tlBankAddress = useSelector((state) => state.tlbank.TLBANK);
+  const bankAddress = useSelector((state) => state.tlbank.BANK);
+  const { executeSafeTransaction } = useSafe();
+  const safeAddress = useSelector((state) => state.wallet.safe);
+  const { addTransaction } = usePostServer();
+
+  const handleClick = async () => {
+    let txs = [];
+    let tos = [];
+
+    let totalAmount = 0;
+    transactions.forEach((transaction) => {
+      totalAmount += parseInt(transaction.amount);
+    });
+
+    const allowance = await allowwanceBank(totalAmount);
+
+    txs.push(allowance.data);
+    tos.push(bankAddress);
+
+    transactions.forEach(async (transaction) => {
+      const lockDate = (transaction.time.getTime() / 1000).toFixed(0);
+      const amount = parseInt(transaction.amount);
+
+      const unSignedTx = await createTLBank(
+        transaction.pubKey,
+        ethers.utils.parseEther(amount.toString()),
+        lockDate,
+      );
+
+      txs.push(unSignedTx.data);
+      tos.push(tlBankAddress);
+    });
+
+    try {
+      await executeSafeTransaction(safeAddress, tos, txs);
+      await addTransaction(
+        "Queue Transfer",
+        `${totalAmount} Banks`,
+        `${txs.length - 1} Contributors`,
+        safeAddress,
+        "Organisation",
+      );
+      dispatch(
+        setExecutedTransaction({
+          status: "Queue Transfer",
+          price: `${totalAmount} Banks`,
+        }),
+      );
+      dispatch(handleTxCompleteModal());
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
