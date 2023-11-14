@@ -13,6 +13,7 @@ import {
 } from "@heroicons/react/24/outline";
 
 import {
+  handleAddContributorsModal,
   handleContributorModal,
   handleLoginModal,
   handleRoleModal,
@@ -413,6 +414,26 @@ const AddSelectedContributorsBtn = ({ onClick }) => {
   );
 };
 
+const AddContributorsToQueueBtn = ({ disabled }) => {
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    dispatch(handleAddContributorsModal());
+  };
+
+  return (
+    <DefaultButton
+      variant="filled"
+      color="gray"
+      label="+ Add to Queue"
+      style="flex bg-gradient-primary disabled:opacity-50 ml-auto mt-4"
+      onClick={handleClick}
+      icon=""
+      disabled={disabled}
+    />
+  );
+};
+
 export {
   LaunchAppBtn,
   CreateWalletBtn,
@@ -431,4 +452,5 @@ export {
   ExecuteTransactionBtn,
   AddContributorQueueBtn,
   AddSelectedContributorsBtn,
+  AddContributorsToQueueBtn,
 };

@@ -7,7 +7,7 @@ const initialState = {
   transactionModal: false,
   addContributorsModal: false,
   activeWallet: null,
-  txCompleteModal: true,
+  txCompleteModal: false,
 };
 
 export const modalSlice = createSlice({
