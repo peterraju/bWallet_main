@@ -63,7 +63,7 @@ const TxCompleteModal = () => {
         </div>
       </DialogBody>
 
-      <DialogFooter className="justify-center pb-8">
+      <DialogFooter className="justify-center pb-8 font-grotesque">
         <div className="text-base font-medium text-[#FCADFF]">
           Transaction has been Initiated
         </div>

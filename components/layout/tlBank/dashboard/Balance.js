@@ -1,5 +1,5 @@
 "use client";
-import { ArrowUpIcon } from "@heroicons/react/24/outline";
+
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
@@ -15,7 +15,7 @@ const Balance = () => {
 
   return (
     <div>
-      <p className="text-sm  text-gray-500">
+      <p className="text-sm text-gray-500">
         {status === "CON" ? "Contributor" : safeName}
       </p>
 

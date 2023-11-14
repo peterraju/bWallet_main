@@ -15,7 +15,9 @@ const NavItem = ({
         active ? activeStyle : nonActiveStyle
       }`}
     >
-      <Link href={href}>{name}</Link>
+      <Link href={href} className="flex flex-1">
+        {name}
+      </Link>
     </li>
   );
 };

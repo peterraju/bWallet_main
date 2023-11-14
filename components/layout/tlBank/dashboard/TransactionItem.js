@@ -22,7 +22,7 @@ const TransactionItem = ({ amount, time, pubKey }) => {
   return (
     <Tooltip
       content="Click to delete transaction"
-      className="bg-gradient-primary"
+      className="bg-gradient-primary font-grotesque"
       animate={{
         mount: { scale: 1, y: -2 },
         unmount: { scale: 0, y: 18 },

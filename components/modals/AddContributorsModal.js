@@ -73,17 +73,17 @@ const AddContributorsModal = () => {
       className="bg-gray-900"
       aria-hidden={isOpen}
     >
-      <DialogHeader className="flex items-center">
-        <p className="ml-6 w-full text-xl font-medium text-white">
+      <DialogHeader className="flex items-center font-grotesque">
+        <h3 className="ml-6 w-full text-xl font-bold text-white">
           Add to Queue
-        </p>
+        </h3>
 
         <IconButton size="sm" variant="text" onClick={handleOpen}>
           <XMarkIcon className="h-6 w-6 text-white" />
         </IconButton>
       </DialogHeader>
 
-      <DialogBody className="max-h-80 space-y-4 overflow-y-auto px-10">
+      <DialogBody className="max-h-80 space-y-4 overflow-y-auto px-10 font-grotesque">
         {selectedContributors.map((selectedContributor, index) => (
           <AddContributorsItem
             key={index}

@@ -5,7 +5,7 @@ import PayContributor from "@/components/layout/tlBank/dashboard/PayContributor"
 
 const DashboardPage = () => {
   return (
-    <main className="mx-auto max-w-6xl space-y-12 py-10">
+    <main className="mx-4 max-w-6xl space-y-12 py-10 font-grotesque xl:mx-auto">
       <Balance />
 
       <div className="mt-12 flex flex-wrap gap-6">
