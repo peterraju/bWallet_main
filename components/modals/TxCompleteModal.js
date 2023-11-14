@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { PaperAirplaneIcon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { handleTxCompleteModal } from "@/redux/slice/modalSlice";
-import Image from "next/image";
 
 const TxCompleteModal = () => {
   const isOpen = useSelector((state) => state.modal.txCompleteModal);

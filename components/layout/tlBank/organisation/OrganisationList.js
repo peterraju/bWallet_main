@@ -16,6 +16,7 @@ const OrganisationList = () => {
   const SAFE_TRANSACTION_API = useSelector(
     (state) => state.tlbank.SAFE_TRANSACTION_API,
   );
+
   const organisations = [
     {
       src: "/images/tlbank/org/gnosis-safe.svg",
@@ -179,15 +180,21 @@ const OrganisationList = () => {
 
   return (
     <div className="mt-20 flex w-full flex-col gap-6">
-      {filteredOrganisations.map((organisation) => (
-        <OrganisationItem
-          key={organisation.name}
-          src={organisation.src}
-          name={organisation.name}
-          label={organisation.label}
-          pubKey={organisation.pubKey}
-        />
-      ))}
+      {filteredOrganisations.length > 0 ? (
+        filteredOrganisations.map((organisation) => (
+          <OrganisationItem
+            key={organisation.name}
+            src={organisation.src}
+            name={organisation.name}
+            label={organisation.label}
+            pubKey={organisation.pubKey}
+          />
+        ))
+      ) : (
+        <div className="w-full text-center">
+          <p className="text-xl text-gray-500">No Organisations Found</p>
+        </div>
+      )}
     </div>
   );
 };
