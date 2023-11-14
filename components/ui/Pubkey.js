@@ -13,7 +13,7 @@ const Pubkey = () => {
       className="rounded-full bg-[#292929] px-3 py-1 text-base font-medium"
       onClick={handlePubKeyClick}
     >
-      {address.slice(0, 4)}...{address.slice(-4)}
+      {address.slice(0, 6)}...{address.slice(-4)}
     </p>
   );
 };

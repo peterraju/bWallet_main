@@ -45,17 +45,17 @@ const ContributorModal = () => {
       className="bg-gray-900"
       aria-hidden={isOpen}
     >
-      <DialogHeader className="flex items-center">
-        <p className="ml-6 w-full text-xl font-medium text-white">
+      <DialogHeader className="flex items-center font-grotesque font-bold">
+        <h3 className="ml-6 w-full text-xl font-medium text-white">
           Add Contributor
-        </p>
+        </h3>
 
         <IconButton size="sm" variant="text" onClick={handleOpen}>
           <XMarkIcon className="h-6 w-6 text-white" />
         </IconButton>
       </DialogHeader>
 
-      <DialogBody className="space-y-4 px-10">
+      <DialogBody className="space-y-4 px-10 font-grotesque">
         <Input
           type="text"
           label="Wallet Address"

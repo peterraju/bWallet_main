@@ -2,7 +2,7 @@ import NavItem from "./NavItem";
 
 const NavList = ({ list, size, itemStyle, activeStyle, nonActiveStyle }) => {
   return (
-    <ul className="prevent-select mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+    <ul className="prevent-select mb-4 mt-2 flex flex-col gap-2 font-grotesque lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
       {list &&
         list.map((item) => (
           <NavItem

@@ -2,7 +2,6 @@
 
 import { useSelector } from "react-redux";
 import TransactionItem from "./TransactionItem";
-import { Tooltip } from "@material-tailwind/react";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import { ExecuteTransactionBtn } from "@/components/ui/ClientButtons";
 

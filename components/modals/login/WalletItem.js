@@ -1,8 +1,10 @@
 "use client";
-import { setActiveWallet } from "@/redux/slice/modalSlice";
+
 import Image from "next/image";
-import { useDispatch } from "react-redux";
 import { useAccount } from "wagmi";
+import { useDispatch } from "react-redux";
+
+import { setActiveWallet } from "@/redux/slice/modalSlice";
 
 const WalletItem = ({ bg, src, name }) => {
   const dispatch = useDispatch();

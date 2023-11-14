@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 import { Checkbox } from "@material-tailwind/react";
 import {
   TrashIcon,
@@ -76,7 +74,7 @@ const ContributorItem = ({ contributor }) => {
             }
           }}
           label={
-            <div className="ml-3 flex items-center">
+            <div className="ml-3 flex items-center font-grotesque">
               <div onDoubleClick={handleDoubleClick}>
                 {isEditing ? (
                   <input

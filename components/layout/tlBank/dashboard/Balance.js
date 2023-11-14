@@ -1,8 +1,6 @@
 "use client";
-import {
-  ArrowTopRightOnSquareIcon,
-  ArrowUpIcon,
-} from "@heroicons/react/24/outline";
+
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNetwork } from "wagmi";

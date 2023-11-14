@@ -164,6 +164,7 @@ const PayContributor = () => {
             label="Quantity"
             value={quantity ? quantity : ""}
             onChange={(e) => setQuantity(e.target.value)}
+            className="font-grotesque"
           />
           <Input
             color="white"
@@ -171,13 +172,14 @@ const PayContributor = () => {
             label="Wallet Address"
             value={walletAddress ? walletAddress : ""}
             onChange={(e) => handleChange(e)}
+            className="font-grotesque"
           />
         </div>
 
         <div>
           <h4 className="font-semibold text-gray-400">Lockup Period</h4>
 
-          <List className="flex-row gap-6 px-0">
+          <List className="flex-row gap-6 px-0 font-grotesque">
             <ListItem
               className="rounded-lg bg-black/20 p-0 hover:bg-gray-800 focus:bg-gray-800 active:bg-gray-900"
               selected={selected === 1}
@@ -201,7 +203,9 @@ const PayContributor = () => {
                   />
                 </ListItemPrefix>
 
-                <p className="prevent-select font-bold text-white">6 Months</p>
+                <p className="prevent-select font-medium text-white">
+                  6 Months
+                </p>
               </label>
             </ListItem>
 
@@ -228,7 +232,7 @@ const PayContributor = () => {
                     />
                   </ListItemPrefix>
 
-                  <p className="prevent-select font-bold text-white">
+                  <p className="prevent-select font-medium text-white">
                     12 Months
                   </p>
                 </label>

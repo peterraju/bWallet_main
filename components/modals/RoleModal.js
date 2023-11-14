@@ -67,7 +67,7 @@ const RoleModal = () => {
       </DialogHeader>
 
       <DialogBody className="space-y-4 px-10">
-        <List className="space-y-3 bg-transparent p-0">
+        <List className="space-y-3 bg-transparent p-0 font-grotesque">
           <ListItem
             className={`hover:bg-gray-black bg-black/40 active:bg-black/40`}
             style={
@@ -96,9 +96,9 @@ const RoleModal = () => {
 
               <div className="prevent-select flex items-center gap-10">
                 <div className="space-y-2">
-                  <h4 className="font-grotesque font-bold text-white">ORG</h4>
+                  <h4 className="font-bold text-white">ORG</h4>
 
-                  <p className="font-grotesque font-thin text-white">
+                  <p className="font-thin text-white">
                     Manage organization as safe owner, admin or other custom
                     roles.
                   </p>
@@ -145,11 +145,9 @@ const RoleModal = () => {
 
               <div className="prevent-select flex items-center gap-10">
                 <div className="space-y-2">
-                  <h4 className="font-grotesque font-bold text-white">
-                    Contributor
-                  </h4>
+                  <h4 className="font-bold text-white">Contributor</h4>
 
-                  <p className="font-grotesque font-thin text-white">
+                  <p className="font-thin text-white">
                     Manage your profile, create and track payment requests
                   </p>
                 </div>
