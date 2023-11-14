@@ -16,9 +16,10 @@ import {
 } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setGoerli, setMainnet } from "@/redux/slice/tlbankSlice";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export function ToggleDialer() {
   const { address } = useAccount();
@@ -26,11 +27,23 @@ export function ToggleDialer() {
   const { switchNetwork } = useSwitchNetwork();
   const dispatch = useDispatch();
   const { chain } = useNetwork();
+  const status = useSelector((state) => state.tlbank.status);
+  const router = useRouter();
 
   useEffect(() => {
     if (!chain) return;
-    if (chain.id === 1) dispatch(setMainnet());
-    if (chain.id === 5) dispatch(setGoerli());
+    if (chain.id === 1) {
+      if (status === "ORG") {
+        router.push("/tlBank/organisations");
+      }
+      dispatch(setMainnet());
+    }
+    if (chain.id === 5) {
+      if (status === "ORG") {
+        router.push("/tlBank/organisations");
+      }
+      dispatch(setGoerli());
+    }
   }, [chain]);
 
   return (
