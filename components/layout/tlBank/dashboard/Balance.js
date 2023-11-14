@@ -1,13 +1,17 @@
 "use client";
 
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { useNetwork } from "wagmi";
 
 const Balance = () => {
   const balance = useSelector((state) => state.wallet.balance);
   const [totalBalance, setTotalBalance] = useState(0);
   const status = useSelector((state) => state.tlbank.status);
   const safeName = useSelector((state) => state.wallet.safeName);
+  const { chain } = useNetwork();
+  const safeAddress = useSelector((state) => state.wallet.safe);
 
   useEffect(() => {
     setTotalBalance(balance.reduce((a, b) => a + b, 0));
@@ -15,8 +19,21 @@ const Balance = () => {
 
   return (
     <div>
-      <p className="text-sm text-gray-500">
-        {status === "CON" ? "Contributor" : safeName}
+      <p
+        className="text-sm  text-gray-500 hover:cursor-pointer"
+        onClick={() => {
+          window.open(
+            `https://app.safe.global/transactions/queue?safe=${
+              chain === 1 ? "eth:" : "gor:"
+            }${safeAddress}`,
+            "_blank",
+          );
+        }}
+      >
+        {status === "CON" ? "Contributor" : safeName}{" "}
+        {status === "ORG" && (
+          <ArrowTopRightOnSquareIcon className="mb-1 ml-1 inline-block h-4 w-4" />
+        )}
       </p>
 
       <div className="flex items-end gap-4">
