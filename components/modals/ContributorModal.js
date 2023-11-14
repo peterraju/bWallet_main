@@ -8,13 +8,15 @@ import {
   IconButton,
   Input,
 } from "@material-tailwind/react";
+
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-import { handleContributorModal } from "@/redux/slice/modalSlice";
-import { AddContributorBtn } from "../ui/ClientButtons";
-import { useState } from "react";
 import usePostServer from "@/hooks/usePostServer";
+
+import { AddContributorBtn } from "../ui/ClientButtons";
+import { handleContributorModal } from "@/redux/slice/modalSlice";
 
 const ContributorModal = () => {
   const isOpen = useSelector((state) => state.modal.contributorModal);
