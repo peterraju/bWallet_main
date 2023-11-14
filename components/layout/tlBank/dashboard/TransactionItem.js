@@ -31,7 +31,6 @@ const TransactionItem = ({ amount, time, pubKey }) => {
       <div
         className="prevent-select flex cursor-pointer justify-between rounded-md bg-black/80 p-3 text-lg transition-colors hover:bg-gray-800"
         onClick={() => {
-          console.log("remove");
           dispatch(removeFromQueue(pubKey));
         }}
       >

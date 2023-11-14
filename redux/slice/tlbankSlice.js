@@ -64,14 +64,14 @@ export const tlbankSlice = createSlice({
       state.transactions.push(action.payload);
     },
 
-    setMainnet: (state, action) => {
+    setMainnet: (state) => {
       state.SAFE_TRANSACTION_API =
         "https://safe-transaction-mainnet.safe.global";
       state.TLBANK = "0xeaEAb9f1B25fa00FC01a3fcE521b47E88527Aa02";
       state.BANK = "0x2d94aa3e47d9d5024503ca8491fce9a2fb4da198";
     },
 
-    setGoerli: (state, action) => {
+    setGoerli: (state) => {
       state.SAFE_TRANSACTION_API =
         "https://safe-transaction-goerli.safe.global";
       state.TLBANK = "0x8e6e3b92E4f1818bc7CEEE6B7B7228952aa41acb";
