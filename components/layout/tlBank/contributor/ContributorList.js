@@ -1,26 +1,30 @@
 "use client";
 
-import { CheckIcon } from "@heroicons/react/24/outline";
-import ContributorItem from "./ContributorItem";
-import { useEffect } from "react";
-import useGetServer from "@/hooks/useGetServer";
+import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
 import { useSelector } from "react-redux";
+
+import useGetServer from "@/hooks/useGetServer";
+
+import ContributorItem from "./ContributorItem";
+import ContributorHeader from "./ContributorHeader";
+import ContributorLoading from "./ContributorLoading";
 import { AddContributorsToQueueBtn } from "@/components/ui/ClientButtons";
 
 const ContributorList = () => {
-  const { getAllContributors } = useGetServer();
   const { address } = useAccount();
+  const { getAllContributors } = useGetServer();
+
+  const [loading, setLoading] = useState(true);
+
   const signature = useSelector((state) => state.wallet.signature);
   const status = useSelector((state) => state.tlbank.status);
   const contributors = useSelector((state) => state.tlbank.contributors);
-  const selectedContributors = useSelector(
-    (state) => state.selected.selectedContributors,
-  );
 
   useEffect(() => {
     if (signature && address && status === "ORG") {
       getAllContributors();
+      setLoading(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, address, status]);
@@ -28,28 +32,26 @@ const ContributorList = () => {
   return (
     <>
       <section className="mt-10 w-full space-y-3 rounded-xl bg-gray-800/70 px-4 py-4">
-        <div className="flex w-full items-center justify-between px-4">
-          <div className="flex w-1/3 items-center gap-2">
-            <div className="flex h-12 w-12 items-center justify-center">
-              <div className="flex h-5 w-5 items-center justify-center rounded-md bg-purple-600">
-                <CheckIcon className="h-4 w-4 text-white " />
+        <ContributorHeader />
+
+        {loading ? (
+          <ContributorLoading />
+        ) : (
+          <div>
+            {contributors.length > 0 ? (
+              contributors.map((contributor, index) => (
+                <ContributorItem key={index} contributor={contributor} />
+              ))
+            ) : (
+              <div className="flex w-full items-center justify-center rounded-md bg-gray-900/90 px-4 py-3">
+                <p className="text-gray-400">No contributors found</p>
               </div>
-            </div>
-
-            <p className="text-gray-500">Name</p>
+            )}
           </div>
-
-          <p className="w-28 text-gray-500">Address</p>
-          <div aria-hidden="true" className="h-9 w-9"></div>
-          <p className="text-gray-500">Action</p>
-        </div>
-
-        {contributors.map((contributor, index) => (
-          <ContributorItem key={index} contributor={contributor} />
-        ))}
+        )}
       </section>
 
-      <AddContributorsToQueueBtn disabled={selectedContributors.length === 0} />
+      <AddContributorsToQueueBtn />
     </>
   );
 };

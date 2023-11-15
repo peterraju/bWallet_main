@@ -438,8 +438,11 @@ const AddSelectedContributorsBtn = ({ onClick }) => {
   );
 };
 
-const AddContributorsToQueueBtn = ({ disabled }) => {
+const AddContributorsToQueueBtn = () => {
   const dispatch = useDispatch();
+  const selectedContributors = useSelector(
+    (state) => state.selected.selectedContributors,
+  );
 
   const handleClick = () => {
     dispatch(handleAddContributorsModal());
@@ -453,7 +456,7 @@ const AddContributorsToQueueBtn = ({ disabled }) => {
       style="flex bg-gradient-primary disabled:opacity-50 ml-auto mt-4"
       onClick={handleClick}
       icon=""
-      disabled={disabled}
+      disabled={selectedContributors.length === 0}
     />
   );
 };
