@@ -7,19 +7,15 @@ import {
   SpeedDialContent,
   SpeedDialAction,
 } from "@material-tailwind/react";
-import {
-  PlusIcon,
-  HomeIcon,
-  CogIcon,
-  Square3Stack3DIcon,
-  LinkIcon,
-} from "@heroicons/react/24/outline";
+import { LinkIcon } from "@heroicons/react/24/outline";
+
 import Image from "next/image";
-import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
-import { useDispatch, useSelector } from "react-redux";
-import { setGoerli, setMainnet } from "@/redux/slice/tlbankSlice";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { useAccount, useNetwork, useSwitchNetwork } from "wagmi";
+
+import { setGoerli, setMainnet } from "@/redux/slice/tlbankSlice";
 
 export function ToggleDialer() {
   const { address } = useAccount();
@@ -55,6 +51,7 @@ export function ToggleDialer() {
               <LinkIcon className="h-5 w-5 transition-transform group-hover:rotate-45" />
             </IconButton>
           </SpeedDialHandler>
+
           <SpeedDialContent>
             <SpeedDialAction onClick={() => switchNetwork(1)}>
               <Image
@@ -64,6 +61,7 @@ export function ToggleDialer() {
                 alt="ETH"
               />
             </SpeedDialAction>
+
             <SpeedDialAction onClick={() => switchNetwork(5)}>
               <p className="text-black ">G</p>
             </SpeedDialAction>

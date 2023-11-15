@@ -37,7 +37,7 @@ const ContributorList = () => {
         {loading ? (
           <ContributorLoading />
         ) : (
-          <div>
+          <div className="space-y-3">
             {contributors.length > 0 ? (
               contributors.map((contributor, index) => (
                 <ContributorItem key={index} contributor={contributor} />
