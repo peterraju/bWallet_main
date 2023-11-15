@@ -1,9 +1,11 @@
 "use client";
 
+import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
+
+import { useDispatch } from "react-redux";
+
 import { handleTransactionModal } from "@/redux/slice/modalSlice";
 import { handleSelectedTransaction } from "@/redux/slice/selectedSlice";
-import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
-import { useDispatch } from "react-redux";
 
 const TransactionItem = ({ contributor }) => {
   const dispatch = useDispatch();
