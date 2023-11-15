@@ -1,16 +1,23 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@material-tailwind/react";
-import { useDispatch, useSelector } from "react-redux";
-import { useAccount, useConnect, useSignMessage } from "wagmi";
 import {
   ArrowDownOnSquareIcon,
   ArrowUpRightIcon,
   PlusIcon,
   UserIcon,
 } from "@heroicons/react/24/outline";
+import { Button } from "@material-tailwind/react";
+
+import { ethers } from "ethers";
+import { useEffect } from "react";
+import { saveAs } from "file-saver";
+import { useRouter } from "next/navigation";
+import { useDispatch, useSelector } from "react-redux";
+import { useAccount, useConnect, useSignMessage } from "wagmi";
+
+import useSafe from "@/hooks/useSafe";
+import useTLBank from "@/hooks/useTLBank";
+import usePostServer from "@/hooks/usePostServer";
 
 import {
   handleAddContributorsModal,
@@ -20,10 +27,6 @@ import {
   handleTxCompleteModal,
 } from "@/redux/slice/modalSlice";
 import { setSignature } from "@/redux/slice/walletSlice";
-import useTLBank from "@/hooks/useTLBank";
-import { ethers } from "ethers";
-import useSafe from "@/hooks/useSafe";
-import usePostServer from "@/hooks/usePostServer";
 import { setExecutedTransaction } from "@/redux/slice/selectedSlice";
 
 const DefaultButton = ({
@@ -284,8 +287,29 @@ const PayContributorBtn = ({ handleClick }) => {
 };
 
 const ExportTransactionBtn = () => {
+  const transactions = useSelector((state) => state.tlbank.transactions);
+
   const handleClick = () => {
-    console.log("clicked");
+    if (transactions.length > 0) {
+      const csv = transactions
+        .map((transaction) => {
+          const date = new Date(Number(transaction.date));
+          const formattedDate = `${date.getDate()}-${
+            date.getMonth() + 1
+          }-${date.getFullYear()}`;
+
+          return [
+            transaction.status,
+            transaction.price,
+            transaction.sender,
+            formattedDate,
+          ].join(",");
+        })
+        .join("\n");
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      saveAs(blob, "transactions.csv");
+    }
   };
 
   return (
