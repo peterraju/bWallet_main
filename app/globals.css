@@ -64,6 +64,20 @@ body {
   background-position: top center;
 }
 
+.feather-bg {
+  background-image: url("/images/feather-bg.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center;
+}
+
+.grid-bg {
+  background-image: url("/images/grid-bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
+
 .skeleton {
   position: relative;
   overflow: hidden;
