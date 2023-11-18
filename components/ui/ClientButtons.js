@@ -56,6 +56,14 @@ const DefaultWhiteButton = ({ label, style, onClick }) => {
   );
 };
 
+const DefaultBlackBtn = ({ label, style, onClick }) => {
+  return (
+    <Button variant="filled" color="gray" className="" onClick={onClick}>
+      {label}
+    </Button>
+  );
+};
+
 const LaunchAppBtn = ({ isDefault, screen, style }) => {
   const handleClick = () => {
     window.open("https://tally.so/r/nPpvRQ", "_blank");

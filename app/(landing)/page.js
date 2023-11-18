@@ -18,7 +18,7 @@ export default function Home() {
 
       <Image
         src="/images/home/breaker.svg"
-        alt="hero-bg"
+        alt=""
         width={1920}
         height={1}
         className="mx-auto my-24 h-3 w-full md:my-32 md:w-4/5"
@@ -30,7 +30,7 @@ export default function Home() {
 
         <Image
           src="/images/home/breaker.svg"
-          alt="hero-bg"
+          alt=""
           width={1920}
           height={1}
           className="mx-auto my-24 h-3 w-full md:my-32 md:w-4/5"
@@ -40,7 +40,7 @@ export default function Home() {
 
         <Image
           src="/images/home/breaker.svg"
-          alt="hero-bg"
+          alt=""
           width={1920}
           height={1}
           className="mx-auto my-24 h-3 w-full md:my-32 md:w-4/5"
