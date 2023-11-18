@@ -17,7 +17,7 @@ const HomeNav = () => {
     },
     {
       name: "TL Bank",
-      href: "tlBank",
+      href: "https://pay.banklesswallet.xyz",
       active: activeNav === "/tlBank",
     },
   ];
