@@ -1,8 +1,9 @@
+import Link from "next/link";
 import Image from "next/image";
 
 const Logo = ({ logoSize = 20, textSize = "text-xl" }) => {
   return (
-    <section className="prevent-select flex items-center gap-2">
+    <Link className="prevent-select flex items-center gap-2" href="/">
       <div className="flex items-center justify-center rounded-lg bg-black">
         <Image
           src="/logo.svg"
@@ -18,7 +19,7 @@ const Logo = ({ logoSize = 20, textSize = "text-xl" }) => {
       >
         Bankless Wallet
       </p>
-    </section>
+    </Link>
   );
 };
 
