@@ -71,7 +71,7 @@ const DefaultBlackBtn = ({ label, style, onClick, image }) => {
         <div className="w-6 h-6 p-0.5 justify-center items-center flex">
           <div className="w-5 h-5 relative flex-col justify-start items-start flex" />
         </div>
-        <div className="text-center text-white text-sm lowercase">
+        <div className="text-center text-white text-sm ">
           {label}
         </div>
       </div>

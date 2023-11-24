@@ -9,11 +9,11 @@ export default function Login() {
       <>
         <section className="flex-1 p-8 px-7">
           <Logo />
-          <OnBoardHeading heading={"Ok"} paragraph={"para"} />
+          {/* <OnBoardHeading heading={"Login to your account"} paragraph={"Choose your Wallet or Login with Google "} /> */}
           <LoginMain />
         </section>
 
-        <section className="grid-bg flex-1">
+        <section className="grid-bg flex-1 flex">
           <LoginHero />
         </section>
       </>
