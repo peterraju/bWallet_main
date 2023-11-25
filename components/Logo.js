@@ -11,7 +11,7 @@ const Logo = ({ logoSize = 20, textSize = "text-xl" }) => {
           width={logoSize}
           height={logoSize}
           className="m-2"
-        />
+        /><div className=" text-2xl decoration-white "></div>
       </div>
 
       <p
