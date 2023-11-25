@@ -56,30 +56,13 @@ const DefaultWhiteButton = ({ label, style, onClick }) => {
   );
 };
 
-const DefaultBlackBtn = ({ label, style, onClick, image }) => {
-  console.log("image", image);
+const DefaultBlackBtn = ({ label, style, onClick }) => {
   return (
-    <Button 
-      variant="filled" 
-      color="gray" 
-      className="w-[280px] flex flex-row h-10 mb-8 bg-gradient-to-b from-stone-900 to-neutral-900 rounded-lg shadow border border-gray-600 pl-12 items-center  "
-      onClick={onClick}
-    >
-      
-      {image && <img src={image} className="w-6 h-6 " />}
-      <div className="justify-start items-center  inline-flex">
-        <div className="w-6 h-6 p-0.5 justify-center items-center flex">
-          <div className="w-5 h-5 relative flex-col justify-start items-start flex" />
-        </div>
-        <div className="text-center text-white text-sm ">
-          {label}
-        </div>
-      </div>
+    <Button variant="filled" color="gray" className="" onClick={onClick}>
+      {label}
     </Button>
   );
 };
-
-
 
 const LaunchAppBtn = ({ isDefault, screen, style }) => {
   const handleClick = () => {
@@ -189,4 +172,4 @@ const HardwareWalletBtn = () => {
 //   );
 // };
 
-export { LaunchAppBtn, CreateWalletBtn, HardwareWalletBtn, DefaultButton, DefaultBlackBtn };
+export { LaunchAppBtn, CreateWalletBtn, HardwareWalletBtn, DefaultButton };

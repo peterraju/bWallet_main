@@ -1,5 +1,11 @@
+import FormField from "../FormField";
+
+
 const SetupAccount = () => {
-  return <div>SetupAccount</div>;
+  return <div>
+      <FormField/>
+
+  </div>;
 };
 
 export default SetupAccount;

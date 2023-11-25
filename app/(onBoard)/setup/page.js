@@ -17,10 +17,11 @@ export default function Setup() {
 
   return (
     <>
-      <section className="flex-1 p-8 px-7">
+      <section className="flex-1 flex-col justify-items-center p-8 px-7 ">
         <Logo />
         <Heading heading={"Ok"} paragraph={"para"} />
         <SetupStepper onStepChange={handleStepChange} />
+
         <HardwareWallet />
       </section>
 
