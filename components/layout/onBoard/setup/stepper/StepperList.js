@@ -20,21 +20,21 @@ const StepperList = ({
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         stepNo={0}
-        stepDes={"ABC"}
+        stepDes={"Add Gaurdians"}
       />
 
       <StepperItem
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         stepNo={1}
-        stepDes={"ABC"}
+        stepDes={"Enable 2FA"}
       />
 
       <StepperItem
         activeStep={activeStep}
         setActiveStep={setActiveStep}
         stepNo={2}
-        stepDes={"ABC"}
+        stepDes={"Deploy Your Wallet"}
       />
     </Stepper>
   );
