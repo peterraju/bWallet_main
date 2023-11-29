@@ -1,8 +1,16 @@
-const OnBoardHeading = ({ heading, paragraph }) => {
+const headings = [
+  "Setup Your Account",
+  "Authenticate Your Wallet",
+  "Deploy Your Wallet",
+];
+
+const OnBoardHeading = ({ page }) => {
   return (
     <>
-      <h2>{heading}</h2>
-      <p>{paragraph}</p>
+      <h2 className="  mt-28 mb-16 font-clash-display text-[32px]">
+        {headings[page]}
+      </h2>
+      {/* <p>{paragraph}</p> */}
     </>
   );
 };

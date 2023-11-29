@@ -5,12 +5,12 @@ const StepperBtn = ({ isFirstStep, isLastStep, setActiveStep }) => {
   const handlePrev = () => !isFirstStep && setActiveStep((cur) => cur - 1);
 
   return (
-    <div className="mt-32 flex justify-between">
-      <Button onClick={handlePrev} disabled={isFirstStep}>
+    <div className="mt-[32px] flex justify-between ">
+      <Button className=" bg-gradient-primary" onClick={handlePrev} disabled={isFirstStep}>
         Prev
       </Button>
-      <Button onClick={handleNext} disabled={isLastStep}>
-        Next
+      <Button className=" bg-gradient-primary" onClick={handleNext} disabled={isLastStep}>
+        Next            
       </Button>
     </div>
   );

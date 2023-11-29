@@ -17,14 +17,19 @@ export default function Setup() {
 
   return (
     <>
-      <section className="flex-1 p-8 px-7">
+      <section className=" w-1/2 flex-1 items-center justify-center p-8 px-7 ">
         <Logo />
-        <Heading heading={"Ok"} paragraph={"para"} />
-        <SetupStepper onStepChange={handleStepChange} />
-        <HardwareWallet />
+        <div className=" flex flex-col items-center">
+          <Heading page={activeStep} />
+          <SetupStepper onStepChange={handleStepChange} />
+          <HardwareWallet />
+        </div>
       </section>
 
-      <section className="grid-bg flex-1">
+      <section
+        className="grid-bg flex w-1/2 flex-col  items-center
+      "
+      >
         <SetupHero activeStep={activeStep} />
       </section>
     </>
