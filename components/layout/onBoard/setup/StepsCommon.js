@@ -6,7 +6,12 @@ import { haqqTestedge2 } from "viem/chains";
 
 //commom to all pages
 
-//set up your account
+
+
+// set up your account
+
+
+
 
 const emptyInputField = () => {
   const [inputValue1, setInputValue1] = useState("");
@@ -62,12 +67,12 @@ const SwitchCustomStyles = () => {
     <Switch
       id="custom-switch-component"
       ripple={false}
-      className=" checked: mr-[6px] h-[27px]  w-[60px] bg-gradient-primary"
+      className=" checked:  h-[27px]  w-[60px] bg-gradient-primary"
       containerProps={{
-        className: "w-11 h-6",
+        className: "w-[60px] h-[27px]",
       }}
       circleProps={{
-        className: "before:hidden left-0.5 border-none",
+        className: "before:hidden left-0.5 bottem-0.6 border-none",
       }}
     />
   );
